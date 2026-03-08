@@ -64,6 +64,8 @@ export function StatsSection() {
   return (
     <section className="py-20 border-y border-[var(--color-border)] relative overflow-hidden">
       <div className="absolute inset-0 animate-shimmer" />
+      {/* Subtle grid pattern background */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: "linear-gradient(var(--color-text) 1px, transparent 1px), linear-gradient(90deg, var(--color-text) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (

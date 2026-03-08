@@ -26,7 +26,7 @@ function ProjectCard({ project }: { project: Project }) {
       href={project.url}
       target={project.url.startsWith("http") ? "_blank" : undefined}
       rel={project.url.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="group block p-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:shadow-xl hover:shadow-[var(--color-accent)]/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+      className="group block p-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:shadow-xl hover:shadow-[var(--color-accent)]/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer shimmer-hover"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-subtle)] flex items-center justify-center overflow-hidden">

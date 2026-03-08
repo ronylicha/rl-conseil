@@ -156,6 +156,35 @@
     background-clip: text;
     animation: gradient-shift 4s ease infinite;
   }
+
+  .shimmer-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-hover::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(190, 60, 90, 0.03) 45%,
+      rgba(190, 60, 90, 0.06) 50%,
+      rgba(190, 60, 90, 0.03) 55%,
+      transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: none;
+    pointer-events: none;
+  }
+
+  .shimmer-hover:hover::after {
+    animation: shimmer 0.8s ease-out forwards;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
