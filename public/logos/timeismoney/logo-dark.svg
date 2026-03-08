@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;display=swap');
+    </style>
+  </defs>
+  
+  <!-- Icône centrée -->
+  <g transform="translate(50, 20)">
+    <!-- Anneau externe avec graduation -->
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="220 60" stroke-linecap="round"/>
+    
+    <!-- Anneau interne doré -->
+    <circle cx="50" cy="50" r="32" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="2.5"/>
+    
+    <!-- Aiguille des heures -->
+    <line x1="50" y1="50" x2="50" y2="22" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Aiguille des minutes -->
+    <line x1="50" y1="50" x2="72" y2="34" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Symbole € au centre -->
+    <text x="50" y="62" text-anchor="middle" font-size="24" font-weight="700" fill="#f59e0b" font-family="Montserrat, sans-serif">€</text>
+    
+    <!-- Point cardinal nord -->
+    <circle cx="50" cy="8" r="4" fill="#10b981"/>
+  </g>
+  
+  <!-- Texte en dessous -->
+  <text x="100" y="150" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="22" font-weight="600" fill="#ffffff" letter-spacing="-0.5">
+    Time
+  </text>
+  <text x="100" y="178" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.5">
+    <tspan fill="#10b981">Is</tspan>
+    <tspan fill="#ffffff">Money</tspan>
+  </text>
+</svg>

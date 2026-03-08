@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="80" viewBox="0 0 300 80">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;display=swap');
+      .logo-text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; }
+    </style>
+  </defs>
+  <desc>Scell.io Logo - Light Mode</desc>
+  
+  <!-- Texte "Scell" -->
+  <text x="10" y="54" class="logo-text" font-size="46" fill="#0F172A">Scell</text>
+  
+  <!-- Cadenas rouge (remplace le point) -->
+  <g transform="translate(138, 30)">
+    <!-- Corps du cadenas -->
+    <rect x="0" y="12" width="20" height="16" rx="3" ry="3" fill="#EF4444"/>
+    <!-- Anse du cadenas -->
+    <path d="M4,12 V8 a6,6 0 0 1 12,0 v4" fill="none" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+    <!-- Trou de serrure -->
+    <circle cx="10" cy="20" r="2" fill="#FFFFFF"/>
+    <rect x="9" y="20" width="2" height="4" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Texte "io" -->
+  <text x="165" y="54" class="logo-text" font-size="46" fill="#0F172A">io</text>
+</svg>

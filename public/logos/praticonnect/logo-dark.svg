@@ -1,0 +1,39 @@
+<svg width="200" height="180" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo Icon - centered, scaled up -->
+  <g transform="translate(52, 10) scale(1.5)">
+    <!-- Hexagone arrondi -->
+    <path 
+      d="M32 4L56 18V46L32 60L8 46V18L32 4Z" 
+      fill="none"
+      stroke="#2DD4BF"
+      stroke-width="2.5"
+      stroke-linejoin="round"
+    />
+    
+    <!-- P stylisé central -->
+    <path 
+      d="M24 20V44M24 20H36C40 20 44 24 44 28C44 32 40 36 36 36H24" 
+      stroke="url(#gradDarkStacked)"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+    
+    <!-- Points de connexion -->
+    <circle cx="44" cy="28" r="4" fill="#2DD4BF" />
+    <circle cx="24" cy="44" r="4" fill="#14B8A6" />
+  </g>
+  
+  <!-- Text - centered below icon -->
+  <text x="100" y="155" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="600" fill="#FFFFFF" letter-spacing="-0.5" text-anchor="middle">
+    Prati<tspan fill="#2DD4BF">Connect</tspan>
+  </text>
+  
+  <defs>
+    <linearGradient id="gradDarkStacked" x1="24" y1="20" x2="44" y2="44">
+      <stop offset="0%" stop-color="#14B8A6" />
+      <stop offset="100%" stop-color="#2DD4BF" />
+    </linearGradient>
+  </defs>
+</svg>

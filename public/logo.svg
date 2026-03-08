@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Outfit:wght@400&amp;family=DM+Sans:wght@400&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="140" fill="#0d1117"/>
+
+  <!-- RL -->
+  <text x="45" y="82" font-family="'Playfair Display', serif" font-weight="700" font-size="50" fill="#f0ece4" letter-spacing="-0.03em">RL</text>
+
+  <!-- Thin vertical separator -->
+  <line x1="124" y1="46" x2="124" y2="88" stroke="#be3c5a" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Conseil -->
+  <text x="138" y="73" font-family="'Outfit', sans-serif" font-weight="400" font-size="17" fill="rgba(240,236,228,0.7)" letter-spacing="0.06em">Conseil</text>
+
+  <!-- Long arrow line -->
+  <line x1="45" y1="100" x2="260" y2="100" stroke="rgba(240,236,228,0.15)" stroke-width="1.2"/>
+  <line x1="220" y1="100" x2="263" y2="100" stroke="#be3c5a" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M256 95 L265 100 L256 105" fill="none" stroke="#be3c5a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Tagline -->
+  <text x="45" y="119" font-family="'DM Sans', sans-serif" font-weight="400" font-size="8" fill="rgba(240,236,228,0.3)" letter-spacing="0.2em">STRATÉGIE · DIGITAL · INNOVATION</text>
+</svg>
