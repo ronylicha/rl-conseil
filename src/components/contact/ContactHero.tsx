@@ -93,7 +93,7 @@ export function ContactHero() {
                 transition={{ delay: 0.8 + i * 0.1 }}
                 className="flex items-center gap-2.5 text-sm text-[var(--color-text-muted)]"
               >
-                <div className="w-9 h-9 rounded-lg bg-[var(--color-accent)]/10 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-lg bg-[var(--color-accent)]/10 flex items-center justify-center hover:bg-[var(--color-accent)]/20 hover:shadow-md hover:shadow-[var(--color-accent)]/10 transition-all duration-300">
                   <s.icon size={16} className="text-[var(--color-accent)]" />
                 </div>
                 {s.label}

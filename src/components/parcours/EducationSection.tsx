@@ -23,7 +23,7 @@ export function EducationSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]"
+                  className="p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:-translate-y-1 transition-all duration-300 cursor-default shimmer-hover"
                 >
                   <p className="text-xs text-[var(--color-text-muted)] mb-1">{edu.period}</p>
                   <h4 className="font-semibold text-[var(--color-text)] mb-1">{edu.title}</h4>
@@ -48,7 +48,7 @@ export function EducationSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]"
+                  className="p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:shadow-lg hover:shadow-[var(--color-accent)]/5 hover:-translate-y-1 transition-all duration-300 cursor-default shimmer-hover"
                 >
                   <p className="text-xs text-[var(--color-text-muted)] mb-1">{cert.date}</p>
                   <h4 className="font-semibold text-[var(--color-text)] mb-1">{cert.title}</h4>

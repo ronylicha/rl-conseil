@@ -44,7 +44,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-surface-hover)] transition-all cursor-pointer"
+                  className="p-2.5 rounded-lg bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-surface-hover)] hover:rotate-6 hover:shadow-md hover:shadow-[var(--color-accent)]/10 transition-all cursor-pointer"
                 >
                   <Icon size={16} />
                 </a>

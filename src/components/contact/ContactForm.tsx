@@ -19,7 +19,7 @@ const projectTypes = [
   { value: "autre", label: "Autre" },
 ];
 
-const inputClasses = "w-full px-4 py-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] transition-all";
+const inputClasses = "w-full px-4 py-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] focus:shadow-md focus:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/20 transition-all duration-300";
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -127,7 +127,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium hover:bg-[var(--color-accent-dark)] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium hover:bg-[var(--color-accent-dark)] hover:shadow-lg hover:shadow-[var(--color-accent)]/20 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
                 >
                   {status === "loading" ? (
                     <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -167,7 +167,7 @@ export function ContactForm() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/20 transition-all"
+                className="p-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/20 hover:shadow-md hover:shadow-[var(--color-accent)]/5 hover:-translate-y-0.5 transition-all duration-300 shimmer-hover"
               >
                 <h3 className="font-semibold text-[var(--color-text)] text-sm mb-2">{faq.q}</h3>
                 <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{faq.a}</p>

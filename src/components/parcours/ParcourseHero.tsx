@@ -47,9 +47,9 @@ export function ParcourseHero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex justify-center"
+            className="relative flex justify-center group"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-[var(--color-accent)]/20">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-[var(--color-accent)]/20 shadow-2xl shadow-[var(--color-accent)]/10 group-hover:shadow-[var(--color-accent)]/20 transition-all duration-700" style={{ animation: "float-slow 6s ease-in-out infinite" }}>
               <Image
                 src="/profile-photo.jpg"
                 alt="Rony Licha - CTO & Fondateur RL Conseil"
@@ -58,7 +58,7 @@ export function ParcourseHero() {
                 priority
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-xl bg-[var(--color-accent)] text-white text-sm font-medium shadow-lg">
+            <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-xl bg-[var(--color-accent)] text-white text-sm font-medium shadow-lg shadow-[var(--color-accent)]/30" style={{ animation: "float-slow 6s ease-in-out infinite", animationDelay: "1s" }}>
               CTO & Fondateur
             </div>
           </motion.div>

@@ -13,14 +13,14 @@ export function CvView() {
         <div className="flex justify-end gap-3 mb-6 no-print">
           <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-border)] text-[var(--color-text-muted)] rounded-lg text-sm hover:bg-[var(--color-surface)] transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--color-border)] text-[var(--color-text-muted)] rounded-lg text-sm hover:bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)] hover:shadow-md transition-all duration-300 cursor-pointer"
           >
             <Printer size={16} /> Imprimer
           </button>
         </div>
 
         {/* CV Layout */}
-        <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden print:border-0 print:rounded-none print:shadow-none">
+        <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden shadow-xl shadow-black/5 dark:shadow-black/20 print:border-0 print:rounded-none print:shadow-none">
           <div className="grid md:grid-cols-[280px_1fr] print:grid-cols-[220px_1fr]">
             {/* Sidebar */}
             <div className="bg-[#0d1117] text-[#f0ece4] p-8 print:p-6 space-y-6">
@@ -161,7 +161,7 @@ export function CvView() {
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
                   {projects.slice(0, 4).map((p) => (
-                    <div key={p.id} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-subtle)]">
+                    <div key={p.id} className="p-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-subtle)] hover:border-[var(--color-accent)]/20 transition-colors">
                       <h4 className="text-xs font-bold text-[var(--color-text)]">{p.name}</h4>
                       <p className="text-[10px] text-[var(--color-text-muted)] mt-0.5">{p.subtitle}</p>
                     </div>

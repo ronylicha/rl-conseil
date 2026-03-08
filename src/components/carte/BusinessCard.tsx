@@ -158,13 +158,13 @@ END:VCARD`;
       >
         <button
           onClick={downloadVCard}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl text-sm font-medium hover:bg-[var(--color-accent-dark)] hover:shadow-lg hover:shadow-[var(--color-accent)]/20 transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl text-sm font-medium hover:bg-[var(--color-accent-dark)] hover:shadow-lg hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
         >
           <Download size={16} /> Ajouter aux contacts
         </button>
         <button
           onClick={share}
-          className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl text-sm font-medium hover:bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl text-sm font-medium hover:bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 cursor-pointer"
         >
           <Share2 size={16} /> Partager
         </button>

@@ -113,6 +113,11 @@
     100% { background-position: 200% 0; }
   }
 
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
   @keyframes glow-pulse {
     0%, 100% { box-shadow: 0 0 20px rgba(190, 60, 90, 0.1); }
     50% { box-shadow: 0 0 40px rgba(190, 60, 90, 0.3); }
