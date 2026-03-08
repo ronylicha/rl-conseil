@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -204,19 +205,23 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 1.2 }}
             className="flex flex-wrap gap-4"
           >
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium text-base hover:bg-[var(--color-accent-dark)] transition-all duration-200 cursor-pointer animate-glow-pulse hover:animate-none hover:shadow-xl hover:shadow-[var(--color-accent)]/20"
-            >
-              Planifier un échange
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/#services"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl font-medium text-base hover:bg-[var(--color-surface)]/80 hover:border-[var(--color-accent)]/30 backdrop-blur-sm transition-all duration-200 cursor-pointer"
-            >
-              Découvrir notre expertise
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium text-base hover:bg-[var(--color-accent-dark)] transition-all duration-200 cursor-pointer animate-glow-pulse hover:animate-none hover:shadow-xl hover:shadow-[var(--color-accent)]/20"
+              >
+                Planifier un échange
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link
+                href="/#services"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl font-medium text-base hover:bg-[var(--color-surface)]/80 hover:border-[var(--color-accent)]/30 backdrop-blur-sm transition-all duration-200 cursor-pointer"
+              >
+                Découvrir notre expertise
+              </Link>
+            </MagneticButton>
           </motion.div>
         </div>
       </div>

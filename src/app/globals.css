@@ -171,19 +171,25 @@
     height: 200%;
     background: linear-gradient(
       45deg,
-      transparent 40%,
-      rgba(190, 60, 90, 0.03) 45%,
-      rgba(190, 60, 90, 0.06) 50%,
-      rgba(190, 60, 90, 0.03) 55%,
-      transparent 60%
+      transparent 35%,
+      rgba(190, 60, 90, 0.08) 42%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(190, 60, 90, 0.08) 58%,
+      transparent 65%
     );
     transform: translateX(-100%);
     transition: none;
     pointer-events: none;
+    z-index: 1;
   }
 
   .shimmer-hover:hover::after {
-    animation: shimmer 0.8s ease-out forwards;
+    animation: shimmer 0.7s ease-out forwards;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 }
 

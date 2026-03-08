@@ -45,7 +45,7 @@ export function WhyUsSection() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
             >
               <TiltCard className="h-full">
-                <div className="p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:glow-accent transition-all duration-300 cursor-pointer group h-full">
+                <div className="p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:glow-accent transition-all duration-300 cursor-pointer group h-full" style={{ transformStyle: "preserve-3d" }}>
                   <div className="w-12 h-12 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--color-accent)]/20 group-hover:shadow-lg group-hover:shadow-[var(--color-accent)]/10 transition-all duration-300" style={{ transform: "translateZ(30px)" }}>
                     <card.icon
                       size={24}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export function CtaSection() {
   return (
@@ -28,23 +29,27 @@ export function CtaSection() {
             sans slides de 50 pages.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[var(--color-accent-dark)] rounded-xl font-medium hover:bg-white/90 transition-all group cursor-pointer"
-            >
-              Planifier un échange
-              <ArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-            <a
-              href="tel:+33767987176"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white rounded-xl font-medium hover:bg-white/10 transition-all cursor-pointer"
-            >
-              <Phone size={18} />
-              07 67 98 71 76
-            </a>
+            <MagneticButton>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[var(--color-accent-dark)] rounded-xl font-medium hover:bg-white/90 transition-all group cursor-pointer"
+              >
+                Planifier un échange
+                <ArrowRight
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <a
+                href="tel:+33767987176"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white rounded-xl font-medium hover:bg-white/10 transition-all cursor-pointer"
+              >
+                <Phone size={18} />
+                07 67 98 71 76
+              </a>
+            </MagneticButton>
           </div>
         </motion.div>
       </div>
