@@ -1,0 +1,5 @@
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" rx="36" fill="#0d1117"/>
+  <text x="22" y="125" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="100" fill="#f0ece4" letter-spacing="-2">RL</text>
+  <line x1="22" y1="145" x2="158" y2="145" stroke="#be3c5a" stroke-width="6" stroke-linecap="round"/>
+</svg>
