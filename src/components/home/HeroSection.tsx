@@ -4,7 +4,13 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+
+const HeroVideoPlayer = dynamic(
+  () => import("@/components/home/hero-video/HeroVideoPlayer").then((m) => m.HeroVideoPlayer),
+  { ssr: false },
+);
 
 function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -143,85 +149,98 @@ export function HeroSection() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Content */}
+      {/* Content — 40/60 split */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/60 backdrop-blur-md text-xs font-medium text-[var(--color-text-muted)] mb-8 animate-border-glow"
-          >
-            <span className="w-2 h-2 rounded-full bg-[var(--color-success)] animate-pulse" />
-            <Sparkles size={12} className="text-[var(--color-accent)]" />
-            CTO Externalisé · Ingénierie Digitale · Paris
-          </motion.div>
-
-          {/* Title */}
-          <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight mb-8">
-            <motion.span
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, type: "spring", stiffness: 80 }}
-              className="block text-[var(--color-text)]"
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+          {/* Left: Text (40%) */}
+          <div className="w-full lg:w-[40%]">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/60 backdrop-blur-md text-xs font-medium text-[var(--color-text-muted)] mb-8 animate-border-glow"
             >
-              La direction
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, type: "spring", stiffness: 80 }}
-              className="block text-[var(--color-text)]"
-            >
-              technique
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="block text-gradient-animated"
-            >
-              que votre projet mérite
-            </motion.span>
-          </h1>
+              <span className="w-2 h-2 rounded-full bg-[var(--color-success)] animate-pulse" />
+              <Sparkles size={12} className="text-[var(--color-accent)]" />
+              CTO Externalisé · Ingénierie Digitale · Paris
+            </motion.div>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            className="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed mb-12 max-w-2xl"
-          >
-            Ancien DSI devenu entrepreneur, je ne livre pas du code — je construis
-            des actifs numériques pérennes. Les contraintes réglementaires françaises
-            ne sont pas un frein, elles sont mon terrain de jeu.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="flex flex-wrap gap-4"
-          >
-            <MagneticButton>
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium text-base hover:bg-[var(--color-accent-dark)] transition-all duration-200 cursor-pointer animate-glow-pulse hover:animate-none hover:shadow-xl hover:shadow-[var(--color-accent)]/20"
+            {/* Title */}
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] tracking-tight mb-6">
+              <motion.span
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, type: "spring", stiffness: 80 }}
+                className="block text-[var(--color-text)]"
               >
-                Planifier un échange
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </MagneticButton>
-            <MagneticButton>
-              <Link
-                href="/#services"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl font-medium text-base hover:bg-[var(--color-surface)]/80 hover:border-[var(--color-accent)]/30 backdrop-blur-sm transition-all duration-200 cursor-pointer"
+                La direction
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4, type: "spring", stiffness: 80 }}
+                className="block text-[var(--color-text)]"
               >
-                Découvrir notre expertise
-              </Link>
-            </MagneticButton>
+                technique
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="block text-gradient-animated"
+              >
+                que votre projet mérite
+              </motion.span>
+            </h1>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="text-base md:text-lg text-[var(--color-text-muted)] leading-relaxed mb-10"
+            >
+              Ancien DSI devenu entrepreneur, je ne livre pas du code — je construis
+              des actifs numériques pérennes. Les contraintes réglementaires françaises
+              ne sont pas un frein, elles sont mon terrain de jeu.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+              className="flex flex-wrap gap-4"
+            >
+              <MagneticButton>
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium text-base hover:bg-[var(--color-accent-dark)] transition-all duration-200 cursor-pointer animate-glow-pulse hover:animate-none hover:shadow-xl hover:shadow-[var(--color-accent)]/20"
+                >
+                  Planifier un échange
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link
+                  href="/#services"
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl font-medium text-base hover:bg-[var(--color-surface)]/80 hover:border-[var(--color-accent)]/30 backdrop-blur-sm transition-all duration-200 cursor-pointer"
+                >
+                  Découvrir notre expertise
+                </Link>
+              </MagneticButton>
+            </motion.div>
+          </div>
+
+          {/* Right: Remotion Video (60%) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="w-full lg:w-[60%]"
+          >
+            <HeroVideoPlayer />
           </motion.div>
         </div>
       </div>
