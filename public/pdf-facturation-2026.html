@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facturation Électronique 2026 — Guide de survie pour PME — RL Conseil</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #be3c5a;
+      --accent-light: #d4546a;
+      --accent-dark: #9a2e47;
+      --primary: #7c3aed;
+      --primary-dark: #6d28d9;
+      --primary-light: #8b5cf6;
+      --bg: #faf9f6;
+      --text: #0d1117;
+      --text-muted: #5c6370;
+      --surface: #ffffff;
+      --border: #e2ddd5;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Download bar */
+    .download-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    .download-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .download-bar-left .icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .download-bar-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-back:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      background: #fff;
+      color: var(--primary-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Page wrapper */
+    .page-wrapper {
+      padding-top: 72px;
+      padding-bottom: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* A4 page */
+    .a4-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--surface);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .doc-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 32px 40px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: 80px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent-light);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .header-meta {
+      text-align: right;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+
+    .badge-category {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .doc-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    /* Content area */
+    .doc-content {
+      padding: 36px 40px;
+    }
+
+    /* Countdown box */
+    .countdown-box {
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      border: 2px solid #c4b5fd;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .countdown-timer {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .countdown-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      display: block;
+    }
+
+    .countdown-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .countdown-divider {
+      width: 1px;
+      height: 60px;
+      background: #c4b5fd;
+    }
+
+    .countdown-content strong {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .countdown-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Intro block */
+    .intro-block {
+      background: #faf5ff;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+
+    .intro-block p {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .intro-block strong {
+      color: var(--primary-dark);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 26px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-num {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Timeline calendrier */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: #ddd6fe;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 12px 0;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      background: #fff;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      z-index: 1;
+      margin-left: 19px;
+    }
+
+    .timeline-dot.filled {
+      background: var(--primary);
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding-bottom: 4px;
+    }
+
+    .timeline-date {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .timeline-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 4px;
+    }
+
+    .tag-all { background: #f3e8ff; color: var(--primary-dark); }
+    .tag-large { background: #dbeafe; color: #1d4ed8; }
+    .tag-sme { background: #d1fae5; color: #047857; }
+
+    /* Formats */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .format-card {
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid;
+    }
+
+    .format-card.recommended {
+      background: #faf5ff;
+      border-color: #c4b5fd;
+    }
+
+    .format-card.standard {
+      background: #f0f9ff;
+      border-color: #bae6fd;
+    }
+
+    .format-card.advanced {
+      background: #f0fdf4;
+      border-color: #a7f3d0;
+    }
+
+    .format-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .format-card.recommended .format-badge { background: #ede9fe; color: var(--primary-dark); }
+    .format-card.standard .format-badge { background: #dbeafe; color: #1d4ed8; }
+    .format-card.advanced .format-badge { background: #d1fae5; color: #047857; }
+
+    .format-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .format-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Checklist */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .check-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      background: #fff;
+    }
+
+    .check-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      background: #ede9fe;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .check-body strong {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .check-body p {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Sanctions */
+    .sanctions-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 4px solid var(--warning);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .sanctions-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #92400e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sanctions-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .sanction-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .sanction-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--warning);
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .sanction-text {
+      font-size: 12px;
+      color: #78350f;
+      line-height: 1.5;
+    }
+
+    /* Solutions PME */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .solution-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .solution-icon {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .solution-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .solution-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 22px 0;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .cta-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 18px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-badges {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cta-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--accent-dark);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-brand strong {
+      color: var(--accent);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Print styles */
+    @media print {
+      .download-bar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+      .a4-page { box-shadow: none; }
+    }
+
+    @media (max-width: 780px) {
+      .a4-page { width: 100%; border-radius: 0; }
+      .page-wrapper { padding: 56px 0 20px; }
+      .doc-content { padding: 24px 20px; }
+      .doc-header { padding: 24px 20px; }
+      .doc-footer { padding: 16px 20px; flex-direction: column; gap: 10px; text-align: center; }
+      .formats-grid { grid-template-columns: 1fr; }
+      .solutions-grid { grid-template-columns: 1fr; }
+      .sanctions-list { grid-template-columns: 1fr; }
+      .countdown-box { flex-direction: column; }
+      .countdown-divider { width: 60px; height: 1px; }
+      .download-bar { padding: 10px 16px; }
+      .download-bar-left span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Download bar -->
+  <div class="download-bar">
+    <div class="download-bar-left">
+      <div class="icon">📄</div>
+      <span>Facturation Électronique 2026 — Guide gratuit RL Conseil</span>
+    </div>
+    <div class="download-bar-actions">
+      <a href="/" class="btn-back">← Retour au site</a>
+      <button class="btn-download" onclick="downloadPDF()">⬇ Télécharger PDF</button>
+    </div>
+  </div>
+
+  <!-- Page wrapper -->
+  <div class="page-wrapper">
+    <div class="a4-page" id="pdf-content">
+
+      <!-- Header -->
+      <div class="doc-header">
+        <div class="header-top">
+          <div class="logo-block">
+            <span class="logo-mark">RL</span>
+            <div class="logo-divider"></div>
+            <span class="logo-name">Conseil</span>
+          </div>
+          <div class="header-meta">
+            rlconseil.net<br>
+            rony@rlconseil.net<br>
+            07 67 98 71 76
+          </div>
+        </div>
+        <div class="badge-category">Réforme Obligatoire · Toutes Entreprises</div>
+        <div class="doc-title">Facturation Électronique 2026 — Le Guide de Survie pour PME</div>
+        <div class="doc-subtitle">Tout ce que vous devez savoir pour vous mettre en conformité avec la réforme de la facturation électronique</div>
+      </div>
+
+      <!-- Content -->
+      <div class="doc-content">
+
+        <!-- Countdown -->
+        <div class="countdown-box">
+          <div class="countdown-timer">
+            <span class="countdown-number">~6</span>
+            <span class="countdown-label">mois restants</span>
+          </div>
+          <div class="countdown-divider"></div>
+          <div class="countdown-content">
+            <strong>1er septembre 2026 — Entrée en vigueur</strong>
+            <p>La réforme de la facturation électronique entre en application progressive à partir du 1er septembre 2026. Toutes les entreprises assujetties à la TVA en France sont concernées, quelle que soit leur taille. Ne pas attendre la dernière minute.</p>
+          </div>
+        </div>
+
+        <!-- Intro -->
+        <div class="intro-block">
+          <p><strong>La facturation électronique devient obligatoire.</strong> À partir du 1er septembre 2026, les entreprises françaises assujetties à la TVA devront émettre et recevoir leurs factures en format électronique via une Plateforme de Dématérialisation Partenaire (PDP) agréée par la DGFiP. Cette réforme vise à lutter contre la fraude fiscale et à simplifier les obligations déclaratives. Elle concerne l'ensemble des transactions B2B domestiques.</p>
+        </div>
+
+        <!-- Section 1 : Calendrier -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">1</div>
+            <div class="section-title">Calendrier de déploiement</div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot filled"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">1er septembre 2026</div>
+                <div class="timeline-title">Réception obligatoire — Toutes les entreprises</div>
+                <div class="timeline-desc">Toutes les entreprises assujetties à la TVA doivent être capables de recevoir des factures électroniques. Mise en place du portail de réception obligatoire avant cette date.</div>
+                <span class="timeline-tag tag-all">Toutes entreprises</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot filled"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">1er septembre 2026</div>
+                <div class="timeline-title">Émission obligatoire — Grandes entreprises &amp; ETI</div>
+                <div class="timeline-desc">Obligation d'émettre des factures électroniques pour les grandes entreprises (CA &gt; 1,5Md€) et les entreprises de taille intermédiaire (CA &gt; 10M€).</div>
+                <span class="timeline-tag tag-large">CA &gt; 10M€</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">1er septembre 2027</div>
+                <div class="timeline-title">Émission obligatoire — PME, TPE &amp; micro-entreprises</div>
+                <div class="timeline-desc">Extension de l'obligation d'émission aux PME, TPE et micro-entreprises. Délai supplémentaire d'un an pour permettre la mise en conformité des petites structures.</div>
+                <span class="timeline-tag tag-sme">PME / TPE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2 : Formats -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">2</div>
+            <div class="section-title">Les 3 formats de factures électroniques acceptés</div>
+          </div>
+          <div class="formats-grid">
+            <div class="format-card recommended">
+              <span class="format-badge">Recommandé</span>
+              <div class="format-name">Factur-X</div>
+              <div class="format-desc">Format hybride franco-allemand : PDF lisible par l'humain + données XML intégrées. Compatible avec les systèmes existants. Idéal pour les PME françaises. Standard EN 16931.</div>
+            </div>
+            <div class="format-card standard">
+              <span class="format-badge">Standard international</span>
+              <div class="format-name">UBL 2.1</div>
+              <div class="format-desc">Universal Business Language. Format 100% XML, norme OASIS. Standard international largement adopté en Europe. Recommandé pour les échanges transfrontaliers.</div>
+            </div>
+            <div class="format-card advanced">
+              <span class="format-badge">B2B avancé</span>
+              <div class="format-name">CII (UN/CEFACT)</div>
+              <div class="format-desc">Cross Industry Invoice. Norme UN/CEFACT pour les échanges intersectoriels. Particulièrement adapté aux grands comptes et aux industries avec des flux complexes.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3 : Checklist -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">3</div>
+            <div class="section-title">Checklist de mise en conformité — 6 étapes</div>
+          </div>
+          <div class="checklist">
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-num">1</div>
+              <div class="check-body">
+                <strong>Choisir et s'inscrire auprès d'une PDP agréée</strong>
+                <p>Sélectionner une Plateforme de Dématérialisation Partenaire (PDP) dans la liste officielle de la DGFiP. Vérifier les tarifs, les formats supportés et l'intégration avec votre logiciel comptable. Prévoir 2-4 semaines pour l'inscription et la validation.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-num">2</div>
+              <div class="check-body">
+                <strong>Vérifier la compatibilité de votre logiciel de facturation</strong>
+                <p>Contacter votre éditeur ERP/comptabilité pour confirmer la compatibilité avec les formats réglementaires (Factur-X, UBL, CII). Prévoir une mise à jour ou migration si nécessaire.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-num">3</div>
+              <div class="check-body">
+                <strong>Mettre à jour les mentions légales obligatoires sur vos factures</strong>
+                <p>Ajouter le numéro SIREN, l'adresse de livraison, les informations de paiement structurées (IBAN/BIC), le numéro de commande client et le code activité (NAF). Vérifier la conformité avec la liste exhaustive des mentions obligatoires 2026.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-num">4</div>
+              <div class="check-body">
+                <strong>Former vos équipes comptables et commerciales</strong>
+                <p>Organiser une formation sur le nouveau processus d'émission et de réception. Documenter les procédures internes. Désigner un référent interne pour la transition.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-num">5</div>
+              <div class="check-body">
+                <strong>Tester le circuit complet d'émission et de réception</strong>
+                <p>Réaliser des tests end-to-end avec votre PDP et vos principaux fournisseurs et clients. Vérifier la transmission des données fiscales à la DGFiP. Valider les accusés de réception.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-num">6</div>
+              <div class="check-body">
+                <strong>Préparer l'archivage électronique sur 10 ans</strong>
+                <p>Mettre en place un système d'archivage à valeur probante (SAE) ou souscrire à un service d'archivage légal. Les factures électroniques doivent être conservées 10 ans dans leur format original.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sanctions -->
+        <div class="sanctions-box">
+          <div class="sanctions-title">⚠️ Sanctions en cas de non-conformité</div>
+          <div class="sanctions-list">
+            <div class="sanction-item">
+              <div class="sanction-dot"></div>
+              <span class="sanction-text"><strong>15€ par facture</strong> non émise en format électronique (plafond 15 000€/an)</span>
+            </div>
+            <div class="sanction-item">
+              <div class="sanction-dot"></div>
+              <span class="sanction-text"><strong>250€ par transmission</strong> de données non effectuée à la DGFiP</span>
+            </div>
+            <div class="sanction-item">
+              <div class="sanction-dot"></div>
+              <span class="sanction-text"><strong>Contrôles TVA renforcés</strong> en cas de retards répétés ou absence de conformité</span>
+            </div>
+            <div class="sanction-item">
+              <div class="sanction-dot"></div>
+              <span class="sanction-text"><strong>Retards de paiement</strong> liés au rejet de factures non conformes par les clients</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 4 : Solutions PME -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">4</div>
+            <div class="section-title">Solutions adaptées selon votre profil</div>
+          </div>
+          <div class="solutions-grid">
+            <div class="solution-card">
+              <div class="solution-icon">🏢</div>
+              <div class="solution-title">ERP avec module e-facturation</div>
+              <div class="solution-desc">Si vous utilisez déjà un ERP (SAP, Sage, Cegid), vérifiez la disponibilité du module de facturation électronique. Souvent la solution la plus rapide à déployer.</div>
+            </div>
+            <div class="solution-card">
+              <div class="solution-icon">🔗</div>
+              <div class="solution-title">PDP en mode connecteur</div>
+              <div class="solution-desc">Intégration API entre votre logiciel existant et une PDP. Preserve l'existant tout en ajoutant la conformité. Recommandé pour les PME avec des outils bien en place.</div>
+            </div>
+            <div class="solution-card">
+              <div class="solution-icon">⚙️</div>
+              <div class="solution-title">Développement sur mesure</div>
+              <div class="solution-desc">Génération Factur-X native dans vos applications métier. Intégration directe avec votre système d'information. Idéal pour les flux volumiques ou les besoins spécifiques.</div>
+            </div>
+            <div class="solution-card">
+              <div class="solution-icon">☁️</div>
+              <div class="solution-title">Solution SaaS dédiée</div>
+              <div class="solution-desc">Pour les TPE et micro-entreprises : outils SaaS clé en main (Pennylane, QuickBooks, Evoliz) avec conformité e-facturation intégrée. Coût réduit, déploiement rapide.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+          <div class="cta-eyebrow">Expert en facturation électronique</div>
+          <div class="cta-title">RL Conseil développe vos solutions Factur-X conformes</div>
+          <div class="cta-text">Intégration Factur-X dans vos applications, connecteurs PDP sur mesure, migration vers un ERP compatible : RL Conseil vous accompagne dans toute votre transition vers la facturation électronique.</div>
+          <div class="cta-badges">
+            <span class="cta-badge">Factur-X</span>
+            <span class="cta-badge">Node.js / React</span>
+            <span class="cta-badge">API Integration</span>
+          </div>
+          <a href="https://rlconseil.net/contact" class="cta-btn">Discuter de votre projet →</a>
+        </div>
+
+      </div><!-- /doc-content -->
+
+      <!-- Footer -->
+      <div class="doc-footer">
+        <div class="footer-brand">
+          © 2026 <strong>RL Conseil</strong> — Rony Licha, CTO & Fondateur
+        </div>
+        <div class="footer-links">
+          <a href="https://rlconseil.net">rlconseil.net</a>
+          <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a>
+          <a href="https://linkedin.com/in/rony-licha-8b911189">LinkedIn</a>
+        </div>
+      </div>
+
+    </div><!-- /a4-page -->
+  </div><!-- /page-wrapper -->
+
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('pdf-content');
+      const opt = {
+        margin: 0,
+        filename: 'Guide-Facturation-Electronique-2026-RLConseil.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+          scrollY: 0
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        }
+      };
+      const btn = document.querySelector('.btn-download');
+      btn.textContent = '⏳ Génération...';
+      btn.disabled = true;
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.textContent = '⬇ Télécharger PDF';
+        btn.disabled = false;
+      });
+    }
+  </script>
+
+</body>
+</html>

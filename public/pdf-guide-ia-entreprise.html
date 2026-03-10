@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA en Entreprise : premiers pas concrets | RL Conseil</title>
+    <meta name="description" content="Comment integrer l'intelligence artificielle dans votre organisation sans risques et avec un ROI mesurable.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --primary:#f59e0b;--primary-dark:#d97706;--primary-light:#fef3c7;--primary-muted:#fcd34d;
+            --accent:#be3c5a;--bg:#faf9f6;--text:#0d1117;--muted:#5c6370;--surface:#ffffff;--border:#e2ddd5;
+        }
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif}
+        .download-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 2px 16px rgba(245,158,11,.3)}
+        .download-bar-left{display:flex;align-items:center;gap:12px}
+        .back-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:rgba(0,0,0,.7);text-decoration:none;display:flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid rgba(0,0,0,.15);border-radius:6px;transition:all .2s;white-space:nowrap;background:rgba(255,255,255,.3)}
+        .back-btn:hover{background:rgba(255,255,255,.5);color:#000;border-color:rgba(0,0,0,.3)}
+        .bar-label{font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;color:rgba(0,0,0,.8);letter-spacing:.02em}
+        .download-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;color:#fff;background:rgba(0,0,0,.25);border:1px solid rgba(0,0,0,.15);padding:8px 20px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;white-space:nowrap;letter-spacing:.01em}
+        .download-btn:hover{background:rgba(0,0,0,.35);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+        .page-wrapper{max-width:210mm;margin:80px auto 48px;background:var(--surface);box-shadow:0 4px 40px rgba(0,0,0,.1)}
+        .doc-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:40px 48px 36px;color:#1c1917;position:relative;overflow:hidden}
+        .doc-header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12)}
+        .doc-header::after{content:'';position:absolute;bottom:-40px;right:80px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.08)}
+        .header-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;position:relative;z-index:1}
+        .logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1}
+        .logo .rl{color:#be3c5a}.logo .conseil{color:#1c1917}
+        .logo-sub{font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;color:rgba(28,25,23,.6);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+        .header-info{text-align:right;font-family:'Outfit',sans-serif;font-size:12px;color:rgba(28,25,23,.65);line-height:1.7}
+        .header-info strong{color:rgba(28,25,23,.9);font-weight:600}
+        .header-info a{color:rgba(28,25,23,.7);text-decoration:none}.header-info a:hover{color:#1c1917}
+        .doc-badge{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(28,25,23,.8);background:rgba(255,255,255,.35);border:1px solid rgba(28,25,23,.15);padding:5px 14px;border-radius:100px;display:inline-block;margin-bottom:16px;position:relative;z-index:1}
+        .doc-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:#1c1917;line-height:1.2;margin-bottom:14px;position:relative;z-index:1;max-width:520px}
+        .doc-subtitle{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;color:rgba(28,25,23,.7);line-height:1.6;position:relative;z-index:1;max-width:500px}
+        .doc-body{padding:40px 48px}
+        .intro-text{font-size:15px;line-height:1.75;color:var(--muted);margin-bottom:36px;border-bottom:1px solid var(--border);padding-bottom:32px}
+        .intro-text strong{color:var(--text)}
+        .section{margin-bottom:40px}
+        .section-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+        .section-number{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#92400e;background:var(--primary-light);padding:4px 12px;border-radius:100px}
+        .section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text)}
+        .section-divider{height:1px;background:var(--border);margin:36px 0}
+        /* Type IA cards */
+        .ia-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .ia-type-card{border:1px solid var(--border);border-radius:10px;padding:22px 20px;text-align:center;transition:border-color .2s;background:var(--surface)}
+        .ia-type-card:hover{border-color:var(--primary-muted)}
+        .ia-type-icon{font-size:32px;margin-bottom:12px;display:block}
+        .ia-type-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+        .ia-type-examples{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;color:#92400e;background:var(--primary-light);padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:10px}
+        .ia-type-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+        .ia-roi{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;color:#065f46;background:#d1fae5;border:1px solid #a7f3d0;padding:4px 10px;border-radius:6px;display:inline-block}
+        /* Use case list */
+        .usecase-list{display:flex;flex-direction:column;gap:14px}
+        .usecase-item{display:flex;align-items:flex-start;gap:16px;padding:18px 22px;border:1px solid var(--border);border-radius:10px;transition:border-color .2s;background:var(--surface)}
+        .usecase-item:hover{border-color:var(--primary-muted)}
+        .usecase-num{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:#92400e;background:var(--primary-light);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .usecase-content{flex:1}
+        .usecase-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+        .usecase-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+        .usecase-gain{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;color:#065f46;background:#d1fae5;border:1px solid #a7f3d0;padding:2px 8px;border-radius:4px}
+        .usecase-desc{font-size:13px;color:var(--muted);line-height:1.55}
+        /* Methodology */
+        .method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+        .method-card{background:var(--primary-light);border:1px solid var(--primary-muted);border-radius:10px;padding:22px}
+        .method-step{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#92400e;margin-bottom:8px}
+        .method-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px}
+        .method-desc{font-size:13px;color:var(--muted);line-height:1.6}
+        /* Risks */
+        .risk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+        .risk-card{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:18px}
+        .risk-icon{font-size:22px;margin-bottom:8px;display:block}
+        .risk-name{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#9a3412;margin-bottom:6px}
+        .risk-desc{font-size:13px;color:#7c2d12;line-height:1.55}
+        /* Budget */
+        .budget-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+        .budget-card{border:1px solid var(--border);border-radius:10px;padding:18px;background:var(--surface)}
+        .budget-range{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--primary-dark);margin-bottom:6px}
+        .budget-label{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:6px}
+        .budget-desc{font-size:12px;color:var(--muted);line-height:1.5}
+        .budget-card.roi-card{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac}
+        .budget-card.roi-card .budget-range{color:#15803d}
+        /* CTA */
+        .cta-section{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:14px;padding:40px;text-align:center;margin:40px 0 0;position:relative;overflow:hidden}
+        .cta-section::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.1)}
+        .cta-eyebrow{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(28,25,23,.7);margin-bottom:12px;position:relative;z-index:1}
+        .cta-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:#1c1917;margin-bottom:14px;position:relative;z-index:1;line-height:1.25}
+        .cta-text{font-size:14px;color:rgba(28,25,23,.75);line-height:1.7;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:#fff;background:rgba(0,0,0,.3);padding:13px 28px;border-radius:8px;text-decoration:none;transition:all .2s;position:relative;z-index:1;letter-spacing:.01em;border:1px solid rgba(0,0,0,.15)}
+        .cta-btn:hover{background:rgba(0,0,0,.45);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+        .cta-badges{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;flex-wrap:wrap;position:relative;z-index:1}
+        .cta-badge{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;color:rgba(28,25,23,.7);background:rgba(255,255,255,.3);border:1px solid rgba(28,25,23,.1);padding:4px 12px;border-radius:100px;letter-spacing:.04em}
+        .doc-footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;background:#f8f9fa}
+        .footer-copy{font-family:'Outfit',sans-serif;font-size:12px;color:var(--muted)}
+        .footer-links{display:flex;gap:16px}
+        .footer-links a{font-family:'Outfit',sans-serif;font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+        .footer-links a:hover{color:var(--primary-dark)}
+        .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:12px}
+        .checklist li label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;width:100%;font-size:14px;color:var(--text);line-height:1.55}
+        .checklist input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:1px;cursor:pointer;transition:all .2s;position:relative}
+        .checklist input[type="checkbox"]:checked{background:var(--primary);border-color:var(--primary)}
+        .checklist input[type="checkbox"]:checked::after{content:'';position:absolute;top:2px;left:5px;width:5px;height:9px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+        @media print{.download-bar{display:none!important}.page-wrapper{margin:0;box-shadow:none}}
+        @media(max-width:700px){.page-wrapper{margin-top:70px}.doc-header{padding:28px 24px}.doc-body{padding:28px 24px}.doc-footer{padding:20px 24px;flex-direction:column;align-items:flex-start}.doc-title{font-size:24px}.header-top{flex-direction:column;gap:16px}.header-info{text-align:left}.ia-type-grid{grid-template-columns:1fr}.method-grid{grid-template-columns:1fr}.risk-grid{grid-template-columns:1fr}.budget-grid{grid-template-columns:1fr}.download-bar{flex-wrap:wrap;gap:8px}}
+    </style>
+</head>
+<body>
+
+<div class="download-bar">
+    <div class="download-bar-left">
+        <a href="/" class="back-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Retour au site
+        </a>
+        <span class="bar-label">Guide IA Entreprise &mdash; Premiers pas concrets</span>
+    </div>
+    <button class="download-btn" onclick="downloadPDF()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Telecharger en PDF
+    </button>
+</div>
+
+<div class="page-wrapper" id="pdf-content">
+
+    <div class="doc-header">
+        <div class="header-top">
+            <div>
+                <div class="logo"><span class="rl">RL</span><span class="conseil"> Conseil</span></div>
+                <div class="logo-sub">Conseil &amp; Transformation Digitale</div>
+            </div>
+            <div class="header-info">
+                <strong>Rony Licha</strong><br>
+                CTO &amp; Fondateur<br>
+                <a href="tel:0767987176">07 67 98 71 76</a><br>
+                <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a><br>
+                <a href="https://rlconseil.net">rlconseil.net</a>
+            </div>
+        </div>
+        <div class="doc-badge">Innovation &mdash; Dirigeants &amp; DSI</div>
+        <h1 class="doc-title">IA en Entreprise : premiers pas concrets</h1>
+        <p class="doc-subtitle">Comment integrer l'intelligence artificielle dans votre organisation sans risques et avec un ROI mesurable</p>
+    </div>
+
+    <div class="doc-body">
+
+        <p class="intro-text">
+            L'IA n'est plus un luxe reserve aux GAFAM. En 2026, <strong>75% des entreprises utilisent ou experimentent l'intelligence artificielle.</strong> Mais par ou commencer quand on est une PME ? Comment eviter les pieges, choisir les bons outils et mesurer concreteement le retour sur investissement ? Ce guide vous donne les cles pour passer a l'action.
+        </p>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Section 01</span>
+                <h2 class="section-title">Comprendre l'IA applicable aux PME</h2>
+            </div>
+            <div class="ia-type-grid">
+                <div class="ia-type-card">
+                    <span class="ia-type-icon">&#129302;</span>
+                    <div class="ia-type-name">IA Generative</div>
+                    <div class="ia-type-examples">ChatGPT, Claude, Gemini</div>
+                    <div class="ia-type-desc">Redaction, analyse de documents, generation de code, support client automatise, creation de contenu marketing personnalise.</div>
+                    <span class="ia-roi">Gain temps +30 a 50%</span>
+                </div>
+                <div class="ia-type-card">
+                    <span class="ia-type-icon">&#128200;</span>
+                    <div class="ia-type-name">IA Predictive</div>
+                    <div class="ia-type-examples">Forecasting, scoring, alertes</div>
+                    <div class="ia-type-desc">Prevision des ventes, maintenance predictive, scoring clients et leads, detection d'anomalies, analyse du risque credit.</div>
+                    <span class="ia-roi">Reduction couts -15 a 25%</span>
+                </div>
+                <div class="ia-type-card">
+                    <span class="ia-type-icon">&#9881;&#65039;</span>
+                    <div class="ia-type-name">IA Automatisation</div>
+                    <div class="ia-type-examples">OCR, workflows, RPA</div>
+                    <div class="ia-type-desc">Workflows automatises, extraction de donnees depuis factures et contrats, classification de documents, traitement des emails.</div>
+                    <span class="ia-roi">Gain productivite +40 a 60%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Section 02</span>
+                <h2 class="section-title">Les 5 cas d'usage rentables pour une PME</h2>
+            </div>
+            <div class="usecase-list">
+                <div class="usecase-item">
+                    <div class="usecase-num">1</div>
+                    <div class="usecase-content">
+                        <div class="usecase-header">
+                            <span class="usecase-name">Support client automatise</span>
+                            <span class="usecase-gain">Tickets &minus;40%</span>
+                        </div>
+                        <div class="usecase-desc">Chatbot IA pour repondre aux questions frequentes 24h/24, avec escalade intelligente vers un humain pour les cas complexes. Reduction significative du volume de tickets de premier niveau et amelioration de la satisfaction client.</div>
+                    </div>
+                </div>
+                <div class="usecase-item">
+                    <div class="usecase-num">2</div>
+                    <div class="usecase-content">
+                        <div class="usecase-header">
+                            <span class="usecase-name">Analyse documentaire intelligente</span>
+                            <span class="usecase-gain">Gain temps 80%</span>
+                        </div>
+                        <div class="usecase-desc">Extraction automatique de donnees structurees depuis vos factures, contrats, CV et formulaires. Elimination de la saisie manuelle, reduction des erreurs et acceleration des processus administratifs.</div>
+                    </div>
+                </div>
+                <div class="usecase-item">
+                    <div class="usecase-num">3</div>
+                    <div class="usecase-content">
+                        <div class="usecase-header">
+                            <span class="usecase-name">Generation de contenu marketing</span>
+                            <span class="usecase-gain">Productivite x3</span>
+                        </div>
+                        <div class="usecase-desc">Production acceleree de contenus marketing, documentation technique, emails personnalises et fiches produits. L'equipe se concentre sur la strategie et la validation, l'IA sur l'execution.</div>
+                    </div>
+                </div>
+                <div class="usecase-item">
+                    <div class="usecase-num">4</div>
+                    <div class="usecase-content">
+                        <div class="usecase-header">
+                            <span class="usecase-name">Aide a la decision par les donnees</span>
+                            <span class="usecase-gain">Precision accrue</span>
+                        </div>
+                        <div class="usecase-desc">Dashboards predictifs alimentes par l'IA, recommandations automatiques basees sur l'historique et les tendances marche. Meilleure allocation des ressources et anticipation des opportunites commerciales.</div>
+                    </div>
+                </div>
+                <div class="usecase-item">
+                    <div class="usecase-num">5</div>
+                    <div class="usecase-content">
+                        <div class="usecase-header">
+                            <span class="usecase-name">Code &amp; DevOps assiste par IA</span>
+                            <span class="usecase-gain">Velocite +25%</span>
+                        </div>
+                        <div class="usecase-desc">Pair programming avec GitHub Copilot ou Cursor, review automatise du code, generation de tests unitaires, detection de bugs. Les equipes techniques livrent plus vite et avec moins d'erreurs.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Section 03</span>
+                <h2 class="section-title">Methodologie d'integration en 4 etapes</h2>
+            </div>
+            <div class="method-grid">
+                <div class="method-card">
+                    <div class="method-step">Etape 01</div>
+                    <div class="method-name">Identifier</div>
+                    <div class="method-desc">Lister les taches <strong>repetitives, couteuses ou chronophages</strong> dans vos processus metier. Evaluer le volume, la frequence et le potentiel d'automatisation. Prioriser par impact potentiel et facilite de mise en oeuvre.</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-step">Etape 02</div>
+                    <div class="method-name">Experimenter</div>
+                    <div class="method-desc">Lancer un <strong>POC sur un seul cas d'usage</strong> en 2 a 4 semaines. Impliquer les utilisateurs finaux des le debut, accepter l'imperfection initiale et iterer rapidement. Mieux vaut un POC imparfait qu'un projet interminable.</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-step">Etape 03</div>
+                    <div class="method-name">Mesurer</div>
+                    <div class="method-desc">Definir des <strong>KPIs clairs avant et apres</strong> : temps de traitement, taux d'erreur, satisfaction equipe, cout par operation. Calculer le ROI reel, pas projete. La mesure objective permet de decider de continuer ou pivoter.</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-step">Etape 04</div>
+                    <div class="method-name">Deployer</div>
+                    <div class="method-desc"><strong>Industrialiser ce qui fonctionne</strong>, abandonner sans hesitation ce qui ne donne pas de resultats mesurables. Former les equipes, documenter les processus, integrer l'outil dans les workflows existants et suivre l'adoption.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">A anticiper</span>
+                <h2 class="section-title">Risques et gouvernance IA</h2>
+            </div>
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <span class="risk-icon">&#128274;</span>
+                    <div class="risk-name">Confidentialite des donnees</div>
+                    <div class="risk-desc">Ne jamais envoyer de donnees sensibles (clients, RH, financieres) dans des LLM publics sans contrat de traitement adapte. Privilegier des solutions on-premise ou avec garanties contractuelles fortes.</div>
+                </div>
+                <div class="risk-card">
+                    <span class="risk-icon">&#9878;&#65039;</span>
+                    <div class="risk-name">Biais algorithmiques</div>
+                    <div class="risk-desc">Les modeles d'IA peuvent perpetuer ou amplifier des biais. La <strong>validation humaine reste obligatoire</strong> pour toute decision impactante (recrutement, credit, sanctions). Auditer regulierement les resultats.</div>
+                </div>
+                <div class="risk-card">
+                    <span class="risk-icon">&#128101;</span>
+                    <div class="risk-name">Dependance fournisseur</div>
+                    <div class="risk-desc">Eviter d'etre 100% dependant d'un seul fournisseur IA. Adopter une <strong>strategie multi-modele</strong>, verifier la portabilite de vos donnees et la viabilite long terme des services choisis.</div>
+                </div>
+                <div class="risk-card">
+                    <span class="risk-icon">&#128221;</span>
+                    <div class="risk-name">Propriete intellectuelle</div>
+                    <div class="risk-desc">Clarifier contractuellement qui detient les <strong>droits sur les contenus generes</strong> par l'IA. Verifier les conditions d'utilisation de chaque outil, notamment pour les usages commerciaux et la reutilisation des outputs.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Budget</span>
+                <h2 class="section-title">Investissement et ROI attendu</h2>
+            </div>
+            <div class="budget-grid">
+                <div class="budget-card">
+                    <div class="budget-range">5 &ndash; 15 K&#8364;</div>
+                    <div class="budget-label">POC (1 cas d'usage)</div>
+                    <div class="budget-desc">Validation de faisabilite, prototype fonctionnel, mesure initiale du ROI potentiel. Duree : 4 a 8 semaines.</div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-range">15 &ndash; 50 K&#8364;</div>
+                    <div class="budget-label">Integration standard</div>
+                    <div class="budget-desc">Solution integree a vos outils existants, formation equipe, documentation et support au demarrage. Duree : 2 a 4 mois.</div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-range">50 &ndash; 150 K&#8364;</div>
+                    <div class="budget-label">Solution sur mesure</div>
+                    <div class="budget-desc">Architecture IA dediee, modele fine-tune sur vos donnees, integration profonde aux systemes metier. Duree : 4 a 8 mois.</div>
+                </div>
+                <div class="budget-card roi-card">
+                    <div class="budget-range">6 &ndash; 12 mois</div>
+                    <div class="budget-label">ROI attendu</div>
+                    <div class="budget-desc">La majorite des projets IA bien cadres atteignent leur seuil de rentabilite en moins d'un an grace aux gains de productivite et de qualite.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Auto-evaluation</span>
+                <h2 class="section-title">Etes-vous pret pour l'IA ?</h2>
+            </div>
+            <ul class="checklist">
+                <li><label><input type="checkbox"><span>J'ai identifie au moins 3 processus repetitifs potentiellement automatisables</span></label></li>
+                <li><label><input type="checkbox"><span>Mes donnees metier sont accessibles et structurees (CRM, ERP, tableurs)</span></label></li>
+                <li><label><input type="checkbox"><span>J'ai un budget defini pour experimenter (minimum 5K€ pour un POC)</span></label></li>
+                <li><label><input type="checkbox"><span>J'ai un referent interne qui portera le projet IA</span></label></li>
+                <li><label><input type="checkbox"><span>La direction est engagee et priorise la transformation IA</span></label></li>
+                <li><label><input type="checkbox"><span>Les equipes sont ouvertes au changement et a la formation</span></label></li>
+                <li><label><input type="checkbox"><span>J'ai verifie les aspects RGPD et confidentialite des outils envisages</span></label></li>
+                <li><label><input type="checkbox"><span>J'ai defini des KPIs clairs pour mesurer le succes du projet</span></label></li>
+            </ul>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-eyebrow">Pret a passer a l'action ?</div>
+            <h2 class="cta-title">RL Conseil vous accompagne de l'ideation au deploiement</h2>
+            <p class="cta-text">Identification des cas d'usage a fort ROI, selection des outils adaptes a votre metier, implementation technique et formation de vos equipes. Un accompagnement pragmatique oriente resultats.</p>
+            <a href="https://rlconseil.net/contact" class="cta-btn">
+                Lancer votre projet IA
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <div class="cta-badges">
+                <span class="cta-badge">Claude API</span>
+                <span class="cta-badge">LangChain</span>
+                <span class="cta-badge">RAG</span>
+                <span class="cta-badge">Prompt Engineering</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="doc-footer">
+        <div class="footer-copy">&copy; 2026 RL Conseil &mdash; Tous droits reserves</div>
+        <div class="footer-links">
+            <a href="https://rlconseil.net">rlconseil.net</a>
+            <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a>
+            <a href="https://linkedin.com/in/rony-licha-8b911189" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function downloadPDF() {
+    var btn = document.querySelector('.download-btn');
+    var orig = btn.textContent;
+    btn.textContent = 'Generation en cours...';
+    btn.disabled = true;
+    var element = document.getElementById('pdf-content');
+    var opt = {
+        margin: 0,
+        filename: 'Guide-IA-Entreprise-RLConseil.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save().then(function() {
+        btn.textContent = orig;
+        btn.disabled = false;
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGPD pour les PME : 12 obligations incontournables | RL Conseil</title>
+    <meta name="description" content="Le guide pratique pour mettre votre entreprise en conformite avec le RGPD.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#dbeafe;--primary-muted:#93c5fd;
+            --accent:#be3c5a;--bg:#faf9f6;--text:#0d1117;--muted:#5c6370;--surface:#ffffff;--border:#e2ddd5;
+        }
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif}
+        .download-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 2px 16px rgba(37,99,235,.25)}
+        .download-bar-left{display:flex;align-items:center;gap:12px}
+        .back-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:rgba(255,255,255,.85);text-decoration:none;display:flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid rgba(255,255,255,.25);border-radius:6px;transition:all .2s;white-space:nowrap}
+        .back-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.4)}
+        .bar-label{font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.02em}
+        .download-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;color:var(--primary-dark);background:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;white-space:nowrap;letter-spacing:.01em}
+        .download-btn:hover{background:var(--primary-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+        .page-wrapper{max-width:210mm;margin:80px auto 48px;background:var(--surface);box-shadow:0 4px 40px rgba(0,0,0,.1)}
+        .doc-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:40px 48px 36px;color:#fff;position:relative;overflow:hidden}
+        .doc-header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07)}
+        .doc-header::after{content:'';position:absolute;bottom:-40px;right:80px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.05)}
+        .header-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;position:relative;z-index:1}
+        .logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1}
+        .logo .rl{color:#fbbf24}.logo .conseil{color:rgba(255,255,255,.92)}
+        .logo-sub{font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+        .header-info{text-align:right;font-family:'Outfit',sans-serif;font-size:12px;color:rgba(255,255,255,.7);line-height:1.7}
+        .header-info strong{color:rgba(255,255,255,.95);font-weight:600}
+        .header-info a{color:rgba(255,255,255,.75);text-decoration:none}.header-info a:hover{color:#fff}
+        .doc-badge{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:100px;display:inline-block;margin-bottom:16px;position:relative;z-index:1}
+        .doc-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:14px;position:relative;z-index:1;max-width:520px}
+        .doc-subtitle{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;color:rgba(255,255,255,.78);line-height:1.6;position:relative;z-index:1;max-width:500px}
+        .doc-body{padding:40px 48px}
+        .alert-box{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:32px;display:flex;align-items:flex-start;gap:12px}
+        .alert-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+        .alert-text{font-size:14px;font-weight:500;color:#92400e;line-height:1.6}
+        .alert-text strong{color:#78350f}
+        .intro-text{font-size:15px;line-height:1.75;color:var(--muted);margin-bottom:36px;border-bottom:1px solid var(--border);padding-bottom:32px}
+        .intro-text strong{color:var(--text)}
+        .section{margin-bottom:40px}
+        .section-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+        .section-number{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);background:var(--primary-light);padding:4px 12px;border-radius:100px}
+        .section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text)}
+        .obligation-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .obligation-card{border:1px solid var(--border);border-radius:10px;padding:20px;position:relative;transition:border-color .2s;background:var(--surface)}
+        .obligation-card:hover{border-color:var(--primary-muted)}
+        .obligation-number{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+        .obligation-tag{font-family:'Outfit',sans-serif;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;letter-spacing:.04em}
+        .tag-obligatoire{background:#fee2e2;color:#991b1b}
+        .tag-critique{background:#fce7f3;color:#9d174d}
+        .tag-conditionnel{background:#f0fdf4;color:#166534}
+        .tag-recommande{background:#eff6ff;color:#1e40af}
+        .tag-principe{background:#f5f3ff;color:#5b21b6}
+        .obligation-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3}
+        .obligation-desc{font-size:13px;color:var(--muted);line-height:1.6}
+        .obligation-article{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;color:var(--primary);margin-top:10px;opacity:.8}
+        .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:12px}
+        .checklist li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--text);line-height:1.55}
+        .checklist li label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;width:100%}
+        .checklist input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:1px;cursor:pointer;transition:all .2s;position:relative}
+        .checklist input[type="checkbox"]:checked{background:var(--primary);border-color:var(--primary)}
+        .checklist input[type="checkbox"]:checked::after{content:'';position:absolute;top:2px;left:5px;width:5px;height:9px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+        .sanctions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px}
+        .sanction-card{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:18px;text-align:center}
+        .sanction-amount{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:#dc2626;line-height:1.1;margin-bottom:6px}
+        .sanction-label{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;color:#991b1b;line-height:1.4}
+        .sanction-card.warn{background:#fff7ed;border-color:#fed7aa}
+        .sanction-card.warn .sanction-amount{color:#ea580c}.sanction-card.warn .sanction-label{color:#9a3412}
+        .steps-list{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+        .step-item{display:flex;align-items:flex-start;gap:16px;padding:16px 20px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px}
+        .step-num{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--primary);background:var(--primary-light);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .step-content{flex:1}
+        .step-title{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px}
+        .step-desc{font-size:13px;color:var(--muted);line-height:1.5}
+        .cta-section{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:14px;padding:40px;text-align:center;margin:40px 0 0;position:relative;overflow:hidden}
+        .cta-section::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06)}
+        .cta-eyebrow{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:12px;position:relative;z-index:1}
+        .cta-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:14px;position:relative;z-index:1;line-height:1.25}
+        .cta-text{font-size:14px;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:var(--primary-dark);background:#fff;padding:13px 28px;border-radius:8px;text-decoration:none;transition:all .2s;position:relative;z-index:1;letter-spacing:.01em}
+        .cta-btn:hover{background:var(--primary-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+        .cta-badges{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;flex-wrap:wrap;position:relative;z-index:1}
+        .cta-badge{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 12px;border-radius:100px;letter-spacing:.04em}
+        .doc-footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;background:#f8f9fa}
+        .footer-copy{font-family:'Outfit',sans-serif;font-size:12px;color:var(--muted)}
+        .footer-links{display:flex;gap:16px}
+        .footer-links a{font-family:'Outfit',sans-serif;font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+        .footer-links a:hover{color:var(--primary)}
+        .section-divider{height:1px;background:var(--border);margin:36px 0}
+        .info-box{background:var(--primary-light);border:1px solid #93c5fd;border-radius:10px;padding:18px 22px;display:flex;align-items:flex-start;gap:12px;margin-bottom:24px}
+        .info-icon{font-size:20px;flex-shrink:0}
+        .info-text{font-size:13.5px;color:#1e40af;line-height:1.65}
+        .info-text strong{color:#1e3a8a}
+        @media print{.download-bar{display:none!important}.page-wrapper{margin:0;box-shadow:none}}
+        @media(max-width:700px){.page-wrapper{margin-top:70px}.doc-header{padding:28px 24px}.doc-body{padding:28px 24px}.doc-footer{padding:20px 24px;flex-direction:column;align-items:flex-start}.doc-title{font-size:24px}.header-top{flex-direction:column;gap:16px}.header-info{text-align:left}.obligation-grid{grid-template-columns:1fr}.sanctions-grid{grid-template-columns:1fr}.download-bar{flex-wrap:wrap;gap:8px}}
+    </style>
+</head>
+<body>
+
+<div class="download-bar">
+    <div class="download-bar-left">
+        <a href="/" class="back-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Retour au site
+        </a>
+        <span class="bar-label">Guide RGPD &mdash; 12 obligations PME</span>
+    </div>
+    <button class="download-btn" onclick="downloadPDF()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Telecharger en PDF
+    </button>
+</div>
+
+<div class="page-wrapper" id="pdf-content">
+
+    <div class="doc-header">
+        <div class="header-top">
+            <div>
+                <div class="logo"><span class="rl">RL</span><span class="conseil"> Conseil</span></div>
+                <div class="logo-sub">Conseil &amp; Transformation Digitale</div>
+            </div>
+            <div class="header-info">
+                <strong>Rony Licha</strong><br>
+                CTO &amp; Fondateur<br>
+                <a href="tel:0767987176">07 67 98 71 76</a><br>
+                <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a><br>
+                <a href="https://rlconseil.net">rlconseil.net</a>
+            </div>
+        </div>
+        <div class="doc-badge">Conformite &mdash; Toutes Entreprises</div>
+        <h1 class="doc-title">RGPD pour les PME : 12 obligations incontournables</h1>
+        <p class="doc-subtitle">Le guide pratique pour mettre votre entreprise en conformite avec le Reglement General sur la Protection des Donnees</p>
+    </div>
+
+    <div class="doc-body">
+
+        <p class="intro-text">
+            Le RGPD est en vigueur depuis mai 2018. <strong>5 ans apres, de nombreuses PME ne sont toujours pas en conformite.</strong> Amendes record, plaintes CNIL en hausse, prise de conscience des consommateurs... La protection des donnees personnelles est devenue un enjeu strategique et reglementaire que vous ne pouvez plus ignorer. Ce guide detaille les <strong>12 obligations fondamentales</strong> a mettre en oeuvre dans votre organisation.
+        </p>
+
+        <div class="alert-box">
+            <div class="alert-icon">&#9888;&#65039;</div>
+            <div class="alert-text"><strong>Attention :</strong> En 2025, la CNIL a prononce plus de <strong>30M&#8364; d'amendes</strong>. Les PME ne sont plus epargnees &mdash; plusieurs entreprises de moins de 50 salaries ont ete sanctionnees. L'ignorance de la loi n'est pas une excuse recevable.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Section 01</span>
+                <h2 class="section-title">Fondamentaux de la conformite</h2>
+            </div>
+            <div class="obligation-grid">
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 01 <span class="obligation-tag tag-obligatoire">Obligatoire</span></div>
+                    <div class="obligation-name">Registre des traitements</div>
+                    <div class="obligation-desc">Documenter <strong>tous les traitements de donnees personnelles</strong> effectues : nature des donnees, finalites, durees de conservation, destinataires. Le registre doit etre tenu a jour en permanence.</div>
+                    <div class="obligation-article">Art. 30 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 02 <span class="obligation-tag tag-critique">Critique</span></div>
+                    <div class="obligation-name">Base legale identifiee</div>
+                    <div class="obligation-desc">Chaque traitement doit reposer sur <strong>une base legale claire</strong> : consentement explicite, execution d'un contrat, interet legitime, obligation legale, mission d'interet public ou protection d'interets vitaux.</div>
+                    <div class="obligation-article">Art. 6 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 03 <span class="obligation-tag tag-obligatoire">Obligatoire</span></div>
+                    <div class="obligation-name">Information des personnes</div>
+                    <div class="obligation-desc">Mettre en place une <strong>politique de confidentialite claire</strong>, accessible et comprehensible. Les personnes doivent etre informees de leurs droits au moment de la collecte des donnees.</div>
+                    <div class="obligation-article">Art. 13-14 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 04 <span class="obligation-tag tag-principe">Principe fondamental</span></div>
+                    <div class="obligation-name">Minimisation des donnees</div>
+                    <div class="obligation-desc">Ne collecter <strong>que les donnees strictement necessaires</strong> a la finalite declaree. Eviter toute collecte preventive ou speculative de donnees "au cas ou".</div>
+                    <div class="obligation-article">Art. 5 &mdash; RGPD</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Section 02</span>
+                <h2 class="section-title">Droits des personnes</h2>
+            </div>
+            <div class="info-box">
+                <div class="info-icon">&#8505;&#65039;</div>
+                <div class="info-text"><strong>Delai legal :</strong> Vous avez <strong>1 mois maximum</strong> pour repondre a toute demande d'exercice de droits. Ce delai peut etre etendu a 3 mois pour les demandes complexes, mais vous devez informer la personne dans le premier mois.</div>
+            </div>
+            <div class="obligation-grid">
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 05 <span class="obligation-tag tag-obligatoire">Obligatoire</span></div>
+                    <div class="obligation-name">Droit d'acces</div>
+                    <div class="obligation-desc">Toute personne peut demander a connaitre <strong>quelles donnees vous detenez sur elle</strong>, comment elles sont utilisees et combien de temps elles sont conservees. Reponse obligatoire sous 1 mois.</div>
+                    <div class="obligation-article">Art. 15 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 06 <span class="obligation-tag tag-obligatoire">Obligatoire</span></div>
+                    <div class="obligation-name">Droit a l'effacement</div>
+                    <div class="obligation-desc">Capacite technique et organisationnelle de <strong>supprimer toutes les donnees d'une personne</strong> sur simple demande, sauf si une obligation legale impose leur conservation (comptabilite, contrats, etc.).</div>
+                    <div class="obligation-article">Art. 17 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 07 <span class="obligation-tag tag-obligatoire">Obligatoire</span></div>
+                    <div class="obligation-name">Droit a la portabilite</div>
+                    <div class="obligation-desc">Permettre a chaque personne <strong>d'exporter ses donnees dans un format standard</strong> (CSV, JSON) pour les transferer vers un autre service. S'applique aux donnees fournies avec consentement ou dans le cadre d'un contrat.</div>
+                    <div class="obligation-article">Art. 20 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 08 <span class="obligation-tag tag-critique">Critique</span></div>
+                    <div class="obligation-name">Consentement explicite</div>
+                    <div class="obligation-desc">Le consentement doit etre <strong>libre, eclaire, specifique et univoque</strong>. Vous devez pouvoir prouver qu'il a ete donne et la personne peut le revoquer a tout moment, aussi facilement qu'elle l'a accorde.</div>
+                    <div class="obligation-article">Art. 7 &mdash; RGPD</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Section 03</span>
+                <h2 class="section-title">Securite &amp; Gouvernance</h2>
+            </div>
+            <div class="obligation-grid">
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 09 <span class="obligation-tag tag-obligatoire">Obligatoire</span></div>
+                    <div class="obligation-name">Mesures de securite</div>
+                    <div class="obligation-desc">Implementer des <strong>mesures techniques et organisationnelles</strong> appropriees : chiffrement des donnees, pseudonymisation, controle d'acces, gestion des mots de passe, mise a jour reguliere des systemes.</div>
+                    <div class="obligation-article">Art. 32 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 10 <span class="obligation-tag tag-critique">Critique</span></div>
+                    <div class="obligation-name">Notification de violation</div>
+                    <div class="obligation-desc">En cas de <strong>fuite ou violation de donnees</strong>, notifier la CNIL dans les <strong>72 heures</strong>. Si la violation presente un risque eleve pour les personnes, les informer directement et sans delai.</div>
+                    <div class="obligation-article">Art. 33 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 11 <span class="obligation-tag tag-conditionnel">Conditionnel</span></div>
+                    <div class="obligation-name">Analyse d'impact (AIPD)</div>
+                    <div class="obligation-desc">Obligatoire pour les traitements <strong>susceptibles d'engendrer un risque eleve</strong> (profiling, donnees sensibles, surveillance). L'analyse doit etre documentee avant le lancement du traitement.</div>
+                    <div class="obligation-article">Art. 35 &mdash; RGPD</div>
+                </div>
+                <div class="obligation-card">
+                    <div class="obligation-number">Obligation 12 <span class="obligation-tag tag-recommande">Recommande</span></div>
+                    <div class="obligation-name">DPO ou referent RGPD</div>
+                    <div class="obligation-desc">Designer un <strong>Delegue a la Protection des Donnees</strong> interne ou externe. Obligatoire pour les organismes publics et certaines entreprises. Fortement recommande pour toutes les PME traitant des donnees en volume.</div>
+                    <div class="obligation-article">Art. 37 &mdash; RGPD</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">A savoir</span>
+                <h2 class="section-title">Les sanctions encourues</h2>
+            </div>
+            <div class="sanctions-grid">
+                <div class="sanction-card">
+                    <div class="sanction-amount">20 M&#8364;</div>
+                    <div class="sanction-label">ou 4% du CA mondial<br>pour les infractions graves</div>
+                </div>
+                <div class="sanction-card">
+                    <div class="sanction-amount">10 M&#8364;</div>
+                    <div class="sanction-label">ou 2% du CA mondial<br>pour les infractions mineures</div>
+                </div>
+                <div class="sanction-card warn">
+                    <div class="sanction-amount" style="font-size:18px;">Mise en demeure</div>
+                    <div class="sanction-label">Injonction de mise en conformite<br>avec delai impose par la CNIL</div>
+                </div>
+                <div class="sanction-card warn">
+                    <div class="sanction-amount" style="font-size:18px;">Interdiction</div>
+                    <div class="sanction-label">Suspension ou interdiction<br>totale du traitement incrimine</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Plan d'action</span>
+                <h2 class="section-title">Les 5 premieres actions a mener</h2>
+            </div>
+            <div class="steps-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Faire l'inventaire des donnees collectees</div>
+                        <div class="step-desc">Lister tous les points de collecte (formulaires, CRM, emails, cookies) et les donnees associees. Identifier qui y a acces et ou elles sont stockees.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Mettre a jour la politique de confidentialite</div>
+                        <div class="step-desc">Rediger ou mettre a jour vos mentions legales et politique de confidentialite. Elle doit etre accessible depuis chaque page de votre site web.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Implementer le recueil de consentement</div>
+                        <div class="step-desc">Mettre en place une banniere cookies conforme et les mecanismes de consentement pour vos formulaires. Le consentement pre-coche est expressement interdit.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Securiser les donnees stockees</div>
+                        <div class="step-desc">Chiffrer les bases de donnees, activer l'authentification a deux facteurs sur vos outils, verifier et restreindre les droits d'acces de vos collaborateurs.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Former les equipes</div>
+                        <div class="step-desc">Sensibiliser tous les collaborateurs qui traitent des donnees personnelles aux bonnes pratiques RGPD. La conformite est l'affaire de toute l'entreprise, pas uniquement du service IT.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">Auto-evaluation</span>
+                <h2 class="section-title">Checklist de conformite rapide</h2>
+            </div>
+            <ul class="checklist">
+                <li><label><input type="checkbox"><span>Mon registre des traitements est cree et tenu a jour</span></label></li>
+                <li><label><input type="checkbox"><span>Chaque traitement a une base legale identifiee et documentee</span></label></li>
+                <li><label><input type="checkbox"><span>Ma politique de confidentialite est visible et a jour sur le site</span></label></li>
+                <li><label><input type="checkbox"><span>Mon consentement cookies est conforme (pas de pre-cochage)</span></label></li>
+                <li><label><input type="checkbox"><span>Je peux repondre a une demande d'acces en moins d'1 mois</span></label></li>
+                <li><label><input type="checkbox"><span>Je peux supprimer toutes les donnees d'une personne sur demande</span></label></li>
+                <li><label><input type="checkbox"><span>J'ai un plan d'action en cas de violation de donnees (72h CNIL)</span></label></li>
+                <li><label><input type="checkbox"><span>Mes donnees sont chiffrees et les acces sont controles</span></label></li>
+                <li><label><input type="checkbox"><span>J'ai designe un referent RGPD en interne ou externe</span></label></li>
+                <li><label><input type="checkbox"><span>Mes equipes ont ete formees aux bonnes pratiques RGPD</span></label></li>
+            </ul>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-eyebrow">Pret a vous mettre en conformite ?</div>
+            <h2 class="cta-title">RL Conseil vous accompagne pas a pas</h2>
+            <p class="cta-text">Audit initial de votre situation, plan d'action sur mesure, implementation technique des mesures et formation de vos equipes. Un accompagnement complet pour une mise en conformite RGPD sereine et durable.</p>
+            <a href="https://rlconseil.net/contact" class="cta-btn">
+                Demander un audit RGPD gratuit
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <div class="cta-badges">
+                <span class="cta-badge">RGPD</span>
+                <span class="cta-badge">Privacy by Design</span>
+                <span class="cta-badge">Audit CNIL</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="doc-footer">
+        <div class="footer-copy">&copy; 2026 RL Conseil &mdash; Tous droits reserves</div>
+        <div class="footer-links">
+            <a href="https://rlconseil.net">rlconseil.net</a>
+            <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a>
+            <a href="https://linkedin.com/in/rony-licha-8b911189" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function downloadPDF() {
+    var btn = document.querySelector('.download-btn');
+    var orig = btn.textContent;
+    btn.textContent = 'Generation en cours...';
+    btn.disabled = true;
+    var element = document.getElementById('pdf-content');
+    var opt = {
+        margin: 0,
+        filename: 'Guide-RGPD-PME-RLConseil.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save().then(function() {
+        btn.textContent = orig;
+        btn.disabled = false;
+    });
+}
+</script>
+</body>
+</html>

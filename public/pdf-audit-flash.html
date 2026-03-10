@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Flash : Votre projet est-il sur les bons rails ? — RL Conseil</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #be3c5a;
+      --accent-light: #d4546a;
+      --accent-dark: #9a2e47;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #3b82f6;
+      --bg: #faf9f6;
+      --text: #0d1117;
+      --text-muted: #5c6370;
+      --surface: #ffffff;
+      --border: #e2ddd5;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Download bar */
+    .download-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .download-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .download-bar-left .icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .download-bar-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-back:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      background: #fff;
+      color: var(--primary-dark);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Page wrapper */
+    .page-wrapper {
+      padding-top: 72px;
+      padding-bottom: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* A4 page */
+    .a4-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--surface);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .doc-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 32px 40px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .doc-header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: 80px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent-light);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .header-meta {
+      text-align: right;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+
+    .badge-category {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .doc-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    /* Content area */
+    .doc-content {
+      padding: 36px 40px;
+    }
+
+    /* Intro block */
+    .intro-block {
+      background: #f0f4ff;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+
+    .intro-block p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .intro-block strong {
+      color: var(--primary-dark);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-num {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Checklist items */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: #fff;
+    }
+
+    .check-body {
+      flex: 1;
+    }
+
+    .check-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .check-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .badge-level {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .level-critical {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .level-important {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .level-recommended {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    /* Score section */
+    .score-section {
+      margin-bottom: 28px;
+    }
+
+    .score-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .score-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .score-card {
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .score-card.red {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+    }
+
+    .score-card.orange {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+    }
+
+    .score-card.green {
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+    }
+
+    .score-range {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .score-card.red .score-range { color: #dc2626; }
+    .score-card.orange .score-range { color: #d97706; }
+    .score-card.green .score-range { color: #059669; }
+
+    .score-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .score-card.red .score-label { color: #dc2626; }
+    .score-card.orange .score-label { color: #d97706; }
+    .score-card.green .score-label { color: #059669; }
+
+    .score-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Tips section */
+    .tips-section {
+      background: #f8faff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 28px;
+      border: 1px solid #dbeafe;
+    }
+
+    .tips-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tips-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tip-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .tip-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .tip-badge.red { background: #fee2e2; color: #dc2626; }
+    .tip-badge.orange { background: #fef3c7; color: #d97706; }
+    .tip-badge.green { background: #d1fae5; color: #059669; }
+
+    .tip-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .cta-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 18px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--accent-dark);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-brand strong {
+      color: var(--accent);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    /* Print styles */
+    @media print {
+      .download-bar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+      .a4-page { box-shadow: none; }
+    }
+
+    @media (max-width: 780px) {
+      .a4-page { width: 100%; border-radius: 0; }
+      .page-wrapper { padding: 56px 0 20px; }
+      .doc-content { padding: 24px 20px; }
+      .doc-header { padding: 24px 20px; }
+      .doc-footer { padding: 16px 20px; flex-direction: column; gap: 10px; text-align: center; }
+      .score-grid { grid-template-columns: 1fr; }
+      .download-bar { padding: 10px 16px; }
+      .download-bar-left span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Download bar -->
+  <div class="download-bar">
+    <div class="download-bar-left">
+      <div class="icon">📋</div>
+      <span>Audit Flash — Guide gratuit RL Conseil</span>
+    </div>
+    <div class="download-bar-actions">
+      <a href="/" class="btn-back">← Retour au site</a>
+      <button class="btn-download" onclick="downloadPDF()">⬇ Télécharger PDF</button>
+    </div>
+  </div>
+
+  <!-- Page wrapper -->
+  <div class="page-wrapper">
+    <div class="a4-page" id="pdf-content">
+
+      <!-- Header -->
+      <div class="doc-header">
+        <div class="header-top">
+          <div class="logo-block">
+            <span class="logo-mark">RL</span>
+            <div class="logo-divider"></div>
+            <span class="logo-name">Conseil</span>
+          </div>
+          <div class="header-meta">
+            rlconseil.net<br>
+            rony@rlconseil.net<br>
+            07 67 98 71 76
+          </div>
+        </div>
+        <div class="badge-category">Guide Gratuit · Startups & PME</div>
+        <div class="doc-title">Audit Flash : Votre projet est-il sur les bons rails ?</div>
+        <div class="doc-subtitle">15 points de contrôle essentiels pour évaluer la santé technique de votre projet digital en 10 minutes</div>
+      </div>
+
+      <!-- Content -->
+      <div class="doc-content">
+
+        <!-- Intro -->
+        <div class="intro-block">
+          <p><strong>Pourquoi cet audit ?</strong> En 15+ ans d'expérience, j'ai vu des dizaines de projets échouer non pas à cause d'une mauvaise idée, mais d'une architecture fragile, d'une dette technique ignorée ou d'une sécurité négligée. Cet audit flash vous permet d'identifier en quelques minutes les zones de risque critiques de votre projet digital. Cochez chaque point maîtrisé et calculez votre score.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">1</div>
+            <div class="section-title">Architecture & Scalabilité</div>
+          </div>
+          <div class="checklist">
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Architecture documentée et diagrammes à jour</div>
+                <div class="check-desc">Schéma d'architecture compréhensible par un nouveau développeur. Séparation claire frontend / backend / infra. Documentation des choix techniques.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Séparation claire des responsabilités (SoC)</div>
+                <div class="check-desc">Couches métier, données et présentation distinctes. Pas de logique métier dans les vues ou les contrôleurs. Services indépendants et testables.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Scalabilité horizontale possible</div>
+                <div class="check-desc">Application stateless ou sessions centralisées. Base de données avec réplicas. Cache distribué (Redis). Load balancer configuré ou prévu.</div>
+              </div>
+              <span class="badge-level level-important">Important</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">2</div>
+            <div class="section-title">Qualité du Code</div>
+          </div>
+          <div class="checklist">
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Tests automatisés couvrant plus de 60% du code</div>
+                <div class="check-desc">Tests unitaires pour la logique métier. Tests d'intégration pour les API. Tests E2E pour les parcours critiques. Rapport de couverture accessible.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Pipeline CI/CD fonctionnel</div>
+                <div class="check-desc">Tests lancés automatiquement à chaque commit. Build et déploiement automatisés. Rollback possible en moins de 5 minutes. Environnements staging et production séparés.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Conventions de code appliquées et vérifiées</div>
+                <div class="check-desc">Linter et formatter configurés (ESLint, Pint, Prettier). Code review obligatoire avant merge. Standards documentés dans un CONTRIBUTING.md.</div>
+              </div>
+              <span class="badge-level level-important">Important</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Dette technique tracée et planifiée</div>
+                <div class="check-desc">TODO techniques documentés dans un backlog dédié. Estimation du coût de la dette. Plan de remboursement progressif. Ratio dette/nouvelles fonctionnalités maîtrisé.</div>
+              </div>
+              <span class="badge-level level-important">Important</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">3</div>
+            <div class="section-title">Sécurité & Conformité</div>
+          </div>
+          <div class="checklist">
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">HTTPS partout + headers de sécurité configurés</div>
+                <div class="check-desc">Certificat TLS valide et auto-renouvelé. CSP, X-Frame-Options, HSTS configurés. Score A+ sur securityheaders.com.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Authentification sécurisée avec gestion des sessions</div>
+                <div class="check-desc">Mots de passe hachés (bcrypt/argon2). Tokens JWT ou sessions sécurisées. Rate limiting sur les endpoints auth. MFA disponible pour les comptes sensibles.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Protection contre les injections (SQL, XSS, CSRF)</div>
+                <div class="check-desc">Requêtes préparées ou ORM. Validation et sanitisation des entrées. Tokens CSRF sur les formulaires. Échappement des sorties HTML.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">RGPD implémentée (si données personnelles)</div>
+                <div class="check-desc">Bannière de consentement conforme. Politique de confidentialité à jour. Droits des utilisateurs implémentés (export, suppression). DPO désigné si nécessaire.</div>
+              </div>
+              <span class="badge-level level-important">Important</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-num">4</div>
+            <div class="section-title">Opérations & Monitoring</div>
+          </div>
+          <div class="checklist">
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Monitoring et alerting en place</div>
+                <div class="check-desc">Uptime monitoring avec alertes SMS/email. Métriques applicatives (temps de réponse, taux d'erreur). Tableau de bord accessible à l'équipe.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Logs centralisés et consultables</div>
+                <div class="check-desc">Logs structurés (JSON). Agrégation centralisée (ELK, Datadog, Logtail). Rétention minimum 90 jours. Recherche et filtrage efficaces.</div>
+              </div>
+              <span class="badge-level level-important">Important</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Sauvegardes automatisées et testées</div>
+                <div class="check-desc">Sauvegardes quotidiennes automatiques. Stockage offsite (autre région/provider). Tests de restauration réguliers (mensuel minimum). RPO défini et respecté.</div>
+              </div>
+              <span class="badge-level level-critical">Critique</span>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-body">
+                <div class="check-label">Plan de reprise d'activité (PRA) documenté</div>
+                <div class="check-desc">Procédures de restauration documentées et testées. RTO et RPO définis. Contacts d'urgence répertoriés. Exercices de simulation planifiés.</div>
+              </div>
+              <span class="badge-level level-recommended">Recommandé</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Score -->
+        <div class="score-section">
+          <div class="score-header">
+            <div class="section-num" style="background: var(--primary);">🎯</div>
+            <div class="section-title">Votre score</div>
+          </div>
+          <div class="score-grid">
+            <div class="score-card red">
+              <div class="score-range">0 – 5</div>
+              <div class="score-label">Zone de danger</div>
+              <div class="score-desc">Risques critiques immédiats. Action urgente requise avant toute nouvelle fonctionnalité.</div>
+            </div>
+            <div class="score-card orange">
+              <div class="score-range">6 – 10</div>
+              <div class="score-label">En cours de stabilisation</div>
+              <div class="score-desc">Bases correctes mais lacunes importantes. Plan d'action à définir dans les 3 mois.</div>
+            </div>
+            <div class="score-card green">
+              <div class="score-range">11 – 15</div>
+              <div class="score-label">Projet sain</div>
+              <div class="score-desc">Fondations solides. Maintenir la rigueur et continuer à progresser.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="tips-section">
+          <div class="tips-title">⚡ Actions rapides par score</div>
+          <div class="tips-list">
+            <div class="tip-item">
+              <span class="tip-badge red">0 – 5</span>
+              <span class="tip-text">Stoppez les nouvelles features. Auditez immédiatement la sécurité. Mettez en place les sauvegardes. Documentez l'architecture existante.</span>
+            </div>
+            <div class="tip-item">
+              <span class="tip-badge orange">6 – 10</span>
+              <span class="tip-text">Identifiez vos 3 points critiques manquants. Créez un sprint dédié à la qualité. Mettez en place le CI/CD si absent. Planifiez un audit de sécurité.</span>
+            </div>
+            <div class="tip-item">
+              <span class="tip-badge green">11 – 15</span>
+              <span class="tip-text">Excellent travail. Partagez vos bonnes pratiques à l'équipe. Planifiez un audit externe annuel. Investissez dans la performance et l'observabilité avancée.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+          <div class="cta-eyebrow">Besoin d'un regard expert ?</div>
+          <div class="cta-title">Audit technique approfondi avec RL Conseil</div>
+          <div class="cta-text">RL Conseil propose un audit technique approfondi de 2h pour analyser votre architecture, votre code, votre sécurité et vous livrer un rapport d'action prioritaire.</div>
+          <a href="https://rlconseil.net/contact" class="cta-btn">Demander un audit →</a>
+        </div>
+
+      </div><!-- /doc-content -->
+
+      <!-- Footer -->
+      <div class="doc-footer">
+        <div class="footer-brand">
+          © 2026 <strong>RL Conseil</strong> — Rony Licha, CTO & Fondateur
+        </div>
+        <div class="footer-links">
+          <a href="https://rlconseil.net">rlconseil.net</a>
+          <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a>
+          <a href="https://linkedin.com/in/rony-licha-8b911189">LinkedIn</a>
+        </div>
+      </div>
+
+    </div><!-- /a4-page -->
+  </div><!-- /page-wrapper -->
+
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('pdf-content');
+      const opt = {
+        margin: 0,
+        filename: 'Audit-Flash-Projet-RLConseil.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+          scrollY: 0
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        }
+      };
+      const btn = document.querySelector('.btn-download');
+      btn.textContent = '⏳ Génération...';
+      btn.disabled = true;
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.textContent = '⬇ Télécharger PDF';
+        btn.disabled = false;
+      });
+    }
+  </script>
+
+</body>
+</html>

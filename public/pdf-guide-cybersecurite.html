@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybersecurite PME : 10 mesures essentielles — RL Conseil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #ef4444;
+      --primary-dark: #dc2626;
+      --primary-light: #f87171;
+      --primary-xlight: #fff5f5;
+      --accent: #be3c5a;
+      --bg: #faf9f6;
+      --text: #0d1117;
+      --text-muted: #5c6370;
+      --surface: #ffffff;
+      --border: #e2ddd5;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .badge, .tag, label, .label {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* ── Download bar ── */
+    .download-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 2px 12px rgba(239,68,68,0.25);
+    }
+
+    .download-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .download-bar a.back-link {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .download-bar a.back-link:hover { color: #fff; }
+    .download-bar a.back-link::before { content: "←"; font-size: 16px; }
+
+    .download-bar-divider { color: rgba(255,255,255,0.3); font-size: 18px; }
+
+    .download-bar-label {
+      color: rgba(255,255,255,0.85);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .btn-download {
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-download:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.7);
+    }
+
+    .btn-download::before { content: "↓"; font-size: 15px; }
+
+    /* ── Page container ── */
+    .page-wrapper {
+      padding-top: 64px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      background: var(--bg);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 210mm;
+      min-height: 297mm;
+      background: var(--surface);
+      padding: 40px 50px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+      margin: 20px auto 40px;
+    }
+
+    /* ── Header ── */
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .logo-block { display: flex; flex-direction: column; gap: 4px; }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text .rl { color: #be3c5a; }
+    .logo-text .conseil { color: #0d1117; }
+
+    .logo-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-meta { text-align: right; }
+
+    .header-meta p {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .header-meta a { color: var(--primary); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero { margin-bottom: 32px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-xlight);
+      color: var(--primary-dark);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge::before { content: "●"; font-size: 8px; color: var(--primary); }
+
+    .hero h1 {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em { font-style: normal; color: var(--primary); }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    /* ── Alert box ── */
+    .alert-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 32px;
+    }
+
+    .alert-box.red {
+      background: var(--primary-xlight);
+      border-left: 4px solid var(--primary);
+    }
+
+    .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+    .alert-text { font-size: 13.5px; color: var(--text); line-height: 1.6; }
+
+    .alert-text strong { color: var(--primary-dark); font-family: 'Outfit', sans-serif; font-weight: 700; }
+
+    /* ── Section header ── */
+    .section { margin-bottom: 32px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-number {
+      background: var(--primary);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Mesures grid ── */
+    .measures-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .measure-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .measure-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .measure-num {
+      background: var(--primary);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .measure-title-area { flex: 1; }
+
+    .measure-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .measure-priority {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+    }
+
+    .measure-priority.urgente { background: #fee2e2; color: #dc2626; }
+    .measure-priority.critique { background: #fef3c7; color: #d97706; }
+    .measure-priority.importante { background: #dbeafe; color: #1d4ed8; }
+    .measure-priority.recommandee { background: #d1fae5; color: #065f46; }
+
+    .measure-body { padding: 14px 18px; }
+
+    .measure-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .measure-impact {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: var(--primary-xlight);
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ── Cout table ── */
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .cost-table thead tr { background: var(--primary); color: #fff; }
+
+    .cost-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .cost-table tbody tr { border-bottom: 1px solid var(--border); }
+    .cost-table tbody tr:nth-child(even) { background: var(--bg); }
+
+    .cost-table tbody td {
+      padding: 10px 14px;
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    .cost-table tbody td:first-child {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .cost-table .danger { color: var(--primary-dark); font-weight: 700; }
+
+    /* ── Maturite score ── */
+    .maturity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .maturity-card {
+      padding: 16px 18px;
+      border-radius: 10px;
+      border: 1.5px solid;
+    }
+
+    .maturity-card.critical {
+      background: #fff5f5;
+      border-color: #fecaca;
+    }
+
+    .maturity-card.risk {
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .maturity-card.correct {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .maturity-card.mature {
+      background: #f0fdf4;
+      border-color: #6ee7b7;
+    }
+
+    .maturity-score {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .maturity-card.critical .maturity-score { color: #dc2626; }
+    .maturity-card.risk .maturity-score { color: #d97706; }
+    .maturity-card.correct .maturity-score { color: #16a34a; }
+    .maturity-card.mature .maturity-score { color: #059669; }
+
+    .maturity-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .maturity-card.critical .maturity-label { color: #dc2626; }
+    .maturity-card.risk .maturity-label { color: #d97706; }
+    .maturity-card.correct .maturity-label { color: #16a34a; }
+    .maturity-card.mature .maturity-label { color: #059669; }
+
+    .maturity-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Quick wins ── */
+    .quick-wins {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quick-win-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .quick-win-timeline {
+      background: var(--primary);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .quick-win-text {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .quick-win-text strong { font-family: 'Outfit', sans-serif; color: var(--primary-dark); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-top: 32px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .cta-section h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .cta-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 20px;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: rgba(255,255,255,0.9);
+      color: var(--primary-dark);
+      border-color: transparent;
+    }
+
+    .cta-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .cta-tag {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.9);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    .doc-footer {
+      border-top: 1.5px solid var(--border);
+      padding-top: 20px;
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy { font-family: 'Outfit', sans-serif; font-size: 11px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 16px; }
+
+    .footer-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .download-bar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+      .page { box-shadow: none; margin: 0; }
+      body { background: #fff; }
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 24px 20px; }
+      .doc-header { flex-direction: column; gap: 16px; }
+      .header-meta { text-align: left; }
+      .maturity-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Download bar -->
+  <div class="download-bar">
+    <div class="download-bar-left">
+      <a href="/" class="back-link">Retour au site</a>
+      <span class="download-bar-divider">/</span>
+      <span class="download-bar-label">Guide Cybersecurite PME — 10 mesures essentielles</span>
+    </div>
+    <button class="btn-download" onclick="downloadPDF()">Telecharger PDF</button>
+  </div>
+
+  <!-- Page -->
+  <div class="page-wrapper">
+    <div class="page" id="pdf-content">
+
+      <!-- Header -->
+      <div class="doc-header">
+        <div class="logo-block">
+          <div class="logo-text">
+            <span class="rl">RL</span><span class="conseil"> Conseil</span>
+          </div>
+          <div class="logo-tagline">Expertise technique &amp; transformation digitale</div>
+        </div>
+        <div class="header-meta">
+          <p>Rony Licha — CTO &amp; Fondateur</p>
+          <p><a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a></p>
+          <p>07 67 98 71 76</p>
+          <p><a href="https://rlconseil.net">rlconseil.net</a></p>
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-badge">Securite — PME &amp; ETI</div>
+        <h1>Cybersecurite PME :<br /><em>10 mesures essentielles</em></h1>
+        <p class="hero-subtitle">Protegez votre entreprise contre les cyberattaques avec ces 10 mesures concretes et accessibles, classees par priorite d'implementation.</p>
+      </div>
+
+      <!-- Intro + alert -->
+      <div class="section">
+        <p style="font-size: 14.5px; color: var(--text); line-height: 1.8; margin-bottom: 16px;">
+          <strong>43% des cyberattaques ciblent les PME.</strong> Le cout moyen d'une attaque pour une PME s'eleve a <strong>50 000€</strong>. La plupart auraient pu etre evitees avec des mesures simples et accessibles sans budget exorbitant.
+        </p>
+        <div class="alert-box red">
+          <span class="alert-icon">🚨</span>
+          <div class="alert-text">
+            <strong>Alerte 2025 :</strong> Une PME sur deux a subi une cyberattaque en 2024. 60% des PME victimes d'une attaque serieuse deposent le bilan dans les 18 mois suivants — principalement a cause des couts de remediation et de la perte de confiance clients.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section : 10 mesures -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">→</div>
+          <h2 class="section-title">Les 10 mesures essentielles</h2>
+        </div>
+
+        <div class="measures-list">
+
+          <!-- 1 MFA -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">1</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Authentification forte (MFA)</span>
+                <span class="measure-priority urgente">Urgente</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Activer le second facteur sur tous les comptes critiques : email professionnel, cloud (Google, Microsoft 365, AWS), acces admin, VPN. Eviter le SMS — preferer un TOTP via Google Authenticator, Authy ou une cle physique YubiKey pour les comptes a tres haute valeur.</p>
+              <span class="measure-impact">Bloque 99,9% des attaques par credential stuffing (Microsoft, 2023)</span>
+            </div>
+          </div>
+
+          <!-- 2 MAJ -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">2</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Mises a jour automatiques</span>
+                <span class="measure-priority urgente">Urgente</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Activer les mises a jour automatiques sur tous les systemes : OS (Windows, macOS, Linux), navigateurs web, CMS (WordPress, Drupal), plugins et extensions. Une vulnerabilite connue non patchee est une porte ouverte pour les attaquants.</p>
+              <span class="measure-impact">60% des breaches exploitent des vulnerabilites connues et deja patchees</span>
+            </div>
+          </div>
+
+          <!-- 3 Sauvegardes -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">3</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Sauvegardes 3-2-1</span>
+                <span class="measure-priority critique">Critique</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Regle des 3-2-1 : 3 copies des donnees, sur 2 supports differents (disque local + cloud), dont 1 hors site physiquement deconnecte. Tester la restauration complete chaque trimestre — une sauvegarde non testee est une sauvegarde inutile.</p>
+              <span class="measure-impact">Protection contre : ransomware, defaillance materielle, erreur humaine, incendie/inondation</span>
+            </div>
+          </div>
+
+          <!-- 4 Segmentation -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">4</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Segmentation reseau</span>
+                <span class="measure-priority importante">Importante</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Separer le reseau WiFi invite du reseau interne de l'entreprise. Isoler les serveurs et equipements critiques dans un VLAN dedie. Appliquer le principe du moindre privilege : chaque utilisateur n'accede qu'aux ressources dont il a besoin.</p>
+              <span class="measure-impact">Limite la propagation laterale en cas de compromission d'un poste</span>
+            </div>
+          </div>
+
+          <!-- 5 Chiffrement -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">5</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Chiffrement des donnees</span>
+                <span class="measure-priority critique">Critique</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Au repos : activer le chiffrement des disques sur tous les postes et serveurs (BitLocker pour Windows, FileVault pour macOS, LUKS pour Linux). En transit : HTTPS obligatoire partout, VPN pour les connexions en teletravail.</p>
+              <span class="measure-impact">Rend les donnees inutilisables en cas de vol physique d'equipement</span>
+            </div>
+          </div>
+
+          <!-- 6 Mots de passe -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">6</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Politique de mots de passe</span>
+                <span class="measure-priority urgente">Urgente</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Minimum 12 caracteres (16+ pour les comptes admin). Deployer un gestionnaire de mots de passe pour toute l'equipe : Bitwarden (open-source), 1Password ou Dashlane Enterprise. Interdire la reutilisation entre comptes. Auditer et supprimer les comptes dormants tous les 90 jours.</p>
+              <span class="measure-impact">Elimine la reutilisation de mots de passe — vecteur n°1 des compromissions</span>
+            </div>
+          </div>
+
+          <!-- 7 Sensibilisation -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">7</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Sensibilisation des equipes</span>
+                <span class="measure-priority critique">Critique</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Formation phishing obligatoire chaque trimestre avec des simulations reelles envoyees sans preavis. Definir une procedure claire de signalement des incidents suspects. Former particulierement les equipes finance et RH, cibles privilegiees des arnaques au president (BEC).</p>
+              <span class="measure-impact">91% des cyberattaques commencent par un email de phishing (Proofpoint)</span>
+            </div>
+          </div>
+
+          <!-- 8 Plan IR -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">8</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Plan de reponse aux incidents</span>
+                <span class="measure-priority importante">Importante</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Documenter qui appeler dans les 15 premieres minutes (DSI, RSSI, direction, assureur cyber, ANSSI si neccessaire), les actions immediates a entreprendre, et la procedure de communication de crise (clients, regulateurs, CNIL). Tester le plan avec un exercice tabletop annuel.</p>
+              <span class="measure-impact">Reduit le cout d'une attaque de 35% en moyenne (IBM Cost of Data Breach 2024)</span>
+            </div>
+          </div>
+
+          <!-- 9 Monitoring -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">9</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Monitoring &amp; Detection</span>
+                <span class="measure-priority importante">Importante</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Centraliser les logs (SIEM), configurer des alertes sur les connexions suspectes (heure inhabituelle, pays inconnu, tentatives multiples echouees). Deployer un EDR (Endpoint Detection and Response) sur tous les postes. La detection precoce est le meilleur moyen de limiter les degats.</p>
+              <span class="measure-impact">Temps moyen de detection sans monitoring : 207 jours (IBM 2024)</span>
+            </div>
+          </div>
+
+          <!-- 10 Audit -->
+          <div class="measure-card">
+            <div class="measure-header">
+              <div class="measure-num">10</div>
+              <div class="measure-title-area">
+                <span class="measure-title">Audit de securite regulier</span>
+                <span class="measure-priority recommandee">Recommandee</span>
+              </div>
+            </div>
+            <div class="measure-body">
+              <p class="measure-desc">Test d'intrusion (pentest) annuel par un prestataire certifie PASSI (ANSSI). Scan de vulnerabilites automatique mensuel. Revue des droits d'acces trimestrielle. Audit du code source pour les applications critiques. Budget recommande : 3 a 5% du budget IT annuel.</p>
+              <span class="measure-impact">Identifie les failles avant que les attaquants ne les trouvent</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Cout d'une attaque -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">★</div>
+          <h2 class="section-title">Cout reel d'une cyberattaque pour une PME</h2>
+        </div>
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Poste de cout</th>
+              <th>Montant estime</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rancon moyenne</td>
+              <td class="danger">25 000 €</td>
+              <td>Pour les PME. Ne garantit pas la recuperation des donnees.</td>
+            </tr>
+            <tr>
+              <td>Interruption d'activite</td>
+              <td class="danger">Variable</td>
+              <td>2 a 5 jours en moyenne. Equivalent a plusieurs semaines de CA pour certains secteurs.</td>
+            </tr>
+            <tr>
+              <td>Remediation technique</td>
+              <td class="danger">15 000 – 50 000 €</td>
+              <td>Nettoyage, reinstallation, restauration des systemes et donnees.</td>
+            </tr>
+            <tr>
+              <td>Perte de clients</td>
+              <td class="danger">20 – 30%</td>
+              <td>Du portefeuille client dans les 6 mois suivants une fuite de donnees.</td>
+            </tr>
+            <tr>
+              <td>Amende RGPD</td>
+              <td class="danger">Jusqu'a 20 M€</td>
+              <td>En cas de fuite de donnees personnelles non signalee a la CNIL sous 72h.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Score de maturite -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">≡</div>
+          <h2 class="section-title">Votre score de maturite</h2>
+        </div>
+        <div class="maturity-grid">
+          <div class="maturity-card critical">
+            <div class="maturity-score">0 – 3</div>
+            <div class="maturity-label">CRITIQUE</div>
+            <div class="maturity-desc">Vous etes une cible facile. Des attaquants automatises peuvent compromettre votre systeme sans effort particulier.</div>
+          </div>
+          <div class="maturity-card risk">
+            <div class="maturity-score">4 – 6</div>
+            <div class="maturity-label">A RISQUE</div>
+            <div class="maturity-desc">Des failles exploitables existent. Un attaquant motive peut penetrer votre SI avec des techniques standard.</div>
+          </div>
+          <div class="maturity-card correct">
+            <div class="maturity-score">7 – 8</div>
+            <div class="maturity-label">CORRECT</div>
+            <div class="maturity-desc">Bonne base de securite. La plupart des attaques opportunistes echouent. Continuez a renforcer les points manquants.</div>
+          </div>
+          <div class="maturity-card mature">
+            <div class="maturity-score">9 – 10</div>
+            <div class="maturity-label">MATURE</div>
+            <div class="maturity-desc">Protection solide. Concentrez-vous desormais sur la detection et la reponse aux incidents avances.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions immediates -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">▶</div>
+          <h2 class="section-title">Par ou commencer — actions immediates</h2>
+        </div>
+        <div class="quick-wins">
+          <div class="quick-win-item">
+            <span class="quick-win-timeline">Aujourd'hui</span>
+            <div class="quick-win-text"><strong>Activer MFA</strong> sur tous les comptes email professionnels et les acces cloud de votre equipe. Prend 15 minutes par compte.</div>
+          </div>
+          <div class="quick-win-item">
+            <span class="quick-win-timeline">Cette semaine</span>
+            <div class="quick-win-text"><strong>Verifier les mises a jour en attente</strong> sur tous les postes et serveurs. Activer les mises a jour automatiques partout ou c'est possible.</div>
+          </div>
+          <div class="quick-win-item">
+            <span class="quick-win-timeline">Ce mois</span>
+            <div class="quick-win-text"><strong>Configurer les sauvegardes automatiques</strong> avec la regle 3-2-1. Tester une restauration pour valider que le processus fonctionne.</div>
+          </div>
+          <div class="quick-win-item">
+            <span class="quick-win-timeline">Ce trimestre</span>
+            <div class="quick-win-text"><strong>Planifier une formation phishing</strong> pour l'ensemble de l'equipe et rediger la procedure de signalement des incidents suspects.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>Audit securite de votre SI</h3>
+        <p>RL Conseil audite votre posture de securite et implemente les mesures adaptees a votre contexte. Nous livrons un rapport detaille des vulnerabilites, un plan d'action priorise, et nous accompagnons l'implementation des mesures critiques.</p>
+        <div class="cta-actions">
+          <a href="mailto:rony@rlconseil.net" class="cta-btn primary">Demander un audit</a>
+          <a href="https://linkedin.com/in/rony-licha-8b911189" class="cta-btn">LinkedIn</a>
+        </div>
+        <div class="cta-tags">
+          <span class="cta-tag">OWASP</span>
+          <span class="cta-tag">Audit Securite</span>
+          <span class="cta-tag">ANSSI</span>
+          <span class="cta-tag">RGPD</span>
+          <span class="cta-tag">PASSI</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="doc-footer">
+        <div class="footer-copy">© 2026 RL Conseil — Rony Licha, CTO &amp; Fondateur</div>
+        <div class="footer-links">
+          <a href="https://rlconseil.net">rlconseil.net</a>
+          <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a>
+          <a href="https://linkedin.com/in/rony-licha-8b911189">LinkedIn</a>
+        </div>
+      </div>
+
+    </div><!-- /page -->
+  </div><!-- /page-wrapper -->
+
+  <script>
+    function downloadPDF() {
+      const btn = document.querySelector('.btn-download');
+      btn.textContent = 'Generation en cours…';
+      btn.disabled = true;
+
+      const element = document.getElementById('pdf-content');
+      const opt = {
+        margin: [0, 0, 0, 0],
+        filename: 'Guide-Cybersecurite-PME-RLConseil.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          letterRendering: true
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        }
+      };
+
+      html2pdf().set(opt).from(element).save().then(function() {
+        btn.textContent = 'Telecharger PDF';
+        btn.disabled = false;
+      }).catch(function() {
+        btn.textContent = 'Telecharger PDF';
+        btn.disabled = false;
+      });
+    }
+  </script>
+</body>
+</html>

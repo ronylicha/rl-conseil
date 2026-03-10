@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signature Electronique & eIDAS : guide de conformite — RL Conseil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --primary-light: #a78bfa;
+      --primary-xlight: #f5f3ff;
+      --accent: #be3c5a;
+      --bg: #faf9f6;
+      --text: #0d1117;
+      --text-muted: #5c6370;
+      --surface: #ffffff;
+      --border: #e2ddd5;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .badge, .tag, label, .label {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* ── Download bar ── */
+    .download-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 2px 12px rgba(139,92,246,0.25);
+    }
+
+    .download-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .download-bar a.back-link {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .download-bar a.back-link:hover { color: #fff; }
+
+    .download-bar a.back-link::before {
+      content: "←";
+      font-size: 16px;
+    }
+
+    .download-bar-divider {
+      color: rgba(255,255,255,0.3);
+      font-size: 18px;
+    }
+
+    .download-bar-label {
+      color: rgba(255,255,255,0.85);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .btn-download {
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-download:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.7);
+    }
+
+    .btn-download::before { content: "↓"; font-size: 15px; }
+
+    /* ── Page container ── */
+    .page-wrapper {
+      padding-top: 64px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      background: var(--bg);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 210mm;
+      min-height: 297mm;
+      background: var(--surface);
+      padding: 40px 50px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+      margin: 20px auto 40px;
+    }
+
+    /* ── Header ── */
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .logo-block { display: flex; flex-direction: column; gap: 4px; }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text .rl { color: #be3c5a; }
+    .logo-text .conseil { color: #0d1117; }
+
+    .logo-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      text-align: right;
+    }
+
+    .header-meta p {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .header-meta a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-bottom: 36px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-xlight);
+      color: var(--primary-dark);
+      border: 1px solid rgba(139,92,246,0.2);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge::before { content: "●"; font-size: 8px; color: var(--primary); }
+
+    .hero h1 {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    /* ── Alert box ── */
+    .alert-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 32px;
+    }
+
+    .alert-box.violet {
+      background: var(--primary-xlight);
+      border-left: 4px solid var(--primary);
+    }
+
+    .alert-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .alert-text {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .alert-text strong {
+      color: var(--primary-dark);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-number {
+      background: var(--primary);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Signature levels ── */
+    .sig-levels {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sig-level {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sig-level::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+    }
+
+    .sig-level.ses::before { background: #10b981; }
+    .sig-level.aes::before { background: var(--primary); }
+    .sig-level.qes::before { background: #f59e0b; }
+
+    .sig-level-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .sig-level-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .sig-level-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sig-level.ses .sig-level-badge { background: #d1fae5; color: #065f46; }
+    .sig-level.aes .sig-level-badge { background: var(--primary-xlight); color: var(--primary-dark); }
+    .sig-level.qes .sig-level-badge { background: #fef3c7; color: #92400e; }
+
+    .sig-level-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .sig-level-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .sig-meta {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .sig-meta-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .sig-meta-value {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── Checklist ── */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .checklist-num {
+      background: var(--primary-xlight);
+      color: var(--primary-dark);
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .checklist-body { flex: 1; }
+
+    .checklist-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .checklist-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .checklist-ref {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-xlight);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    /* ── Providers grid ── */
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .provider-card {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .provider-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .provider-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .provider-tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: var(--primary-xlight);
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    /* ── Table ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .data-table thead tr {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .data-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+    }
+
+    .data-table tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table tbody tr:nth-child(even) { background: var(--bg); }
+
+    .data-table tbody td {
+      padding: 10px 14px;
+      vertical-align: top;
+      color: var(--text-muted);
+    }
+
+    .data-table tbody td:first-child {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ── Risk grid ── */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .risk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #fff5f5;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+    }
+
+    .risk-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .risk-text {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .risk-text strong {
+      font-family: 'Outfit', sans-serif;
+      color: #dc2626;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-top: 36px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .cta-section h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .cta-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 20px;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .cta-btn.primary {
+      background: rgba(255,255,255,0.9);
+      color: var(--primary-dark);
+      border-color: transparent;
+    }
+
+    .cta-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .cta-tag {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.9);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    .doc-footer {
+      border-top: 1.5px solid var(--border);
+      padding-top: 20px;
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      .download-bar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+      .page { box-shadow: none; margin: 0; }
+      body { background: #fff; }
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 24px 20px; }
+      .doc-header { flex-direction: column; gap: 16px; }
+      .header-meta { text-align: left; }
+      .sig-level-grid { grid-template-columns: 1fr; }
+      .providers-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Download bar -->
+  <div class="download-bar">
+    <div class="download-bar-left">
+      <a href="/" class="back-link">Retour au site</a>
+      <span class="download-bar-divider">/</span>
+      <span class="download-bar-label">Guide eIDAS — Signature Electronique</span>
+    </div>
+    <button class="btn-download" onclick="downloadPDF()">Telecharger PDF</button>
+  </div>
+
+  <!-- Page -->
+  <div class="page-wrapper">
+    <div class="page" id="pdf-content">
+
+      <!-- Header -->
+      <div class="doc-header">
+        <div class="logo-block">
+          <div class="logo-text">
+            <span class="rl">RL</span><span class="conseil"> Conseil</span>
+          </div>
+          <div class="logo-tagline">Expertise technique & transformation digitale</div>
+        </div>
+        <div class="header-meta">
+          <p>Rony Licha — CTO &amp; Fondateur</p>
+          <p><a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a></p>
+          <p>07 67 98 71 76</p>
+          <p><a href="https://rlconseil.net">rlconseil.net</a></p>
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-badge">Conformite — Secteur Legal &amp; Finance</div>
+        <h1>Signature Electronique &amp; eIDAS :<br /><em>guide de conformite</em></h1>
+        <p class="hero-subtitle">Comprendre les niveaux de signature electronique et implementer une solution conforme au reglement europeen eIDAS 2.0.</p>
+      </div>
+
+      <!-- Intro -->
+      <div class="section">
+        <p style="font-size: 14.5px; color: var(--text); line-height: 1.8; margin-bottom: 16px;">
+          Depuis le reglement <strong>eIDAS (2014)</strong> et son evolution <strong>eIDAS 2.0 (2024)</strong>, la signature electronique possede une valeur juridique equivalente a la signature manuscrite en Europe. Mais toutes les signatures ne se valent pas — leur niveau de securite et leur valeur probante varient considerablement.
+        </p>
+        <div class="alert-box violet">
+          <span class="alert-icon">⚡</span>
+          <div class="alert-text">
+            <strong>eIDAS 2.0 renforce les exigences.</strong> Les signatures qualifiees deviennent la reference pour les actes a forte valeur juridique. Le Portefeuille Europeen d'Identite Numerique (EUDI Wallet) entre en jeu d'ici 2026.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2 class="section-title">Les 3 niveaux de signature electronique</h2>
+        </div>
+
+        <div class="sig-levels">
+          <!-- SES -->
+          <div class="sig-level ses">
+            <div class="sig-level-header">
+              <span class="sig-level-name">Signature Electronique Simple (SES)</span>
+              <span class="sig-level-badge">Valeur faible</span>
+            </div>
+            <p class="sig-level-desc">Email, case a cocher, clic "J'accepte". Aucune verification d'identite requise. Forme la plus basique de consentement electronique, suffisante pour les documents a faible enjeu.</p>
+            <div class="sig-level-grid">
+              <div class="sig-meta">
+                <div class="sig-meta-label">Usage</div>
+                <div class="sig-meta-value">Devis, CGV, accords internes</div>
+              </div>
+              <div class="sig-meta">
+                <div class="sig-meta-label">Facilite</div>
+                <div class="sig-meta-value">Elevee</div>
+              </div>
+              <div class="sig-meta">
+                <div class="sig-meta-label">Cout</div>
+                <div class="sig-meta-value">Gratuit / tres faible</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AES -->
+          <div class="sig-level aes">
+            <div class="sig-level-header">
+              <span class="sig-level-name">Signature Electronique Avancee (AES / AdES)</span>
+              <span class="sig-level-badge">Valeur moyenne</span>
+            </div>
+            <p class="sig-level-desc">Identification du signataire, lien unique avec le document signe, detection de toute modification post-signature. Repose sur des certificats X.509 et l'horodatage qualifie.</p>
+            <div class="sig-level-grid">
+              <div class="sig-meta">
+                <div class="sig-meta-label">Usage</div>
+                <div class="sig-meta-value">Contrats, baux, mandats</div>
+              </div>
+              <div class="sig-meta">
+                <div class="sig-meta-label">Technologie</div>
+                <div class="sig-meta-value">Certificats X.509</div>
+              </div>
+              <div class="sig-meta">
+                <div class="sig-meta-label">Cout</div>
+                <div class="sig-meta-value">1 – 5 € / signature</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- QES -->
+          <div class="sig-level qes">
+            <div class="sig-level-header">
+              <span class="sig-level-name">Signature Electronique Qualifiee (QES)</span>
+              <span class="sig-level-badge">Equivalente manuscrite</span>
+            </div>
+            <p class="sig-level-desc">Certificat qualifie delivre par un QTSP (Qualified Trust Service Provider) agree. Verification d'identite en face-a-face ou par video. Valeur juridique identique a la signature manuscrite dans toute l'UE.</p>
+            <div class="sig-level-grid">
+              <div class="sig-meta">
+                <div class="sig-meta-label">Usage</div>
+                <div class="sig-meta-value">Actes notaries, marches publics</div>
+              </div>
+              <div class="sig-meta">
+                <div class="sig-meta-label">Verif. identite</div>
+                <div class="sig-meta-value">Face-a-face / video KYC</div>
+              </div>
+              <div class="sig-meta">
+                <div class="sig-meta-label">Cout</div>
+                <div class="sig-meta-value">5 – 15 € / signature</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2 class="section-title">Checklist de conformite eIDAS</h2>
+        </div>
+        <div class="checklist">
+          <div class="checklist-item">
+            <div class="checklist-num">01</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Identifier le niveau requis</div>
+              <div class="checklist-desc">Determiner si le document necessite une SES, AES ou QES selon sa valeur juridique et les exigences reglementaires applicables.</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">02</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Choisir un prestataire certifie</div>
+              <div class="checklist-desc">Pour les signatures qualifiees, le prestataire doit etre un QTSP certifie ANSSI (France) inscrit sur la Trust List europeenne.</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">03</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Implementer l'horodatage</div>
+              <div class="checklist-desc">Horodatage qualifie obligatoire pour la preuve de date opposable en justice.</div>
+              <span class="checklist-ref">eIDAS Art. 41</span>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">04</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Archiver les preuves</div>
+              <div class="checklist-desc">Conservation des certificats, journaux d'audit et preuves de signature sur la duree legale (10 ans minimum pour les contrats commerciaux).</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">05</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Verifier l'identite</div>
+              <div class="checklist-desc">Mettre en place un processus de verification d'identite adapte au niveau de signature cible (KYC video pour la QES).</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">06</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Garantir l'integrite</div>
+              <div class="checklist-desc">Cachet electronique et scellement des documents pour prouver l'absence de modification apres signature.</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">07</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Assurer la validite long terme</div>
+              <div class="checklist-desc">Utiliser les formats PAdES ou XAdES avec validation a long terme (LTV) pour garantir la valeur probante dans le temps.</div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-num">08</div>
+            <div class="checklist-body">
+              <div class="checklist-title">Documenter le processus</div>
+              <div class="checklist-desc">Rediger et maintenir une politique de signature et les procedures associees conformes aux exigences eIDAS.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">3</div>
+          <h2 class="section-title">Prestataires certifies en France</h2>
+        </div>
+        <div class="providers-grid">
+          <div class="provider-card">
+            <div class="provider-name">DocuSign</div>
+            <div class="provider-desc">Leader mondial, propose SES et AES. Integration facile via API REST. Tres grande couverture internationale. Ideal pour les entreprises ayant des partenaires etrangers.</div>
+            <span class="provider-tag">SES · AES · API REST</span>
+          </div>
+          <div class="provider-card">
+            <div class="provider-name">Yousign</div>
+            <div class="provider-desc">Solution francaise, propose SES, AES et QES. Entierement conforme eIDAS, RGPD natif. Interface simple et prise en main rapide. Recommandee pour les PME.</div>
+            <span class="provider-tag">SES · AES · QES · RGPD</span>
+          </div>
+          <div class="provider-card">
+            <div class="provider-name">Universign</div>
+            <div class="provider-desc">Certifie ANSSI. QES native. Specialise dans les signatures a haute valeur juridique. Historiquement presente dans le secteur bancaire et assurance.</div>
+            <span class="provider-tag">QES · QTSP · ANSSI</span>
+          </div>
+          <div class="provider-card">
+            <div class="provider-name">ChamberSign</div>
+            <div class="provider-desc">QTSP historique francais delivrant des certificats qualifies. Presence dans les actes notaries et marches publics. Autorite de confiance reconnue.</div>
+            <span class="provider-tag">QES · Certificats qualifies</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tableau comparatif -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">4</div>
+          <h2 class="section-title">Tableau comparatif des niveaux</h2>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Niveau</th>
+              <th>Valeur juridique</th>
+              <th>Verification</th>
+              <th>Cout</th>
+              <th>Usage type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SES</td>
+              <td>Faible</td>
+              <td>Aucune</td>
+              <td>Gratuit</td>
+              <td>CGV, accords simples</td>
+            </tr>
+            <tr>
+              <td>AES</td>
+              <td>Moyenne</td>
+              <td>Certificat numerique</td>
+              <td>1 – 5 €</td>
+              <td>Contrats commerciaux</td>
+            </tr>
+            <tr>
+              <td>QES</td>
+              <td>Manuscrite</td>
+              <td>Face-a-face / video</td>
+              <td>5 – 15 €</td>
+              <td>Actes notaries, marches publics</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Sanctions / risques -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">5</div>
+          <h2 class="section-title">Risques en cas de non-conformite</h2>
+        </div>
+        <div class="risk-grid">
+          <div class="risk-item">
+            <span class="risk-icon">⚠️</span>
+            <div class="risk-text"><strong>Signature non conforme</strong> — Document contestable en justice. La partie adverse peut demander la nullite de l'acte signe.</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">⚠️</span>
+            <div class="risk-text"><strong>Absence d'horodatage</strong> — Date de signature non opposable. Impossible de prouver que le document existait avant une certaine date.</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">⚠️</span>
+            <div class="risk-text"><strong>Prestataire non certifie</strong> — Signature potentiellement invalidee par les tribunaux. Le recours a un QTSP non agree rompt la chaine de confiance eIDAS.</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">⚠️</span>
+            <div class="risk-text"><strong>Non-conservation des preuves</strong> — Perte de valeur probante dans le temps. Sans archivage qualifie, la signature devient invérifiable apres expiration du certificat.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>Integrons ensemble votre solution de signature</h3>
+        <p>RL Conseil integre la signature electronique dans vos applications. De la SES a la QES, nous implementons la solution adaptee a vos besoins juridiques et techniques, en choisissant le bon prestataire certifie pour votre secteur.</p>
+        <div class="cta-actions">
+          <a href="mailto:rony@rlconseil.net" class="cta-btn primary">Discuter de votre projet</a>
+          <a href="https://linkedin.com/in/rony-licha-8b911189" class="cta-btn">LinkedIn</a>
+        </div>
+        <div class="cta-tags">
+          <span class="cta-tag">eIDAS 2.0</span>
+          <span class="cta-tag">QES / AES / SES</span>
+          <span class="cta-tag">OpenAPI.com</span>
+          <span class="cta-tag">QTSP / ANSSI</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="doc-footer">
+        <div class="footer-copy">© 2026 RL Conseil — Rony Licha, CTO &amp; Fondateur</div>
+        <div class="footer-links">
+          <a href="https://rlconseil.net">rlconseil.net</a>
+          <a href="mailto:rony@rlconseil.net">rony@rlconseil.net</a>
+          <a href="https://linkedin.com/in/rony-licha-8b911189">LinkedIn</a>
+        </div>
+      </div>
+
+    </div><!-- /page -->
+  </div><!-- /page-wrapper -->
+
+  <script>
+    function downloadPDF() {
+      const btn = document.querySelector('.btn-download');
+      btn.textContent = 'Generation en cours…';
+      btn.disabled = true;
+
+      const element = document.getElementById('pdf-content');
+      const opt = {
+        margin: [0, 0, 0, 0],
+        filename: 'Guide-eIDAS-Signature-Electronique-RLConseil.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          letterRendering: true
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        }
+      };
+
+      html2pdf().set(opt).from(element).save().then(function() {
+        btn.textContent = 'Telecharger PDF';
+        btn.disabled = false;
+      }).catch(function() {
+        btn.textContent = 'Telecharger PDF';
+        btn.disabled = false;
+      });
+    }
+  </script>
+</body>
+</html>
