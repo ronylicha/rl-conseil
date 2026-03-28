@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Clock, Globe as GlobeIcon, ShieldCheck, MapPin, ArrowDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const Scene = dynamic(
   () => import("@/components/three/SceneWrapper").then((mod) => ({ default: mod.SceneWrapper })),
@@ -14,13 +15,15 @@ const GlobeScene = dynamic(
   { ssr: false }
 );
 
-const quickStats = [
-  { icon: Clock, label: "Réponse sous 24h" },
-  { icon: GlobeIcon, label: "France et international" },
-  { icon: ShieldCheck, label: "Échanges confidentiels" },
-];
-
 export function ContactHero() {
+  const t = useTranslations("contact");
+
+  const quickStats = [
+    { icon: Clock, label: t("hero.quickStats.response") },
+    { icon: GlobeIcon, label: t("hero.quickStats.global") },
+    { icon: ShieldCheck, label: t("hero.quickStats.confidential") },
+  ];
+
   return (
     <section className="pt-32 pb-20 relative overflow-hidden min-h-[70vh] flex items-center">
       {/* 3D Globe Background - CENTERED, much more visible */}
@@ -56,7 +59,7 @@ export function ContactHero() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase border border-[var(--color-border)] text-[var(--color-accent)] mb-8 font-[family-name:var(--font-sub)] animate-border-glow"
           >
             <MapPin size={12} />
-            Paris, France
+            {t("hero.badge")}
           </motion.span>
 
           <motion.h1
@@ -65,8 +68,8 @@ export function ContactHero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="font-[family-name:var(--font-heading)] text-4xl md:text-6xl lg:text-7xl font-bold text-[var(--color-text)] mb-6 leading-tight"
           >
-            Parlons de votre{" "}
-            <span className="text-gradient-animated">prochain projet</span>
+            {t("hero.title")}{" "}
+            <span className="text-gradient-animated">{t("hero.titleHighlight")}</span>
           </motion.h1>
 
           <motion.p
@@ -75,8 +78,7 @@ export function ContactHero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-lg text-[var(--color-text-muted)] mb-12 leading-relaxed max-w-2xl mx-auto"
           >
-            Nous sommes disponibles pour analyser vos enjeux et vous proposer
-            une feuille de route technique adaptée à vos ambitions.
+            {t("hero.description")}
           </motion.p>
 
           <motion.div

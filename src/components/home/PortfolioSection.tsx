@@ -5,8 +5,9 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { projects, projectFilters, type Project } from "@/data/projects";
+import { projects, type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const statusColors: Record<string, string> = {
   success: "bg-emerald-500/10 text-emerald-500",
@@ -15,7 +16,29 @@ const statusColors: Record<string, string> = {
   opensource: "bg-purple-500/10 text-purple-500",
 };
 
-function ProjectCard({ project }: { project: Project }) {
+// Map project ids (kebab-case) to translation keys (camelCase)
+const idToTranslationKey: Record<string, string> = {
+  "scell": "scell",
+  "apillmcontext": "apillmcontext",
+  "claudenest": "claudenest",
+  "praticonnect": "praticonnect",
+  "noteflow": "noteflow",
+  "daily-companion": "dailyCompanion",
+  "gigapdf": "gigapdf",
+  "ordoconnect": "ordoconnect",
+  "timeismoney": "timeismoney",
+  "giga-crm": "gigaCrm",
+};
+
+function ProjectCard({
+  project,
+  tProjects,
+}: {
+  project: Project;
+  tProjects: ReturnType<typeof useTranslations>;
+}) {
+  const translationKey = idToTranslationKey[project.id] ?? project.id;
+
   return (
     <motion.a
       layout
@@ -32,14 +55,14 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-subtle)] flex items-center justify-center overflow-hidden">
           <Image
             src={`/logos/${project.logoDir}/logo-dark.${project.logoDarkExt}`}
-            alt={project.name}
+            alt={tProjects(`items.${translationKey}.name`)}
             width={32}
             height={32}
             className="hidden dark:block object-contain w-auto h-auto"
           />
           <Image
             src={`/logos/${project.logoDir}/logo-light.${project.logoLightExt}`}
-            alt={project.name}
+            alt={tProjects(`items.${translationKey}.name`)}
             width={32}
             height={32}
             className="block dark:hidden object-contain w-auto h-auto"
@@ -51,17 +74,17 @@ function ProjectCard({ project }: { project: Project }) {
             statusColors[project.statusType]
           )}
         >
-          {project.status}
+          {tProjects(`items.${translationKey}.status`)}
         </span>
       </div>
       <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-[var(--color-text)] mb-1 group-hover:text-[var(--color-accent)] transition-colors">
-        {project.name}
+        {tProjects(`items.${translationKey}.name`)}
       </h3>
       <p className="text-sm font-medium text-[var(--color-accent)] mb-2">
-        {project.subtitle}
+        {tProjects(`items.${translationKey}.subtitle`)}
       </p>
       <p className="text-sm text-[var(--color-text-muted)] mb-4 leading-relaxed line-clamp-2">
-        {project.description}
+        {tProjects(`items.${translationKey}.description`)}
       </p>
       <div className="flex items-center justify-between">
         <div className="flex flex-wrap gap-1.5">
@@ -85,6 +108,17 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function PortfolioSection() {
   const [active, setActive] = useState("all");
+  const tHome = useTranslations("home");
+  const tProjects = useTranslations("projects");
+
+  const filterKeys = ["all", "ai", "health", "compliance", "opensource"] as const;
+  const filterCounts: Record<string, number> = {
+    all: 10,
+    ai: 5,
+    health: 3,
+    compliance: 4,
+    opensource: 1,
+  };
 
   const filtered =
     active === "all"
@@ -95,27 +129,27 @@ export function PortfolioSection() {
     <section id="realisations" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          badge="Réalisations"
-          title="Nos projets"
-          highlight="en production"
-          subtitle="Chaque projet est une application réelle, avec de vrais utilisateurs."
+          badge={tHome("portfolio.badge")}
+          title={tHome("portfolio.title")}
+          highlight={tHome("portfolio.highlight")}
+          subtitle={tHome("portfolio.subtitle")}
         />
 
         {/* Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {projectFilters.map((f) => (
+          {filterKeys.map((key) => (
             <button
-              key={f.key}
-              onClick={() => setActive(f.key)}
+              key={key}
+              onClick={() => setActive(key)}
               className={cn(
                 "px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer",
-                active === f.key
+                active === key
                   ? "bg-[var(--color-accent)] text-white"
                   : "bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)]"
               )}
             >
-              {f.label}
-              <span className="ml-1.5 opacity-60">{f.count}</span>
+              {tProjects(`filters.${key}`)}
+              <span className="ml-1.5 opacity-60">{filterCounts[key]}</span>
             </button>
           ))}
         </div>
@@ -124,7 +158,11 @@ export function PortfolioSection() {
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                tProjects={tProjects}
+              />
             ))}
           </AnimatePresence>
         </motion.div>

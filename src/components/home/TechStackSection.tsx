@@ -2,52 +2,68 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { useTranslations } from "next-intl";
 
-const techCategories = [
+type CategoryKey =
+  | "frontend"
+  | "backend"
+  | "databases"
+  | "cloudInfra"
+  | "devops"
+  | "mobileRealtime"
+  | "aiTools"
+  | "complianceSecurity";
+
+const techCategoryData: {
+  key: CategoryKey;
+  techs: string[];
+  gradient: string;
+  border: string;
+}[] = [
   {
-    label: "Frontend",
+    key: "frontend",
     techs: ["React 19", "Next.js 14", "Vue.js 3", "Nuxt.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "D3.js", "Sass/SCSS"],
     gradient: "from-blue-500/20 to-cyan-500/20",
     border: "border-blue-500/20",
   },
   {
-    label: "Backend",
+    key: "backend",
     techs: ["Laravel 12", "PHP 8.3", "Node.js", "Express", "Python", "Django", "FilamentPHP v3", "GraphQL", "REST API", "WebSocket"],
     gradient: "from-emerald-500/20 to-green-500/20",
     border: "border-emerald-500/20",
   },
   {
-    label: "Bases de données",
+    key: "databases",
     techs: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "Vector DB", "Supabase", "Firebase Firestore"],
     gradient: "from-amber-500/20 to-yellow-500/20",
     border: "border-amber-500/20",
   },
   {
-    label: "Cloud & Infra",
+    key: "cloudInfra",
     techs: ["AWS", "Google Cloud", "OVHcloud", "Scaleway", "Vercel", "Cloudflare", "DigitalOcean"],
     gradient: "from-purple-500/20 to-violet-500/20",
     border: "border-purple-500/20",
   },
   {
-    label: "DevOps & CI/CD",
+    key: "devops",
     techs: ["Docker", "Docker Compose", "GitHub Actions", "GitLab CI", "Nginx", "Apache", "Load Balancing", "SSL/TLS", "Terraform"],
     gradient: "from-rose-500/20 to-pink-500/20",
     border: "border-rose-500/20",
   },
   {
-    label: "Mobile & Temps Réel",
+    key: "mobileRealtime",
     techs: ["React Native", "Expo", "WebRTC", "PWA", "Push Notifications", "Socket.IO"],
     gradient: "from-orange-500/20 to-amber-500/20",
     border: "border-orange-500/20",
   },
   {
-    label: "IA & Outils",
+    key: "aiTools",
     techs: ["Claude API", "OpenAI API", "LangChain", "MCP Protocol", "RAG", "Vector Search", "Embeddings"],
     gradient: "from-cyan-500/20 to-teal-500/20",
     border: "border-cyan-500/20",
   },
   {
-    label: "Conformité & Sécurité",
+    key: "complianceSecurity",
     techs: ["HDS", "eIDAS", "RGPD", "Factur-X", "NF525", "OWASP", "OAuth2", "JWT", "CORS", "CSP"],
     gradient: "from-red-500/20 to-rose-500/20",
     border: "border-red-500/20",
@@ -55,19 +71,21 @@ const techCategories = [
 ];
 
 export function TechStackSection() {
+  const t = useTranslations("home");
+
   return (
     <section className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          badge="Stack Technique"
-          title="Technologies"
-          highlight="maîtrisées"
-          subtitle="Les outils que nous utilisons au quotidien pour livrer des solutions robustes."
+          badge={t("techStack.badge")}
+          title={t("techStack.title")}
+          highlight={t("techStack.highlight")}
+          subtitle={t("techStack.subtitle")}
         />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {techCategories.map((cat, i) => (
+          {techCategoryData.map((cat, i) => (
             <motion.div
-              key={cat.label}
+              key={cat.key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -76,7 +94,7 @@ export function TechStackSection() {
               className={`p-6 rounded-2xl border ${cat.border} bg-gradient-to-br ${cat.gradient} backdrop-blur-sm cursor-pointer transition-all`}
             >
               <h3 className="font-[family-name:var(--font-sub)] text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)] mb-4">
-                {cat.label}
+                {t(`techStack.categories.${cat.key}`)}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {cat.techs.map((tech, j) => (

@@ -1,10 +1,14 @@
+import { getTranslations } from "next-intl/server";
+
 interface LegalLayoutProps {
   title: string;
   lastUpdated: string;
   children: React.ReactNode;
 }
 
-export function LegalLayout({ title, lastUpdated, children }: LegalLayoutProps) {
+export async function LegalLayout({ title, lastUpdated, children }: LegalLayoutProps) {
+  const t = await getTranslations("common");
+
   return (
     <section className="pt-32 pb-24 px-6">
       <div className="max-w-3xl mx-auto">
@@ -15,7 +19,7 @@ export function LegalLayout({ title, lastUpdated, children }: LegalLayoutProps) 
           <div className="flex items-center gap-3 mt-3">
             <div className="h-px flex-1 bg-gradient-to-r from-[var(--color-accent)]/30 to-transparent" />
             <p className="text-xs text-[var(--color-text-muted)] shrink-0">
-              Mis à jour le {lastUpdated}
+              {t("legal.misAJourLe")} {lastUpdated}
             </p>
           </div>
         </div>

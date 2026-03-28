@@ -1,13 +1,22 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring, useInView } from "framer-motion";
 import { Rocket, Crown, Server, GraduationCap, Megaphone } from "lucide-react";
 import { experiences } from "@/data/experience";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const iconMap = [Rocket, Crown, Server, GraduationCap, Megaphone];
+
+const experienceKeys = [
+  "qrCommunication",
+  "phoenixConsulting",
+  "orFormationDsi",
+  "orFormationDirecteur",
+  "professionalMarketing",
+] as const;
 
 function TimelineNode({ isCurrent, isVisible, icon: Icon }: { isCurrent: boolean; isVisible: boolean; icon: React.ComponentType<{ size?: number; className?: string }> }) {
   return (
@@ -41,7 +50,19 @@ function TimelineNode({ isCurrent, isVisible, icon: Icon }: { isCurrent: boolean
   );
 }
 
-function TimelineCard({ exp, index, icon: Icon }: { exp: typeof experiences[0]; index: number; icon: React.ComponentType<{ size?: number; className?: string }> }) {
+interface TranslatedExperience {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  duration: string;
+  isCurrent: boolean;
+  description: string;
+  achievements: string[];
+  skills: string[];
+}
+
+function TimelineCard({ exp, index, icon: Icon }: { exp: TranslatedExperience; index: number; icon: React.ComponentType<{ size?: number; className?: string }> }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isLeft = index % 2 === 0;
@@ -152,13 +173,31 @@ export function ParcourseTimeline() {
 
   const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
+  const t = useTranslations("parcours");
+  const tExp = useTranslations("experience");
+
+  const translatedExperiences: TranslatedExperience[] = experiences.map((exp, i) => {
+    const key = experienceKeys[i];
+    return {
+      title: tExp(`items.${key}.title`),
+      company: tExp(`items.${key}.company`),
+      location: tExp(`items.${key}.location`),
+      period: tExp(`items.${key}.period`),
+      duration: tExp(`items.${key}.duration`),
+      isCurrent: exp.isCurrent,
+      description: tExp(`items.${key}.description`),
+      achievements: exp.achievements.map((_, j) => tExp(`items.${key}.achievements.${j}`)),
+      skills: exp.skills,
+    };
+  });
+
   return (
     <section className="py-24 bg-[var(--color-bg-subtle)]">
       <div className="max-w-5xl mx-auto px-6">
         <SectionHeader
-          badge="Expérience"
-          title="Parcours Professionnel"
-          subtitle="Des responsabilités croissantes, une expertise qui s'approfondit."
+          badge={t("timeline.badge")}
+          title={t("timeline.title")}
+          subtitle={t("timeline.subtitle")}
         />
 
         <div ref={containerRef} className="relative">
@@ -178,7 +217,7 @@ export function ParcourseTimeline() {
           />
 
           {/* Timeline items */}
-          {experiences.map((exp, i) => {
+          {translatedExperiences.map((exp, i) => {
             const Icon = iconMap[i] || Rocket;
             return <TimelineCard key={exp.company + exp.period} exp={exp} index={i} icon={Icon} />;
           })}

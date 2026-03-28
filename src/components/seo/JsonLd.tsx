@@ -61,6 +61,46 @@ export function OrganizationJsonLd() {
   );
 }
 
+export function PersonJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: siteConfig.founder.name,
+    jobTitle: siteConfig.founder.title,
+    url: siteConfig.url,
+    email: siteConfig.founder.email,
+    telephone: siteConfig.founder.phone,
+    image: `${siteConfig.url}${siteConfig.founder.photo}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Paris",
+      postalCode: "75015",
+      addressCountry: "FR",
+    },
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.github,
+      siteConfig.social.twitter,
+    ],
+    knowsAbout: [
+      "CTO externalisé", "Architecture SaaS", "Laravel", "React",
+      "TypeScript", "Conformité HDS", "eIDAS", "Factur-X", "RGPD",
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export function FaqJsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
   const jsonLd = {
     "@context": "https://schema.org",

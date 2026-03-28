@@ -3,21 +3,27 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { testimonials } from "@/data/testimonials";
+import { useTranslations } from "next-intl";
+
+const testimonialKeys = ["marieL", "thomasR", "sophieM"] as const;
+const ratings = [5, 5, 5];
 
 export function TestimonialsSection() {
+  const tHome = useTranslations("home");
+  const tTestimonials = useTranslations("testimonials");
+
   return (
     <section className="py-24 bg-[var(--color-bg-subtle)]">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          badge="Témoignages"
-          title="Ils nous ont fait confiance"
-          highlight="et ils en parlent"
+          badge={tHome("testimonials.badge")}
+          title={tHome("testimonials.title")}
+          highlight={tHome("testimonials.highlight")}
         />
         <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
+          {testimonialKeys.map((key, i) => (
             <motion.div
-              key={t.name}
+              key={key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -29,7 +35,7 @@ export function TestimonialsSection() {
                 className="text-[var(--color-accent)] mb-4 opacity-40"
               />
               <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.rating }).map((_, j) => (
+                {Array.from({ length: ratings[i] }).map((_, j) => (
                   <Star
                     key={j}
                     size={14}
@@ -38,14 +44,14 @@ export function TestimonialsSection() {
                 ))}
               </div>
               <p className="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">
-                &ldquo;{t.text}&rdquo;
+                &ldquo;{tTestimonials(`items.${key}.text`)}&rdquo;
               </p>
               <div>
                 <p className="font-semibold text-[var(--color-text)] text-sm">
-                  {t.name}
+                  {tTestimonials(`items.${key}.name`)}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)]">
-                  {t.title}
+                  {tTestimonials(`items.${key}.title`)}
                 </p>
               </div>
             </motion.div>

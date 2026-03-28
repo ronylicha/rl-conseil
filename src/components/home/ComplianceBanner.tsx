@@ -2,26 +2,28 @@
 
 import { motion } from "framer-motion";
 import { Hospital, FileSignature, Shield, FileText } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const certifications = [
-  { icon: Hospital, label: "HDS", title: "Hébergement Données de Santé", color: "#10b981" },
-  { icon: FileSignature, label: "eIDAS", title: "Signature Électronique Certifiée", color: "#3b82f6" },
-  { icon: Shield, label: "RGPD", title: "Protection des Données", color: "#8b5cf6" },
-  { icon: FileText, label: "Factur-X", title: "Facturation Électronique 2026", color: "#f59e0b" },
-];
+const certificationsConfig = [
+  { icon: Hospital, key: "hds", color: "#10b981" },
+  { icon: FileSignature, key: "eidas", color: "#3b82f6" },
+  { icon: Shield, key: "rgpd", color: "#8b5cf6" },
+  { icon: FileText, key: "facturX", color: "#f59e0b" },
+] as const;
 
 export function ComplianceBanner() {
+  const t = useTranslations("home.compliance");
   return (
     <section className="py-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-bg)] via-[var(--color-bg-subtle)] to-[var(--color-bg)]" />
       <div className="max-w-7xl mx-auto px-6 relative">
         <p className="text-center text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-8 font-[family-name:var(--font-sub)]">
-          Conformités & Certifications maîtrisées
+          {t("sectionLabel")}
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {certifications.map((cert, i) => (
+          {certificationsConfig.map((cert, i) => (
             <motion.div
-              key={cert.label}
+              key={cert.key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -36,8 +38,8 @@ export function ComplianceBanner() {
               >
                 <cert.icon size={24} style={{ color: cert.color }} />
               </div>
-              <p className="font-bold text-lg text-[var(--color-text)] font-[family-name:var(--font-heading)]">{cert.label}</p>
-              <p className="text-xs text-[var(--color-text-muted)] mt-1">{cert.title}</p>
+              <p className="font-bold text-lg text-[var(--color-text)] font-[family-name:var(--font-heading)]">{t(`${cert.key}.label`)}</p>
+              <p className="text-xs text-[var(--color-text-muted)] mt-1">{t(`${cert.key}.title`)}</p>
             </motion.div>
           ))}
         </div>

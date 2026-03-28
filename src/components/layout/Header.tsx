@@ -1,18 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/providers/ThemeProvider";
+import { useTranslations } from "next-intl";
 import { navLinks } from "@/data/navigation";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
+  const t = useTranslations("common");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -62,14 +65,15 @@ export function Header() {
                     pathname === link.href && !isCta && "text-[var(--color-accent)]"
                   )}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               );
             })}
+            <LanguageSwitcher />
             <button
               onClick={toggleTheme}
-              className="ml-3 p-2.5 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-all cursor-pointer"
-              aria-label={theme === "dark" ? "Activer le mode clair" : "Activer le mode sombre"}
+              className="ml-1 p-2.5 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-all cursor-pointer"
+              aria-label={theme === "dark" ? t("aria.activerModeClair") : t("aria.activerModeSombre")}
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
@@ -77,17 +81,18 @@ export function Header() {
 
           {/* Mobile Toggle */}
           <div className="flex md:hidden items-center gap-2">
+            <LanguageSwitcher />
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-lg text-[var(--color-text-muted)] hover:bg-[var(--color-surface)] transition-all cursor-pointer"
-              aria-label="Toggle theme"
+              aria-label={t("aria.toggleTheme")}
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2.5 rounded-lg text-[var(--color-text-muted)] hover:bg-[var(--color-surface)] transition-all cursor-pointer"
-              aria-label="Toggle menu"
+              aria-label={t("aria.toggleMenu")}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -113,7 +118,7 @@ export function Header() {
                       : "text-[var(--color-text)] hover:text-[var(--color-accent)]"
                   )}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               );
             })}

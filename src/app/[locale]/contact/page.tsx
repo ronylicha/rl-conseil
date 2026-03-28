@@ -1,15 +1,38 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 
-export const metadata: Metadata = {
-  title: "Contact — Échangeons sur votre projet technique",
-  description: "Planifiez un échange gratuit de 30 minutes avec RL Conseil. CTO externalisé, architecture SaaS, conformité HDS/eIDAS/Factur-X. Réponse sous 24h.",
-  alternates: { canonical: "https://rlconseil.net/contact" },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact" });
 
-export default function ContactPage() {
+  return {
+    title: t("metadata.title"),
+    description: t("metadata.description"),
+    alternates: {
+      canonical: `https://rlconseil.net/${locale}/contact/`,
+      languages: {
+        fr: "https://rlconseil.net/fr/contact/",
+        en: "https://rlconseil.net/en/contact/",
+      },
+    },
+  };
+}
+
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <BreadcrumbJsonLd

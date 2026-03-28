@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mail, Phone, Globe, MapPin, Download, Share2, Linkedin, Github, Twitter, RotateCcw } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
+import { useTranslations } from "next-intl";
 
 export function BusinessCard() {
   const [flipped, setFlipped] = useState(false);
+  const t = useTranslations("carte");
+  const tCommon = useTranslations("common");
 
   const downloadVCard = () => {
     const vcard = `BEGIN:VCARD
@@ -48,7 +51,7 @@ END:VCARD`;
         animate={{ opacity: 1, y: 0 }}
         className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold text-[var(--color-text)] mb-2 text-center"
       >
-        Carte de <span className="text-gradient-animated">Visite</span>
+        {t("title")} <span className="text-gradient-animated">{t("titleHighlight")}</span>
       </motion.h1>
       <motion.p
         initial={{ opacity: 0 }}
@@ -57,7 +60,7 @@ END:VCARD`;
         className="text-[var(--color-text-muted)] mb-10 text-center flex items-center gap-2"
       >
         <RotateCcw size={14} className="text-[var(--color-accent)]" />
-        Cliquez pour retourner la carte
+        {t("flipHint")}
       </motion.p>
 
       {/* 3D Card */}
@@ -71,7 +74,7 @@ END:VCARD`;
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && setFlipped(!flipped)}
-        aria-label="Retourner la carte de visite"
+        aria-label={tCommon("aria.retournerCarte")}
       >
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
@@ -144,7 +147,7 @@ END:VCARD`;
                 height={80}
               />
             </div>
-            <p className="text-[8px] text-[#0d1117]/40 mt-2">Scannez pour enregistrer le contact</p>
+            <p className="text-[8px] text-[#0d1117]/40 mt-2">{t("scanQr")}</p>
           </div>
         </motion.div>
       </motion.div>
@@ -160,13 +163,13 @@ END:VCARD`;
           onClick={downloadVCard}
           className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl text-sm font-medium hover:bg-[var(--color-accent-dark)] hover:shadow-lg hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
         >
-          <Download size={16} /> Ajouter aux contacts
+          <Download size={16} /> {t("buttons.addToContacts")}
         </button>
         <button
           onClick={share}
           className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl text-sm font-medium hover:bg-[var(--color-surface)] hover:border-[var(--color-accent)]/30 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 cursor-pointer"
         >
-          <Share2 size={16} /> Partager
+          <Share2 size={16} /> {t("buttons.share")}
         </button>
       </motion.div>
 

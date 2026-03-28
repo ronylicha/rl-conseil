@@ -3,15 +3,18 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Calendar, Layers, Shield, Server } from "lucide-react";
-
-const stats = [
-  { value: "15+", label: "Années d'expérience", icon: Calendar },
-  { value: "10+", label: "Applications SaaS", icon: Layers },
-  { value: "4", label: "Conformités maîtrisées", icon: Shield },
-  { value: "99.9%", label: "Disponibilité garantie", icon: Server },
-];
+import { useTranslations } from "next-intl";
 
 export function ParcourseHero() {
+  const t = useTranslations("parcours");
+
+  const stats = [
+    { value: "15+", label: t("hero.stats.yearsExperience"), icon: Calendar },
+    { value: "10+", label: t("hero.stats.saasPlatforms"), icon: Layers },
+    { value: "4", label: t("hero.stats.compliances"), icon: Shield },
+    { value: "99.9%", label: t("hero.stats.uptime"), icon: Server },
+  ];
+
   return (
     <section className="pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -23,15 +26,13 @@ export function ParcourseHero() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase border border-[var(--color-border)] text-[var(--color-accent)] mb-6 font-[family-name:var(--font-sub)]">
               <span className="w-2 h-2 rounded-full bg-[var(--color-success)] animate-pulse" />
-              Disponible pour de nouveaux projets
+              {t("hero.availabilityBadge")}
             </span>
             <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-6xl font-bold text-[var(--color-text)] mb-6 leading-tight">
-              Mon <span className="text-gradient">Parcours</span>
+              {t("hero.title")} <span className="text-gradient">{t("hero.titleHighlight")}</span>
             </h1>
             <p className="text-lg text-[var(--color-text-muted)] leading-relaxed mb-8">
-              De la création d&apos;une agence digitale à Jérusalem à la direction de systèmes
-              d&apos;information à Paris, chaque étape a forgé une conviction : la technologie est un
-              accélérateur de business, pas une fin en soi.
+              {t("hero.description")}
             </p>
             <div className="grid grid-cols-2 gap-4">
               {stats.map((s) => (
@@ -59,7 +60,7 @@ export function ParcourseHero() {
               />
             </div>
             <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-xl bg-[var(--color-accent)] text-white text-sm font-medium shadow-lg shadow-[var(--color-accent)]/30" style={{ animation: "float-slow 6s ease-in-out infinite", animationDelay: "1s" }}>
-              CTO & Fondateur
+              {t("hero.floatingBadge")}
             </div>
           </motion.div>
         </div>

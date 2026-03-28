@@ -1,0 +1,785 @@
+{
+  "common": {
+    "nav": {
+      "home": "Accueil",
+      "expertise": "Expertise",
+      "portfolio": "Réalisations",
+      "parcours": "Parcours",
+      "contact": "Contact"
+    },
+    "footer": {
+      "tagline": "STRATÉGIE · DIGITAL · INNOVATION",
+      "description": "Direction Technique & Ingénierie Digitale",
+      "viewBusinessCard": "Voir la carte de visite",
+      "columns": {
+        "expertise": "Expertise",
+        "navigation": "Navigation",
+        "legal": "Légal"
+      },
+      "links": {
+        "architectureTechnique": "Architecture Technique",
+        "developpementFullStack": "Développement Full Stack",
+        "produitsSaaS": "Produits SaaS",
+        "ctoExternalise": "CTO Externalisé",
+        "accueil": "Accueil",
+        "realisations": "Réalisations",
+        "parcours": "Parcours",
+        "cv": "CV",
+        "contact": "Contact",
+        "mentionsLegales": "Mentions légales",
+        "cgv": "CGV",
+        "cgu": "CGU",
+        "confidentialite": "Confidentialité"
+      },
+      "copyright": "SASU · SIREN 101 783 421 · Paris"
+    },
+    "buttons": {
+      "planifierEchange": "Planifier un échange",
+      "decouvrirExpertise": "Découvrir notre expertise",
+      "envoyer": "Envoyer",
+      "imprimer": "Imprimer",
+      "ajouterContacts": "Ajouter aux contacts",
+      "partager": "Partager",
+      "telechargerGratuitement": "Télécharger gratuitement"
+    },
+    "aria": {
+      "activerModeClair": "Activer le mode clair",
+      "activerModeSombre": "Activer le mode sombre",
+      "toggleTheme": "Toggle theme",
+      "toggleMenu": "Toggle menu",
+      "retournerCarte": "Retourner la carte de visite"
+    },
+    "status": {
+      "disponible": "Disponible",
+      "enLigne": "En ligne",
+      "enDeveloppement": "En développement",
+      "openSource": "Open Source"
+    },
+    "legal": {
+      "misAJourLe": "Mis à jour le"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "CTO Externalisé · Ingénierie Digitale · Paris",
+      "titleLine1": "La direction",
+      "titleLine2": "technique",
+      "titleLine3": "que votre projet mérite",
+      "description": "Ancien DSI devenu entrepreneur, je construis des actifs numériques pérennes, pas des prototypes jetables. Les contraintes réglementaires françaises ? Mon terrain de jeu depuis 15 ans.",
+      "ctaPrimary": "Planifier un échange",
+      "ctaSecondary": "Découvrir notre expertise",
+      "scrollLabel": "Explorer"
+    },
+    "stats": {
+      "yearsExpertise": "Années d'expertise",
+      "appsInProduction": "Applications en production",
+      "uptimeGuaranteed": "Disponibilité garantie",
+      "billed": "Facturés via nos outils"
+    },
+    "compliance": {
+      "sectionLabel": "Conformités & Certifications maîtrisées",
+      "hds": {
+        "label": "HDS",
+        "title": "Hébergement Données de Santé"
+      },
+      "eidas": {
+        "label": "eIDAS",
+        "title": "Signature Électronique Certifiée"
+      },
+      "rgpd": {
+        "label": "RGPD",
+        "title": "Protection des Données"
+      },
+      "facturX": {
+        "label": "Factur-X",
+        "title": "Facturation Électronique 2026"
+      }
+    },
+    "whyUs": {
+      "badge": "Pourquoi RL Conseil ?",
+      "title": "Ce qui nous distingue",
+      "highlight": "d'une agence classique",
+      "cards": {
+        "roi": {
+          "title": "Nous parlons ROI, pas lignes de code",
+          "description": "Chaque décision technique est une décision business. Conformité HDS pour la santé, facturation électronique 2026, signature eIDAS : nous sécurisons votre croissance et anticipons vos obligations réglementaires."
+        },
+        "experience": {
+          "title": "15 ans d'erreurs que vous n'aurez pas à commettre",
+          "description": "Architecture pensée pour dans trois ans, pas pour la démo de vendredi. Pas de dette technique cachée, pas de raccourcis. Du code propre et documenté, que vos équipes peuvent reprendre."
+        },
+        "senior": {
+          "title": "Un interlocuteur senior. Point final.",
+          "description": "Pas d'équipe de juniors qui tourne tous les trimestres. Un CTO unique, senior, disponible, qui connaît votre projet dans ses moindres détails."
+        }
+      }
+    },
+    "services": {
+      "badge": "Expertise",
+      "title": "Notre offre",
+      "highlight": "au service de votre ambition",
+      "subtitle": "Six domaines d'intervention, de l'architecture à la mise en production."
+    },
+    "process": {
+      "badge": "Méthodologie",
+      "title": "Notre approche",
+      "highlight": "en 4 étapes",
+      "steps": {
+        "scoping": {
+          "title": "Cadrage",
+          "description": "Analyse de vos enjeux business et techniques. Définition du périmètre et des objectifs mesurables."
+        },
+        "design": {
+          "title": "Conception",
+          "description": "Architecture, schémas de données, contrats d'API. Chaque décision est documentée et validée."
+        },
+        "build": {
+          "title": "Réalisation",
+          "description": "Développement itératif avec points hebdomadaires. Code review systématique, tests automatisés."
+        },
+        "delivery": {
+          "title": "Livraison",
+          "description": "Déploiement, formation, transfert de compétences. Suivi de performance et accompagnement post-livraison."
+        }
+      }
+    },
+    "techStack": {
+      "badge": "Stack Technique",
+      "title": "Technologies",
+      "highlight": "maîtrisées",
+      "subtitle": "Les outils que nous utilisons au quotidien.",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "databases": "Bases de données",
+        "cloudInfra": "Cloud & Infra",
+        "devops": "DevOps & CI/CD",
+        "mobileRealtime": "Mobile & Temps Réel",
+        "aiTools": "IA & Outils",
+        "complianceSecurity": "Conformité & Sécurité"
+      }
+    },
+    "portfolio": {
+      "badge": "Réalisations",
+      "title": "Nos projets",
+      "highlight": "en production",
+      "subtitle": "Chaque projet est une application réelle, avec de vrais utilisateurs."
+    },
+    "testimonials": {
+      "badge": "Témoignages",
+      "title": "Ils nous ont fait confiance",
+      "highlight": "et ils en parlent"
+    },
+    "leadMagnets": {
+      "badge": "Ressources gratuites",
+      "title": "Guides pratiques",
+      "highlight": "pour préparer votre projet",
+      "subtitle": "Neuf guides concrets, rédigés par un CTO qui les utilise lui-même au quotidien.",
+      "downloadCta": "Télécharger gratuitement",
+      "categories": {
+        "all": "Tous",
+        "compliance": "Conformité",
+        "tech": "Tech & Archi",
+        "strategy": "Stratégie"
+      },
+      "guides": {
+        "auditFlash": {
+          "badge": "Startups & PME",
+          "title": "Audit Flash : 15 points de contrôle technique",
+          "description": "Évaluez la santé technique de votre projet en 10 minutes. Architecture, sécurité, dette technique."
+        },
+        "conformiteHds": {
+          "badge": "Secteur Santé",
+          "title": "Conformité HDS : le guide essentiel",
+          "description": "Les 10 points de conformité obligatoires pour votre application e-santé ou télémédecine."
+        },
+        "facturation2026": {
+          "badge": "Toutes entreprises",
+          "title": "Facturation électronique 2026 : êtes-vous prêt ?",
+          "description": "Calendrier, formats acceptés, obligations par taille d'entreprise."
+        },
+        "rgpdPme": {
+          "badge": "Conformité",
+          "title": "RGPD pour les PME : 12 obligations incontournables",
+          "description": "Le guide pratique pour mettre votre entreprise en conformité avec le Règlement Général sur la Protection des Données."
+        },
+        "iaEntreprise": {
+          "badge": "Innovation",
+          "title": "IA en Entreprise : premiers pas concrets",
+          "description": "Comment intégrer l'intelligence artificielle dans votre organisation sans risques et avec un ROI mesurable."
+        },
+        "architectureSaas": {
+          "badge": "Architecture",
+          "title": "Architecture SaaS : les 8 piliers d'une solution scalable",
+          "description": "Le guide technique pour concevoir, déployer et faire évoluer une application SaaS professionnelle."
+        },
+        "signatureEidas": {
+          "badge": "Conformité",
+          "title": "Signature électronique & eIDAS : guide de conformité",
+          "description": "Comprendre les niveaux de signature électronique et implémenter une solution conforme au règlement européen."
+        },
+        "stackTechnique": {
+          "badge": "Stratégie",
+          "title": "Choisir sa stack technique : le framework de décision CTO",
+          "description": "Un guide méthodique pour faire les bons choix technologiques et éviter les erreurs coûteuses."
+        },
+        "cybersecurite": {
+          "badge": "Sécurité",
+          "title": "Cybersécurité PME : 10 mesures essentielles",
+          "description": "Protégez votre entreprise contre les cyberattaques avec ces 10 mesures concrètes et accessibles."
+        }
+      }
+    },
+    "cta": {
+      "badge": "Passons à l'action",
+      "title": "Votre prochain projet mérite",
+      "titleLine2": "une direction technique solide",
+      "description": "30 minutes pour parler de vos enjeux. Sans engagement, sans jargon.",
+      "primaryCta": "Planifier un échange",
+      "phoneDisplay": "07 67 98 71 76"
+    }
+  },
+  "services": {
+    "hero": {
+      "badge": "Services",
+      "title": "Notre expertise",
+      "highlight": "à votre service",
+      "subtitle": "Six domaines d'intervention, de la conception à la mise en production."
+    },
+    "techCard": {
+      "technologiesLabel": "Technologies"
+    },
+    "list": {
+      "architectureConception": {
+        "title": "Architecture & Conception Technique",
+        "description": "Cadrage technique, choix de stack, modélisation de données et blueprints d'architecture avant la première ligne de code.",
+        "features": [
+          "Audit de l'existant",
+          "Architecture microservices",
+          "Schémas de données",
+          "Documentation technique"
+        ]
+      },
+      "developpementFullStack": {
+        "title": "Développement Full Stack",
+        "description": "Conception et réalisation d'applications web robustes, du back-end API au front-end interactif.",
+        "features": [
+          "API RESTful et GraphQL",
+          "Interfaces React/Next.js",
+          "Tests automatisés et CI/CD",
+          "Code review"
+        ]
+      },
+      "produitsSaas": {
+        "title": "Produits SaaS sur mesure",
+        "description": "De l'idée au produit en production : multi-tenant, abonnements, onboarding, analytics embarqué.",
+        "features": [
+          "Architecture multi-tenant",
+          "Gestion des abonnements",
+          "Dashboard d'administration",
+          "Analytics produit"
+        ]
+      },
+      "conformite": {
+        "title": "Conformité & Réglementaire",
+        "description": "Mise en conformité technique avec les obligations françaises et européennes — sans compromis sur l'expérience utilisateur.",
+        "features": [
+          "Hébergement certifié HDS",
+          "Signature électronique eIDAS",
+          "Facturation Factur-X",
+          "Protection RGPD"
+        ]
+      },
+      "ctoExternalise": {
+        "title": "CTO Externalisé",
+        "description": "Direction technique à temps partagé : stratégie, recrutement, dette technique, montée en compétences de vos équipes.",
+        "features": [
+          "Roadmap technique",
+          "Recrutement et évaluation",
+          "Réduction dette technique",
+          "Processus de dev"
+        ]
+      },
+      "performance": {
+        "title": "Performance & Optimisation",
+        "description": "Audit, profiling et optimisation de vos applications existantes pour des temps de réponse inférieurs à 200ms.",
+        "features": [
+          "Audit de performance",
+          "Optimisation cache",
+          "Monitoring 24/7",
+          "Amélioration continue"
+        ]
+      }
+    },
+    "metadata": {
+      "title": "Services — Expertise Technique & Ingénierie Digitale",
+      "description": "CTO externalisé, architecture SaaS, développement full stack et conformité HDS/eIDAS/Factur-X. Six services pour structurer votre projet technique. Paris."
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "Paris, France",
+      "title": "Parlons de votre",
+      "titleHighlight": "prochain projet",
+      "description": "Nous sommes disponibles pour analyser vos enjeux et vous proposer une feuille de route technique adaptée à vos ambitions.",
+      "quickStats": {
+        "response": "Réponse sous 24h",
+        "global": "France et international",
+        "confidential": "Échanges confidentiels"
+      }
+    },
+    "form": {
+      "sectionTitle": "Construisons",
+      "sectionTitleHighlight": "ensemble",
+      "sectionDescription": "Que vous ayez besoin d'un CTO externalisé, d'une application SaaS sur mesure ou d'une mise en conformité, RL Conseil met 15 ans d'expérience à votre service.",
+      "fields": {
+        "fullName": "Nom complet *",
+        "email": "Email *",
+        "phone": "Téléphone",
+        "company": "Entreprise",
+        "projectType": "Type de projet *",
+        "message": "Décrivez-nous votre projet *"
+      },
+      "projectTypes": {
+        "placeholder": "Type de projet *",
+        "ctoExternalise": "CTO Externalisé",
+        "saas": "Application SaaS sur mesure",
+        "conformite": "Conformité (HDS, eIDAS, Factur-X)",
+        "architecture": "Audit & Architecture technique",
+        "performance": "Performance & Optimisation",
+        "maintenance": "Maintenance & Support",
+        "autre": "Autre"
+      },
+      "consent": "J'accepte que mes données soient utilisées pour traiter ma demande conformément à la politique de confidentialité.",
+      "submit": "Envoyer",
+      "loading": "Envoi en cours...",
+      "success": {
+        "title": "Message reçu.",
+        "description": "Nous revenons vers vous sous 24 heures."
+      },
+      "error": "Une erreur est survenue. Réessayez ou contactez-nous directement."
+    },
+    "faq": {
+      "title": "Questions",
+      "titleHighlight": "fréquentes",
+      "items": {
+        "responseTime": {
+          "question": "Quel est votre délai de réponse ?",
+          "answer": "Nous nous engageons à répondre sous 24 heures ouvrées. Pour les urgences production, un numéro dédié est communiqué à nos clients sous contrat."
+        },
+        "firstMeeting": {
+          "question": "Le premier échange est-il payant ?",
+          "answer": "Non. Les 30 premières minutes sont offertes et sans engagement. Elles nous permettent de comprendre vos enjeux et d'évaluer si notre expertise correspond."
+        },
+        "location": {
+          "question": "Intervenez-vous uniquement à Paris ?",
+          "answer": "Nous travaillons en 100% remote pour des clients en France et à l'international. Des rencontres physiques sont possibles sur Paris et région parisienne."
+        },
+        "technologies": {
+          "question": "Quelles technologies maîtrisez-vous ?",
+          "answer": "Laravel 12, React/Next.js, TypeScript, PostgreSQL, Redis, Docker, AWS. Nous choisissons toujours la technologie la plus adaptée au problème."
+        }
+      }
+    },
+    "metadata": {
+      "title": "Contact — Échangeons sur votre projet technique",
+      "description": "Planifiez un échange gratuit de 30 minutes avec RL Conseil. CTO externalisé, architecture SaaS, conformité HDS/eIDAS/Factur-X. Réponse sous 24h."
+    }
+  },
+  "parcours": {
+    "hero": {
+      "availabilityBadge": "Disponible pour de nouveaux projets",
+      "title": "Mon",
+      "titleHighlight": "Parcours",
+      "description": "De la création d'une agence digitale à Jérusalem à la direction de systèmes d'information à Paris, chaque étape a forgé une conviction : la technologie est un accélérateur de business, pas une fin en soi.",
+      "floatingBadge": "CTO & Fondateur",
+      "stats": {
+        "yearsExperience": "Années d'expérience",
+        "saasPlatforms": "Applications SaaS",
+        "compliances": "Conformités maîtrisées",
+        "uptime": "Disponibilité garantie"
+      }
+    },
+    "timeline": {
+      "badge": "Expérience",
+      "title": "Parcours Professionnel",
+      "subtitle": "Des responsabilités croissantes, une expertise qui s'approfondit."
+    },
+    "education": {
+      "sectionTitle": "Formation",
+      "certificationsSectionTitle": "Certifications"
+    },
+    "metadata": {
+      "title": "Parcours — 15 ans de Direction Technique & Entrepreneuriat",
+      "description": "De la création d'une agence digitale à Jérusalem à la direction technique de 10 applications SaaS à Paris. Découvrez le parcours de Rony Licha, CTO & fondateur de RL Conseil."
+    }
+  },
+  "cv": {
+    "actions": {
+      "print": "Imprimer"
+    },
+    "sections": {
+      "contact": "Contact",
+      "skills": "Compétences",
+      "certifications": "Certifications",
+      "profile": "Profil",
+      "experience": "Expérience Professionnelle",
+      "education": "Formation",
+      "notableProjects": "Projets Notables"
+    },
+    "profileText": "CTO et fondateur de RL Conseil, 15 ans d'expérience en direction technique et développement d'applications. Expert en conformité réglementaire française (HDS, eIDAS, RGPD, Factur-X). Parcours international (France, Israël) combinant vision business et excellence technique. 50+ applications livrées en production, 99.9% de disponibilité sur les plateformes critiques.",
+    "skillCategories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Bases de données",
+      "cloudInfra": "Cloud & Infra",
+      "devopsCicd": "DevOps & CI/CD",
+      "mobile": "Mobile",
+      "aiLlm": "IA & LLM",
+      "compliance": "Conformité"
+    },
+    "available": "Disponible",
+    "metadata": {
+      "title": "CV Rony Licha — CTO & Full Stack Developer",
+      "description": "CV de Rony Licha, CTO externalisé et fondateur de RL Conseil. 15+ ans d'expérience, expert Laravel/React/TypeScript, conformité HDS, eIDAS, Factur-X."
+    }
+  },
+  "carte": {
+    "title": "Carte de",
+    "titleHighlight": "Visite",
+    "flipHint": "Cliquez pour retourner la carte",
+    "scanQr": "Scannez pour enregistrer le contact",
+    "buttons": {
+      "addToContacts": "Ajouter aux contacts",
+      "share": "Partager"
+    },
+    "metadata": {
+      "title": "Carte de Visite — Rony Licha, CTO & Fondateur",
+      "description": "Carte de visite digitale de Rony Licha, CTO & fondateur de RL Conseil. Téléchargez le contact ou scannez le QR code."
+    }
+  },
+  "experience": {
+    "items": {
+      "qrCommunication": {
+        "title": "CTO Externalisé",
+        "company": "Qr Communication",
+        "location": "Paris, France",
+        "period": "Sept 2025 — Aujourd'hui",
+        "duration": "Actuel",
+        "description": "Direction technique de 10 applications SaaS en production. Définition de la stratégie technique, choix d'architecture et pilotage de la qualité logicielle.",
+        "achievements": [
+          "Architecture et supervision de 10 plateformes SaaS simultanées",
+          "99.9% de disponibilité maintenue sur les environnements critiques",
+          "Mise en place de pipelines CI/CD et culture DevOps"
+        ]
+      },
+      "phoenixConsulting": {
+        "title": "Président",
+        "company": "Phoenix Consulting Company",
+        "location": "Levallois-Perret, France",
+        "period": "Avril 2023 — Aujourd'hui",
+        "duration": "Actuel",
+        "description": "Conseil en transformation digitale pour PME et ETI. Spécialisation dans la mise en conformité réglementaire technique.",
+        "achievements": [
+          "Accompagnement à la certification HDS pour applications e-santé",
+          "Intégration de la signature électronique certifiée eIDAS",
+          "Préparation à la facturation électronique obligatoire 2026"
+        ]
+      },
+      "orFormationDsi": {
+        "title": "DSI & Gérant",
+        "company": "Or-Formation Services",
+        "location": "Paris, France",
+        "period": "Sept 2021 — Avril 2023",
+        "duration": "1 an 8 mois",
+        "description": "Refonte intégrale de l'infrastructure IT. Conception et déploiement d'outils internes sur mesure, digitalisation des processus métiers.",
+        "achievements": [
+          "Migration cloud avec réduction des coûts IT de 40%",
+          "Développement d'un ERP interne adapté aux besoins spécifiques"
+        ]
+      },
+      "orFormationDirecteur": {
+        "title": "Directeur des Opérations",
+        "company": "Or-Formation Services",
+        "location": "Paris, France",
+        "period": "Nov 2015 — Oct 2021",
+        "duration": "6 ans",
+        "description": "Direction opérationnelle complète. Pilotage de la stratégie de croissance et développement de partenariats stratégiques.",
+        "achievements": [
+          "Croissance du chiffre d'affaires de 300% sur la période",
+          "Construction d'un réseau de 15+ partenariats stratégiques"
+        ]
+      },
+      "professionalMarketing": {
+        "title": "Associé Gérant & Co-fondateur",
+        "company": "Professional Marketing & Communication",
+        "location": "Jérusalem, Israël",
+        "period": "Août 2009 — Nov 2015",
+        "duration": "6 ans 3 mois",
+        "description": "Création et développement d'une agence digitale à vocation internationale. Conception de sites web et stratégie digitale pour des clients en France, en Israël et aux États-Unis.",
+        "achievements": [
+          "Conception et livraison de 50+ sites web en full stack",
+          "Portefeuille clients dans 3 pays",
+          "Certification Symfony 2 (SensioLabs)"
+        ]
+      }
+    },
+    "education": {
+      "licenceEconomie": {
+        "title": "Licence en Économie",
+        "institution": "Université Paris 8",
+        "period": "2008 — 2009",
+        "description": "Spécialisation en économie appliquée, analyse des marchés et stratégie d'entreprise."
+      },
+      "btsComptabilite": {
+        "title": "BTS Comptabilité et Gestion",
+        "institution": "C.U.G.I",
+        "period": "2005 — 2007",
+        "description": "Formation en comptabilité et gestion d'entreprise. Maîtrise des fondamentaux financiers."
+      }
+    },
+    "certifications": {
+      "symfony2": {
+        "title": "Symfony 2 — Niveau Expert",
+        "issuer": "SensioLabs",
+        "date": "Juillet 2015"
+      },
+      "symfony1": {
+        "title": "Symfony 1 — Niveau Professionnel",
+        "issuer": "SensioLabs",
+        "date": "Juillet 2015"
+      }
+    }
+  },
+  "projects": {
+    "filters": {
+      "all": "Tous",
+      "ai": "IA / LLM",
+      "health": "Santé",
+      "compliance": "Conformité",
+      "opensource": "Open Source"
+    },
+    "statusLabels": {
+      "online": "En ligne",
+      "inDevelopment": "En développement",
+      "openSource": "Open Source"
+    },
+    "items": {
+      "scell": {
+        "name": "Scell.io",
+        "subtitle": "La conformité Factur-X et eIDAS, en une seule API.",
+        "description": "Infrastructure API B2B qui automatise la génération de factures électroniques au format Factur-X et la signature électronique certifiée eIDAS. Conçue pour s'intégrer en quelques heures dans n'importe quel SI existant.",
+        "type": "API B2B",
+        "status": "Mars 2026"
+      },
+      "apillmcontext": {
+        "name": "ApiLLMContext",
+        "subtitle": "Donnez à vos LLMs le contexte qu'ils méritent.",
+        "description": "Serveur MCP qui enrichit Claude et les autres modèles de langage avec du contexte externe structuré. Permet aux IA de comprendre votre codebase, votre documentation et vos données métier en temps réel.",
+        "type": "MCP Server",
+        "status": "En développement"
+      },
+      "claudenest": {
+        "name": "ClaudeNest",
+        "subtitle": "Orchestrez Claude Code comme une équipe de devs.",
+        "description": "Plateforme d'orchestration qui permet de piloter Claude Code à distance avec gestion multi-agents, suivi des tâches en temps réel et historique complet des sessions.",
+        "type": "Orchestration IA",
+        "status": "En développement"
+      },
+      "praticonnect": {
+        "name": "PratiConnect",
+        "subtitle": "Le cabinet de gestion 100% digital pour praticiens du bien-être.",
+        "description": "Plateforme tout-en-un pour les professionnels du bien-être : prise de rendez-vous, téléconsultation vidéo, gestion administrative et suivi patient.",
+        "type": "Plateforme Santé",
+        "status": "Avril 2026"
+      },
+      "noteflow": {
+        "name": "NoteFlow",
+        "subtitle": "Vos notes pensent avec vous.",
+        "description": "Application de productivité qui combine prise de notes, gestion de tâches et intelligence artificielle. L'IA analyse vos notes pour suggérer des actions et des connexions entre vos idées.",
+        "type": "Productivité IA",
+        "status": "En ligne"
+      },
+      "dailyCompanion": {
+        "name": "Daily Companion",
+        "subtitle": "Votre journal personnel, augmenté par l'IA.",
+        "description": "Journal intime intelligent avec Étoile, un compagnon IA bienveillant. Analyse de tendances émotionnelles, suggestions de réflexion et suivi de bien-être.",
+        "type": "Journal IA",
+        "status": "En ligne"
+      },
+      "gigapdf": {
+        "name": "GigaPDF",
+        "subtitle": "L'éditeur PDF open source qui manquait au marché.",
+        "description": "Suite d'édition PDF complète et open source avec collaboration en temps réel. Annotation, fusion, conversion, signature — sans envoyer vos documents sur un serveur tiers.",
+        "type": "Open Source",
+        "status": "Open Source"
+      },
+      "ordoconnect": {
+        "name": "OrdoConnect",
+        "subtitle": "La plateforme santé qui respecte vos données patients.",
+        "description": "Plateforme de gestion pour professionnels de santé avec hébergement certifié HDS. Dossiers patients, ordonnances numériques et messagerie sécurisée.",
+        "type": "Santé HDS",
+        "status": "En ligne"
+      },
+      "timeismoney": {
+        "name": "TimeIsMoney",
+        "subtitle": "Facturez juste. Facturez conforme. Facturez vite.",
+        "description": "Solution de facturation certifiée NF525 avec suivi du temps passé, génération automatique de factures et intégration comptable directe.",
+        "type": "Facturation NF525",
+        "status": "Mars 2026"
+      },
+      "gigaCrm": {
+        "name": "Giga-CRM",
+        "subtitle": "Le CRM qui automatise ce que vos commerciaux oublient.",
+        "description": "CRM et ERP modulaire dopé à l'IA. Scoring de leads prédictif, relances automatisées et tableaux de bord personnalisables.",
+        "type": "CRM/ERP IA",
+        "status": "En ligne"
+      }
+    }
+  },
+  "testimonials": {
+    "items": {
+      "marieL": {
+        "text": "RL Conseil a transformé notre cahier des charges en une plateforme certifiée HDS en quatre mois. Ce qui m'a le plus impressionnée, c'est la capacité de Rony à comprendre les contraintes du secteur santé sans qu'on ait à les lui expliquer deux fois.",
+        "name": "Dr. Marie L.",
+        "title": "Directrice, Groupe Médical"
+      },
+      "thomasR": {
+        "text": "Après deux expériences décevantes avec des agences, travailler avec RL Conseil a été un soulagement. Code propre, délais tenus, et surtout une vraie vision technique qui anticipe nos besoins à 18 mois.",
+        "name": "Thomas R.",
+        "title": "CEO, Startup SaaS B2B"
+      },
+      "sophieM": {
+        "text": "La mise en conformité avec la facturation électronique nous angoissait. Rony a pris le sujet en main avec une sérénité qui nous a tout de suite rassurés. L'investissement a été rentabilisé en six mois.",
+        "name": "Sophie M.",
+        "title": "DAF, PME Industrielle"
+      }
+    }
+  },
+  "legal": {
+    "mentionsLegales": {
+      "pageTitle": "Mentions Légales",
+      "lastUpdated": "8 mars 2026",
+      "sections": {
+        "editor": {
+          "title": "Éditeur du site",
+          "content": "SASU au capital de 1,00 €\nSIREN : 101 783 421\nSIRET : 101 783 421 00015\nRCS Paris : 101 783 421\nN° TVA : FR95101783421\nCode NAF : 62.02A — Conseil en systèmes et logiciels informatiques\n\nSiège social : 200 rue de la Croix Nivert, 75015 Paris\nDirigeant : Rony Licha, Président\nEmail : rony@rlconseil.net\nTéléphone : +33 7 67 98 71 76"
+        },
+        "hosting": {
+          "title": "Hébergement",
+          "content": "Ce site est hébergé par Hetzner Online GmbH\nIndustriestr. 25, 91710 Gunzenhausen, Allemagne\nLes données sont hébergées au sein de l'Union européenne."
+        },
+        "intellectualProperty": {
+          "title": "Propriété intellectuelle",
+          "content": "L'ensemble du contenu de ce site (textes, images, logos, graphismes) est la propriété exclusive de RL Conseil, sauf mention contraire. Toute reproduction, même partielle, est interdite sans autorisation préalable."
+        },
+        "liability": {
+          "title": "Responsabilité",
+          "content": "RL Conseil s'efforce d'assurer l'exactitude des informations diffusées sur ce site. Toutefois, RL Conseil ne peut garantir l'exactitude, la complétude ou l'actualité de ces informations."
+        }
+      },
+      "metadata": {
+        "title": "Mentions légales"
+      }
+    },
+    "cgv": {
+      "pageTitle": "Conditions Générales de Vente",
+      "lastUpdated": "8 mars 2026",
+      "sections": {
+        "scope": {
+          "title": "1. Champ d'application",
+          "content": "Les présentes CGV régissent les prestations de services proposées par RL Conseil, SASU de conseil en direction technique et ingénierie digitale."
+        },
+        "services": {
+          "title": "2. Prestations",
+          "content": "RL Conseil propose des prestations de direction technique externalisée, développement d'applications, architecture logicielle et conseil en conformité réglementaire (HDS, eIDAS, RGPD, Factur-X)."
+        },
+        "pricing": {
+          "title": "3. Tarification",
+          "content": "Les tarifs sont communiqués sur devis personnalisé. TVA applicable au taux en vigueur. N° TVA intracommunautaire : FR95101783421"
+        },
+        "payment": {
+          "title": "4. Modalités de paiement",
+          "content": "Paiement par virement bancaire à 30 jours date de facture, sauf mention contraire sur le devis."
+        },
+        "intellectualProperty": {
+          "title": "5. Propriété intellectuelle",
+          "content": "Sauf disposition contraire, le code source développé dans le cadre des prestations est cédé au client après paiement intégral."
+        },
+        "confidentiality": {
+          "title": "6. Confidentialité",
+          "content": "RL Conseil s'engage à la confidentialité des informations communiquées dans le cadre des prestations."
+        }
+      },
+      "metadata": {
+        "title": "Conditions Générales de Vente"
+      }
+    },
+    "cgu": {
+      "pageTitle": "Conditions Générales d'Utilisation",
+      "lastUpdated": "8 mars 2026",
+      "sections": {
+        "purpose": {
+          "title": "1. Objet",
+          "content": "Les présentes CGU définissent les conditions d'accès et d'utilisation du site rlconseil.net."
+        },
+        "access": {
+          "title": "2. Accès au site",
+          "content": "Le site est accessible gratuitement à tout utilisateur disposant d'un accès Internet. Les frais liés à l'accès au site sont à la charge de l'utilisateur."
+        },
+        "intellectualProperty": {
+          "title": "3. Propriété intellectuelle",
+          "content": "Tous les éléments du site sont protégés par le droit de la propriété intellectuelle. Toute utilisation non autorisée est constitutive de contrefaçon."
+        },
+        "personalData": {
+          "title": "4. Données personnelles",
+          "content": "Le traitement des données personnelles est décrit dans notre politique de confidentialité."
+        },
+        "applicableLaw": {
+          "title": "5. Droit applicable",
+          "content": "Les présentes CGU sont soumises au droit français. Tout litige sera porté devant les tribunaux compétents de Paris."
+        }
+      },
+      "metadata": {
+        "title": "Conditions Générales d'Utilisation"
+      }
+    },
+    "confidentialite": {
+      "pageTitle": "Politique de Confidentialité",
+      "lastUpdated": "8 mars 2026",
+      "sections": {
+        "controller": {
+          "title": "1. Responsable du traitement",
+          "content": "RL Conseil — SASU au capital de 1,00 €, SIREN 101 783 421\nRony Licha, Président\n200 rue de la Croix Nivert, 75015 Paris\nEmail : rony@rlconseil.net"
+        },
+        "dataCollected": {
+          "title": "2. Données collectées",
+          "content": "Via le formulaire de contact : nom, email, téléphone (optionnel), entreprise (optionnel), message. Ces données sont collectées avec votre consentement explicite."
+        },
+        "purpose": {
+          "title": "3. Finalité",
+          "content": "Vos données sont utilisées exclusivement pour répondre à vos demandes et vous recontacter dans le cadre de votre projet."
+        },
+        "retention": {
+          "title": "4. Durée de conservation",
+          "content": "Vos données sont conservées pendant 3 ans à compter du dernier contact, puis supprimées."
+        },
+        "rights": {
+          "title": "5. Vos droits",
+          "content": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Contactez-nous à rony@rlconseil.net pour exercer ces droits."
+        },
+        "cookies": {
+          "title": "6. Cookies",
+          "content": "Ce site utilise uniquement un cookie technique pour mémoriser votre préférence de thème (clair/sombre). Aucun cookie de suivi ou publicitaire n'est utilisé."
+        },
+        "hosting": {
+          "title": "7. Hébergement",
+          "content": "Les données sont hébergées au sein de l'Union européenne par Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne."
+        }
+      },
+      "metadata": {
+        "title": "Politique de Confidentialité"
+      }
+    }
+  }
+}

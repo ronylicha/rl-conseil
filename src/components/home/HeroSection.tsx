@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const HeroVideoPlayer = dynamic(
@@ -133,6 +134,7 @@ function ParticleCanvas() {
 }
 
 export function HeroSection() {
+  const t = useTranslations("home");
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[var(--color-bg)]">
       {/* Full-screen particle canvas */}
@@ -163,7 +165,7 @@ export function HeroSection() {
             >
               <span className="w-2 h-2 rounded-full bg-[var(--color-success)] animate-pulse" />
               <Sparkles size={12} className="text-[var(--color-accent)]" />
-              CTO Externalisé · Ingénierie Digitale · Paris
+              {t("hero.badge")}
             </motion.div>
 
             {/* Title */}
@@ -174,7 +176,7 @@ export function HeroSection() {
                 transition={{ duration: 0.7, delay: 0.2, type: "spring", stiffness: 80 }}
                 className="block text-[var(--color-text)]"
               >
-                La direction
+                {t("hero.titleLine1")}
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 40 }}
@@ -182,7 +184,7 @@ export function HeroSection() {
                 transition={{ duration: 0.7, delay: 0.4, type: "spring", stiffness: 80 }}
                 className="block text-[var(--color-text)]"
               >
-                technique
+                {t("hero.titleLine2")}
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
@@ -190,7 +192,7 @@ export function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.7 }}
                 className="block text-gradient-animated"
               >
-                que votre projet mérite
+                {t("hero.titleLine3")}
               </motion.span>
             </h1>
 
@@ -201,9 +203,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 1.0 }}
               className="text-base md:text-lg text-[var(--color-text-muted)] leading-relaxed mb-10"
             >
-              Ancien DSI devenu entrepreneur, je ne livre pas du code — je construis
-              des actifs numériques pérennes. Les contraintes réglementaires françaises
-              ne sont pas un frein, elles sont mon terrain de jeu.
+              {t("hero.description")}
             </motion.p>
 
             {/* CTAs */}
@@ -218,7 +218,7 @@ export function HeroSection() {
                   href="/contact"
                   className="group inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] text-white rounded-xl font-medium text-base hover:bg-[var(--color-accent-dark)] transition-all duration-200 cursor-pointer animate-glow-pulse hover:animate-none hover:shadow-xl hover:shadow-[var(--color-accent)]/20"
                 >
-                  Planifier un échange
+                  {t("hero.ctaPrimary")}
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </MagneticButton>
@@ -227,7 +227,7 @@ export function HeroSection() {
                   href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 border border-[var(--color-border)] text-[var(--color-text)] rounded-xl font-medium text-base hover:bg-[var(--color-surface)]/80 hover:border-[var(--color-accent)]/30 backdrop-blur-sm transition-all duration-200 cursor-pointer"
                 >
-                  Découvrir notre expertise
+                  {t("hero.ctaSecondary")}
                 </Link>
               </MagneticButton>
             </motion.div>
@@ -253,7 +253,7 @@ export function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
         <span className="text-xs text-[var(--color-text-muted)] tracking-widest uppercase font-[family-name:var(--font-sub)]">
-          Explorer
+          {t("hero.scrollLabel")}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

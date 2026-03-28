@@ -11,153 +11,120 @@ import {
   Brain,
   Server,
   PenTool,
-  Layers,
   Lock,
 } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { useTranslations } from "next-intl";
 
-type GuideCategory = "all" | "conformite" | "tech" | "strategie";
+type GuideCategory = "all" | "compliance" | "tech" | "strategy";
 
-interface Guide {
+interface GuideData {
   icon: typeof ClipboardCheck;
   color: string;
-  badge: string;
+  translationKey: string;
   category: GuideCategory[];
-  title: string;
-  description: string;
   href: string;
 }
 
-const guides: Guide[] = [
+const guidesData: GuideData[] = [
   {
     icon: ClipboardCheck,
     color: "#3b82f6",
-    badge: "Startups & PME",
+    translationKey: "auditFlash",
     category: ["tech"],
-    title: "Audit Flash : 15 points de contrôle technique",
-    description:
-      "Évaluez la santé technique de votre projet en 10 minutes. Architecture, sécurité, dette technique.",
     href: "/pdf-audit-flash.html",
   },
   {
     icon: Hospital,
     color: "#10b981",
-    badge: "Secteur Santé",
-    category: ["conformite"],
-    title: "Conformité HDS : le guide essentiel",
-    description:
-      "Les 10 points de conformité obligatoires pour votre application e-santé ou télémédecine.",
+    translationKey: "conformiteHds",
+    category: ["compliance"],
     href: "/pdf-checklist-hds.html",
   },
   {
     icon: FileText,
     color: "#8b5cf6",
-    badge: "Toutes entreprises",
-    category: ["conformite"],
-    title: "Facturation électronique 2026 : êtes-vous prêt ?",
-    description:
-      "Calendrier, formats acceptés, obligations par taille d'entreprise.",
+    translationKey: "facturation2026",
+    category: ["compliance"],
     href: "/pdf-facturation-2026.html",
   },
   {
     icon: Shield,
     color: "#2563eb",
-    badge: "Conformité",
-    category: ["conformite"],
-    title: "RGPD pour les PME : 12 obligations incontournables",
-    description:
-      "Le guide pratique pour mettre votre entreprise en conformité avec le Règlement Général sur la Protection des Données.",
+    translationKey: "rgpdPme",
+    category: ["compliance"],
     href: "/pdf-guide-rgpd.html",
   },
   {
     icon: Brain,
     color: "#f59e0b",
-    badge: "Innovation",
-    category: ["strategie"],
-    title: "IA en Entreprise : premiers pas concrets",
-    description:
-      "Comment intégrer l'intelligence artificielle dans votre organisation sans risques et avec un ROI mesurable.",
+    translationKey: "iaEntreprise",
+    category: ["strategy"],
     href: "/pdf-guide-ia-entreprise.html",
   },
   {
     icon: Server,
     color: "#06b6d4",
-    badge: "Architecture",
+    translationKey: "architectureSaas",
     category: ["tech"],
-    title: "Architecture SaaS : les 8 piliers d'une solution scalable",
-    description:
-      "Le guide technique pour concevoir, déployer et faire évoluer une application SaaS professionnelle.",
     href: "/pdf-guide-architecture-saas.html",
   },
   {
     icon: PenTool,
     color: "#8b5cf6",
-    badge: "Conformité",
-    category: ["conformite"],
-    title: "Signature électronique & eIDAS : guide de conformité",
-    description:
-      "Comprendre les niveaux de signature électronique et implémenter une solution conforme au règlement européen.",
+    translationKey: "signatureEidas",
+    category: ["compliance"],
     href: "/pdf-guide-eidas.html",
   },
   {
-    icon: Layers,
+    icon: Lock,
     color: "#ec4899",
-    badge: "Stratégie",
-    category: ["strategie", "tech"],
-    title: "Choisir sa stack technique : le framework de décision CTO",
-    description:
-      "Un guide méthodique pour faire les bons choix technologiques et éviter les erreurs coûteuses.",
+    translationKey: "stackTechnique",
+    category: ["strategy", "tech"],
     href: "/pdf-guide-stack-technique.html",
   },
   {
     icon: Lock,
     color: "#ef4444",
-    badge: "Sécurité",
+    translationKey: "cybersecurite",
     category: ["tech"],
-    title: "Cybersécurité PME : 10 mesures essentielles",
-    description:
-      "Protégez votre entreprise contre les cyberattaques avec ces 10 mesures concrètes et accessibles.",
     href: "/pdf-guide-cybersecurite.html",
   },
 ];
 
-const categories: { key: GuideCategory; label: string }[] = [
-  { key: "all", label: "Tous" },
-  { key: "conformite", label: "Conformité" },
-  { key: "tech", label: "Tech & Archi" },
-  { key: "strategie", label: "Stratégie" },
-];
+const categoryKeys: GuideCategory[] = ["all", "compliance", "tech", "strategy"];
 
 export function LeadMagnetsSection() {
   const [activeCategory, setActiveCategory] = useState<GuideCategory>("all");
+  const t = useTranslations("home");
 
   const filteredGuides =
     activeCategory === "all"
-      ? guides
-      : guides.filter((g) => g.category.includes(activeCategory));
+      ? guidesData
+      : guidesData.filter((g) => g.category.includes(activeCategory));
 
   return (
     <section className="py-24" id="ressources">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          badge="Ressources gratuites"
-          title="Guides pratiques"
-          highlight="pour préparer votre projet"
-          subtitle="Neuf guides concrets, rédigés par un CTO qui les utilise lui-même au quotidien."
+          badge={t("leadMagnets.badge")}
+          title={t("leadMagnets.title")}
+          highlight={t("leadMagnets.highlight")}
+          subtitle={t("leadMagnets.subtitle")}
         />
 
         <div className="flex justify-center gap-2 mb-10 flex-wrap">
-          {categories.map((cat) => (
+          {categoryKeys.map((key) => (
             <button
-              key={cat.key}
-              onClick={() => setActiveCategory(cat.key)}
+              key={key}
+              onClick={() => setActiveCategory(key)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all font-[family-name:var(--font-sub)] ${
-                activeCategory === cat.key
+                activeCategory === key
                   ? "bg-[var(--color-accent)] text-white"
                   : "border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)]/30 hover:text-[var(--color-text)]"
               }`}
             >
-              {cat.label}
+              {t(`leadMagnets.categories.${key}`)}
             </button>
           ))}
         </div>
@@ -173,7 +140,7 @@ export function LeadMagnetsSection() {
           >
             {filteredGuides.map((guide, i) => (
               <motion.a
-                key={guide.title}
+                key={guide.translationKey}
                 href={guide.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -190,18 +157,18 @@ export function LeadMagnetsSection() {
                     <guide.icon size={20} style={{ color: guide.color }} />
                   </div>
                   <span className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] font-[family-name:var(--font-sub)]">
-                    {guide.badge}
+                    {t(`leadMagnets.guides.${guide.translationKey}.badge`)}
                   </span>
                 </div>
                 <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-[var(--color-text)] mb-2 group-hover:text-[var(--color-accent)] transition-colors">
-                  {guide.title}
+                  {t(`leadMagnets.guides.${guide.translationKey}.title`)}
                 </h3>
                 <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
-                  {guide.description}
+                  {t(`leadMagnets.guides.${guide.translationKey}.description`)}
                 </p>
                 <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-accent)]">
                   <Download size={14} />
-                  Télécharger gratuitement
+                  {t("leadMagnets.downloadCta")}
                 </span>
               </motion.a>
             ))}

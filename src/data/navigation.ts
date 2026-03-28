@@ -1,38 +1,38 @@
 export const navLinks = [
-  { label: "Accueil", href: "/" },
-  { label: "Expertise", href: "/#services" },
-  { label: "Réalisations", href: "/#realisations" },
-  { label: "Parcours", href: "/parcours" },
-  { label: "Contact", href: "/contact", isCta: true },
+  { labelKey: "nav.home", href: "/" },
+  { labelKey: "nav.expertise", href: "/#services" },
+  { labelKey: "nav.portfolio", href: "/#realisations" },
+  { labelKey: "nav.parcours", href: "/parcours" },
+  { labelKey: "nav.contact", href: "/contact", isCta: true },
 ] as const;
 
 export const footerLinks = {
   expertise: {
-    title: "Expertise",
+    titleKey: "footer.columns.expertise",
     links: [
-      { label: "Architecture Technique", href: "/#services" },
-      { label: "Développement Full Stack", href: "/#services" },
-      { label: "Produits SaaS", href: "/#services" },
-      { label: "CTO Externalisé", href: "/#services" },
+      { labelKey: "footer.links.architectureTechnique", href: "/services#architecture-conception-technique" },
+      { labelKey: "footer.links.developpementFullStack", href: "/services#developpement-full-stack" },
+      { labelKey: "footer.links.produitsSaaS", href: "/services#produits-saas-sur-mesure" },
+      { labelKey: "footer.links.ctoExternalise", href: "/services#cto-externalise" },
     ],
   },
   navigation: {
-    title: "Navigation",
+    titleKey: "footer.columns.navigation",
     links: [
-      { label: "Accueil", href: "/" },
-      { label: "Réalisations", href: "/#realisations" },
-      { label: "Parcours", href: "/parcours" },
-      { label: "CV", href: "/cv" },
-      { label: "Contact", href: "/contact" },
+      { labelKey: "footer.links.accueil", href: "/" },
+      { labelKey: "footer.links.realisations", href: "/#realisations" },
+      { labelKey: "footer.links.parcours", href: "/parcours" },
+      { labelKey: "footer.links.cv", href: "/cv" },
+      { labelKey: "footer.links.contact", href: "/contact" },
     ],
   },
   legal: {
-    title: "Légal",
+    titleKey: "footer.columns.legal",
     links: [
-      { label: "Mentions légales", href: "/mentions-legales" },
-      { label: "CGV", href: "/cgv" },
-      { label: "CGU", href: "/cgu" },
-      { label: "Confidentialité", href: "/politique-confidentialite" },
+      { labelKey: "footer.links.mentionsLegales", href: "/mentions-legales" },
+      { labelKey: "footer.links.cgv", href: "/cgv" },
+      { labelKey: "footer.links.cgu", href: "/cgu" },
+      { labelKey: "footer.links.confidentialite", href: "/politique-confidentialite" },
     ],
   },
 } as const;

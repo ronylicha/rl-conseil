@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Compass, Code, Rocket, Scale, Crown, Gauge } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { services } from "@/data/services";
 
@@ -18,6 +19,7 @@ const iconMap: Record<
 };
 
 export function ServicesSection() {
+  const t = useTranslations("home.services");
   return (
     <section id="services" className="relative py-24 bg-[var(--color-bg-subtle)]">
       {/* Floating dots background - seeded positions to avoid hydration mismatch */}
@@ -44,10 +46,10 @@ export function ServicesSection() {
       </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeader
-          badge="Expertise"
-          title="Notre offre"
-          highlight="au service de votre ambition"
-          subtitle="Six domaines d'intervention pour couvrir l'intégralité de votre chaîne de valeur technique."
+          badge={t("badge")}
+          title={t("title")}
+          highlight={t("highlight")}
+          subtitle={t("subtitle")}
         />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => {

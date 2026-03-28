@@ -5,24 +5,26 @@ import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, Mail, Phone, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
-
-const projectTypes = [
-  { value: "", label: "Type de projet *" },
-  { value: "cto-externalise", label: "CTO Externalisé" },
-  { value: "saas", label: "Application SaaS sur mesure" },
-  { value: "conformite", label: "Conformité (HDS, eIDAS, Factur-X)" },
-  { value: "architecture", label: "Audit & Architecture technique" },
-  { value: "performance", label: "Performance & Optimisation" },
-  { value: "maintenance", label: "Maintenance & Support" },
-  { value: "autre", label: "Autre" },
-];
 
 const inputClasses = "w-full px-4 py-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] focus:shadow-md focus:shadow-[var(--color-accent)]/5 hover:border-[var(--color-accent)]/20 transition-all duration-300";
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const t = useTranslations("contact");
+
+  const projectTypes = [
+    { value: "", label: t("form.projectTypes.placeholder") },
+    { value: "cto-externalise", label: t("form.projectTypes.ctoExternalise") },
+    { value: "saas", label: t("form.projectTypes.saas") },
+    { value: "conformite", label: t("form.projectTypes.conformite") },
+    { value: "architecture", label: t("form.projectTypes.architecture") },
+    { value: "performance", label: t("form.projectTypes.performance") },
+    { value: "maintenance", label: t("form.projectTypes.maintenance") },
+    { value: "autre", label: t("form.projectTypes.autre") },
+  ];
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,10 +55,10 @@ export function ContactForm() {
             className="md:col-span-2 space-y-6"
           >
             <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--color-text)]">
-              Construisons <span className="text-gradient">ensemble</span>
+              {t("form.sectionTitle")} <span className="text-gradient">{t("form.sectionTitleHighlight")}</span>
             </h2>
             <p className="text-[var(--color-text-muted)] leading-relaxed">
-              Que vous ayez besoin d&apos;un CTO externalisé, d&apos;une application SaaS sur mesure ou d&apos;une mise en conformité, RL Conseil met 15 ans d&apos;expérience à votre service.
+              {t("form.sectionDescription")}
             </p>
             <div className="space-y-4 pt-4">
               {[
@@ -94,34 +96,34 @@ export function ContactForm() {
             {status === "success" ? (
               <div className="flex flex-col items-center justify-center p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/20 transition-all duration-500 text-center">
                 <CheckCircle size={48} className="text-[var(--color-success)] mb-4" />
-                <h3 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--color-text)] mb-2">Message reçu.</h3>
-                <p className="text-[var(--color-text-muted)]">Nous revenons vers vous sous 24 heures.</p>
+                <h3 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--color-text)] mb-2">{t("form.success.title")}</h3>
+                <p className="text-[var(--color-text-muted)]">{t("form.success.description")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] space-y-5 hover:border-[var(--color-accent)]/20 transition-all duration-500">
                 <div className="grid md:grid-cols-2 gap-5">
-                  <input name="name" type="text" placeholder="Nom complet *" required className={inputClasses} />
-                  <input name="email" type="email" placeholder="Email *" required className={inputClasses} />
+                  <input name="name" type="text" placeholder={t("form.fields.fullName")} required className={inputClasses} />
+                  <input name="email" type="email" placeholder={t("form.fields.email")} required className={inputClasses} />
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <input name="phone" type="tel" placeholder="Téléphone" className={inputClasses} />
-                  <input name="company" type="text" placeholder="Entreprise" className={inputClasses} />
+                  <input name="phone" type="tel" placeholder={t("form.fields.phone")} className={inputClasses} />
+                  <input name="company" type="text" placeholder={t("form.fields.company")} className={inputClasses} />
                 </div>
                 <select name="subject" required className={cn(inputClasses, "cursor-pointer")}>
-                  {projectTypes.map((t) => (
-                    <option key={t.value} value={t.value}>{t.label}</option>
+                  {projectTypes.map((pt) => (
+                    <option key={pt.value} value={pt.value}>{pt.label}</option>
                   ))}
                 </select>
-                <textarea name="message" placeholder="Décrivez-nous votre projet *" required rows={5} maxLength={2000} className={cn(inputClasses, "resize-none")} />
+                <textarea name="message" placeholder={t("form.fields.message")} required rows={5} maxLength={2000} className={cn(inputClasses, "resize-none")} />
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input type="checkbox" name="consent" required className="mt-1 accent-[var(--color-accent)]" />
                   <span className="text-xs text-[var(--color-text-muted)]">
-                    J&apos;accepte que mes données soient utilisées pour traiter ma demande conformément à la politique de confidentialité.
+                    {t("form.consent")}
                   </span>
                 </label>
                 {status === "error" && (
                   <div className="flex items-center gap-2 text-sm text-red-500">
-                    <AlertCircle size={16} /> Une erreur est survenue. Réessayez ou contactez-nous directement.
+                    <AlertCircle size={16} /> {t("form.error")}
                   </div>
                 )}
                 <button
@@ -134,7 +136,7 @@ export function ContactForm() {
                   ) : (
                     <>
                       <Send size={18} />
-                      Envoyer
+                      {t("form.submit")}
                     </>
                   )}
                 </button>
@@ -152,15 +154,12 @@ export function ContactForm() {
           className="mt-20"
         >
           <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--color-text)] text-center mb-10">
-            Questions <span className="text-gradient">fréquentes</span>
+            {t("faq.title")} <span className="text-gradient">{t("faq.titleHighlight")}</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[
-              { q: "Quel est votre délai de réponse ?", a: "Nous nous engageons à répondre sous 24 heures ouvrées. Pour les urgences production, un numéro dédié est communiqué à nos clients sous contrat." },
-              { q: "Le premier échange est-il payant ?", a: "Non. Les 30 premières minutes sont offertes et sans engagement. Elles nous permettent de comprendre vos enjeux et d'évaluer si notre expertise correspond." },
-              { q: "Intervenez-vous uniquement à Paris ?", a: "Nous travaillons en 100% remote pour des clients en France et à l'international. Des rencontres physiques sont possibles sur Paris et région parisienne." },
-              { q: "Quelles technologies maîtrisez-vous ?", a: "Laravel 12, React/Next.js, TypeScript, PostgreSQL, Redis, Docker, AWS. Nous choisissons toujours la technologie la plus adaptée au problème." },
-            ].map((faq, i) => (
+            {(["responseTime", "firstMeeting", "location", "technologies"] as const).map((key, i) => {
+              const faq = { q: t(`faq.items.${key}.question`), a: t(`faq.items.${key}.answer`) };
+              return (
               <motion.div
                 key={faq.q}
                 initial={{ opacity: 0, y: 15 }}
@@ -172,7 +171,8 @@ export function ContactForm() {
                 <h3 className="font-semibold text-[var(--color-text)] text-sm mb-2">{faq.q}</h3>
                 <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{faq.a}</p>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </motion.div>
       </div>
