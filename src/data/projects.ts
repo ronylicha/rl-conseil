@@ -177,7 +177,7 @@ export const projects: Project[] = [
     type: "Open Source",
     status: "Open Source",
     statusType: "opensource",
-    url: "https://github.com/ronylicha/Claude-DCM",
+    url: "https://ronylicha.github.io/Claude-DCM/",
     techTags: ["Bun", "Hono", "PostgreSQL", "Next.js", "WebSocket"],
     logoDir: "claude-dcm",
     logoDarkExt: "svg",
