@@ -23,12 +23,12 @@ export function CvView() {
 
   const skillGroups = [
     { cat: t("skillCategories.frontend"), skills: ["React 19", "Next.js", "Vue.js", "Nuxt", "TypeScript", "Tailwind", "Three.js"] },
-    { cat: t("skillCategories.backend"), skills: ["Laravel 12", "PHP 8.3", "Node.js", "Python", "FilamentPHP", "GraphQL"] },
+    { cat: t("skillCategories.backend"), skills: ["Laravel 12", "PHP 8.3", "Node.js", "Bun", "Hono", "Python", "FilamentPHP", "GraphQL"] },
     { cat: t("skillCategories.databases"), skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "Vector DB"] },
     { cat: t("skillCategories.cloudInfra"), skills: ["AWS", "Google Cloud", "OVHcloud", "Scaleway", "Vercel", "Cloudflare"] },
     { cat: t("skillCategories.devopsCicd"), skills: ["Docker", "GitHub Actions", "GitLab CI", "Nginx", "Load Balancing", "Terraform"] },
     { cat: t("skillCategories.mobile"), skills: ["React Native", "Expo", "WebRTC", "PWA", "Firebase"] },
-    { cat: t("skillCategories.aiLlm"), skills: ["Claude API", "OpenAI", "LangChain", "MCP", "RAG", "Embeddings"] },
+    { cat: t("skillCategories.aiLlm"), skills: ["Claude API", "OpenAI", "LangChain", "MCP", "RAG", "Embeddings", "Multi-Agent"] },
     { cat: t("skillCategories.compliance"), skills: ["HDS", "eIDAS", "RGPD", "Factur-X", "NF525", "OWASP", "OAuth2"] },
   ];
 

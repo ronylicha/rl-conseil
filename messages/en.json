@@ -634,6 +634,13 @@
         "description": "A modular AI-powered CRM and ERP. Predictive lead scoring, automated follow-ups, and customizable dashboards.",
         "type": "AI CRM/ERP",
         "status": "Live"
+      },
+      "claudeDcm": {
+        "name": "Claude-DCM",
+        "subtitle": "Persistent memory and multi-agent orchestration for Claude Code.",
+        "description": "Open source Distributed Context Manager: a persistence and orchestration layer for Claude Code sessions. REST API with 86+ endpoints, 11-page real-time dashboard with 3D visualization, safety gate against destructive operations, and multi-agent coordination via WebSocket and PostgreSQL LISTEN/NOTIFY.",
+        "type": "Open Source",
+        "status": "Open Source"
       }
     }
   },

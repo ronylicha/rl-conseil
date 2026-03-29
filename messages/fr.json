@@ -634,6 +634,13 @@
         "description": "CRM et ERP modulaire dopé à l'IA. Scoring de leads prédictif, relances automatisées et tableaux de bord personnalisables.",
         "type": "CRM/ERP IA",
         "status": "En ligne"
+      },
+      "claudeDcm": {
+        "name": "Claude-DCM",
+        "subtitle": "La mémoire persistante et l'orchestration multi-agents pour Claude Code.",
+        "description": "Distributed Context Manager open source : couche de persistance et d'orchestration pour les sessions Claude Code. API REST avec 86+ endpoints, dashboard temps réel à 11 pages avec visualisation 3D, safety gate contre les opérations destructives, et coordination multi-agents via WebSocket et PostgreSQL LISTEN/NOTIFY.",
+        "type": "Open Source",
+        "status": "Open Source"
       }
     }
   },

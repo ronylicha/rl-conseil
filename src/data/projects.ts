@@ -168,12 +168,27 @@ export const projects: Project[] = [
     logoDarkExt: "png",
     logoLightExt: "png",
   },
+  {
+    id: "claude-dcm",
+    name: "Claude-DCM",
+    subtitle: "La mémoire persistante et l'orchestration multi-agents pour Claude Code.",
+    description: "Distributed Context Manager : couche de persistance et d'orchestration pour les sessions Claude Code. API REST 86+ endpoints, dashboard temps réel 11 pages, safety gate, et coordination multi-agents via WebSocket.",
+    categories: ["ai", "opensource"],
+    type: "Open Source",
+    status: "Open Source",
+    statusType: "opensource",
+    url: "https://github.com/ronylicha/Claude-DCM",
+    techTags: ["Bun", "Hono", "PostgreSQL", "Next.js", "WebSocket"],
+    logoDir: "claude-dcm",
+    logoDarkExt: "svg",
+    logoLightExt: "svg",
+  },
 ];
 
 export const projectFilters = [
-  { key: "all", label: "Tous", count: 10 },
-  { key: "ai", label: "IA / LLM", count: 5 },
+  { key: "all", label: "Tous", count: 11 },
+  { key: "ai", label: "IA / LLM", count: 6 },
   { key: "health", label: "Santé", count: 3 },
   { key: "compliance", label: "Conformité", count: 4 },
-  { key: "opensource", label: "Open Source", count: 1 },
+  { key: "opensource", label: "Open Source", count: 2 },
 ] as const;

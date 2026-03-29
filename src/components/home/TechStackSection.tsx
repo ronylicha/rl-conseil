@@ -28,7 +28,7 @@ const techCategoryData: {
   },
   {
     key: "backend",
-    techs: ["Laravel 12", "PHP 8.3", "Node.js", "Express", "Python", "Django", "FilamentPHP v3", "GraphQL", "REST API", "WebSocket"],
+    techs: ["Laravel 12", "PHP 8.3", "Node.js", "Bun", "Hono", "Express", "Python", "Django", "FilamentPHP v3", "GraphQL", "REST API", "WebSocket"],
     gradient: "from-emerald-500/20 to-green-500/20",
     border: "border-emerald-500/20",
   },
@@ -58,7 +58,7 @@ const techCategoryData: {
   },
   {
     key: "aiTools",
-    techs: ["Claude API", "OpenAI API", "LangChain", "MCP Protocol", "RAG", "Vector Search", "Embeddings"],
+    techs: ["Claude API", "OpenAI API", "LangChain", "MCP Protocol", "RAG", "Vector Search", "Embeddings", "Multi-Agent"],
     gradient: "from-cyan-500/20 to-teal-500/20",
     border: "border-cyan-500/20",
   },

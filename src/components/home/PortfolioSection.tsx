@@ -28,6 +28,7 @@ const idToTranslationKey: Record<string, string> = {
   "ordoconnect": "ordoconnect",
   "timeismoney": "timeismoney",
   "giga-crm": "gigaCrm",
+  "claude-dcm": "claudeDcm",
 };
 
 function ProjectCard({
@@ -113,11 +114,11 @@ export function PortfolioSection() {
 
   const filterKeys = ["all", "ai", "health", "compliance", "opensource"] as const;
   const filterCounts: Record<string, number> = {
-    all: 10,
-    ai: 5,
+    all: 11,
+    ai: 6,
     health: 3,
     compliance: 4,
-    opensource: 1,
+    opensource: 2,
   };
 
   const filtered =
