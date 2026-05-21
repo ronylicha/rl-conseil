@@ -156,6 +156,7 @@
         "devops": "DevOps & CI/CD",
         "mobileRealtime": "Mobile & Temps Réel",
         "aiTools": "IA & Outils",
+        "testingQuality": "Tests & Qualité",
         "complianceSecurity": "Conformité & Sécurité"
       }
     },
@@ -564,6 +565,10 @@
       "inDevelopment": "En développement",
       "openSource": "Open Source"
     },
+    "unofficialBadge": {
+      "label": "Non officiel",
+      "tooltip": "SDK communautaire indépendant, non affilié à l'éditeur officiel."
+    },
     "items": {
       "scell": {
         "name": "Scell.io",
@@ -640,6 +645,83 @@
         "subtitle": "La mémoire persistante et l'orchestration multi-agents pour Claude Code.",
         "description": "Distributed Context Manager open source : couche de persistance et d'orchestration pour les sessions Claude Code. API REST avec 86+ endpoints, dashboard temps réel à 11 pages avec visualisation 3D, safety gate contre les opérations destructives, et coordination multi-agents via WebSocket et PostgreSQL LISTEN/NOTIFY.",
         "type": "Open Source",
+        "status": "Open Source"
+      },
+      "qualiforma": {
+        "name": "QualiForma",
+        "subtitle": "Le LMS Qualiopi-natif pour organismes de formation.",
+        "description": "LMS multi-tenant pensé pour la conformité Qualiopi : automatisation des preuves d'indicateurs, marketplace via Stripe Connect, visioconférence intégrée LiveKit avec transcription IA et signature électronique des feuilles d'émargement.",
+        "type": "LMS Qualiopi",
+        "status": "Avril 2026"
+      },
+      "pix2clip": {
+        "name": "Pix2Clip",
+        "subtitle": "Création par IA : vidéo, image, musique et voix off.",
+        "description": "Studio de création IA 100% dans le navigateur. Génération de vidéos, images, musique, voix off et clonage vocal. Hébergement Europe, conformité RGPD, sans envoi de données vers des serveurs tiers.",
+        "type": "Studio IA",
+        "status": "En ligne"
+      },
+      "restobook": {
+        "name": "RestoBook",
+        "subtitle": "La plateforme complète de gestion pour restaurants.",
+        "description": "Solution tout-en-un pour restaurateurs : site vitrine, réservations en ligne, prise de commandes, gestion de salle, fidélité client et menu QR code. Pensée pour les indépendants et chaînes de restauration.",
+        "type": "SaaS Restauration",
+        "status": "En ligne"
+      },
+      "mySkinRoutine": {
+        "name": "My Skin Routine",
+        "subtitle": "Skincare personnalisé, sans perturbateurs et hors-ligne.",
+        "description": "Application mobile open source de suivi de routines skincare. Filtre les perturbateurs endocriniens, ingrédients controversés et comédogènes. 100% hors-ligne, respect total de la vie privée — vos données restent sur votre appareil.",
+        "type": "Open Source",
+        "status": "Open Source"
+      },
+      "smsForwarder": {
+        "name": "SMS Forwarder",
+        "subtitle": "Transfert automatique de SMS, open source et sans cloud.",
+        "description": "Application Android open source qui transfère automatiquement les SMS reçus vers un email, un webhook ou un autre numéro. Filtres par expéditeur, mots-clés ou plages horaires. Aucun serveur tiers, vos messages ne quittent jamais votre téléphone.",
+        "type": "Open Source",
+        "status": "Open Source"
+      },
+      "sdkVivaMerchant": {
+        "name": "Viva Merchant SDK",
+        "subtitle": "SDK PHP pour l'API Viva Wallet Merchant.",
+        "description": "SDK PHP 8.2+ couvrant l'intégralité de l'API Viva Wallet Merchant : paiements, wallets, transactions, webhooks, smart checkout. Typé strict, testé, prêt pour la production e-commerce.",
+        "type": "SDK Open Source",
+        "status": "Open Source"
+      },
+      "sdkVivaIsv": {
+        "name": "Viva ISV SDK",
+        "subtitle": "SDK PHP pour partenaires ISV Viva Wallet.",
+        "description": "SDK PHP dédié aux partenaires ISV Viva Wallet : marketplace, comptes connectés, paiements split, Cloud POS et reporting. Pensé pour les éditeurs SaaS qui distribuent un service de paiement à leurs marchands.",
+        "type": "SDK Open Source",
+        "status": "Open Source"
+      },
+      "rppsapiPhp": {
+        "name": "RPPS API PHP",
+        "subtitle": "SDK PHP pour l'Annuaire Santé RPPS.",
+        "description": "SDK PHP qui interroge l'Annuaire Santé RPPS officiel : 6 sources (RPPS, ADELI, FINESS, ROR, AM, etc.) consolidées en une seule requête. Idéal pour vérifier l'identité d'un professionnel de santé en quelques millisecondes.",
+        "type": "SDK Open Source",
+        "status": "Open Source"
+      },
+      "rppsapiJs": {
+        "name": "RPPS API JS",
+        "subtitle": "SDK TypeScript pour l'Annuaire Santé RPPS.",
+        "description": "SDK TypeScript zéro-dépendance pour l'Annuaire Santé RPPS. Node 18+, isomorphe (Node, Bun, Deno, edge). API typée stricte, idéale pour vérifier un praticien depuis une application e-santé moderne.",
+        "type": "SDK Open Source",
+        "status": "Open Source"
+      },
+      "sdkWithalloJs": {
+        "name": "Withallo JS SDK",
+        "subtitle": "SDK TypeScript isomorphe pour la plateforme Withallo.",
+        "description": "SDK TypeScript pour l'API Withallo (téléphonie cloud) : appels, SMS, contacts, webhooks, numéros virtuels. Isomorphe Node/Bun/edge, typage strict et helpers prêts à l'emploi pour les intégrations CRM.",
+        "type": "SDK Open Source",
+        "status": "Open Source"
+      },
+      "sdkWithalloPhp": {
+        "name": "Withallo PHP SDK",
+        "subtitle": "SDK PHP pour l'API Withallo : appels, SMS et webhooks.",
+        "description": "SDK PHP 8.2+ pour l'API Withallo : passer des appels, envoyer des SMS, gérer les contacts, les numéros virtuels et consommer les webhooks. Pensé pour les éditeurs SaaS qui veulent intégrer de la téléphonie cloud à leur produit.",
+        "type": "SDK Open Source",
         "status": "Open Source"
       }
     }

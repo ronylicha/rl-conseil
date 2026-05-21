@@ -29,6 +29,17 @@ const idToTranslationKey: Record<string, string> = {
   "timeismoney": "timeismoney",
   "giga-crm": "gigaCrm",
   "claude-dcm": "claudeDcm",
+  "qualiforma": "qualiforma",
+  "pix2clip": "pix2clip",
+  "restobook": "restobook",
+  "my-skin-routine": "mySkinRoutine",
+  "sms-forwarder": "smsForwarder",
+  "sdk-viva-merchant": "sdkVivaMerchant",
+  "sdk-viva-isv": "sdkVivaIsv",
+  "rppsapi-php": "rppsapiPhp",
+  "rppsapi-js": "rppsapiJs",
+  "sdk-withallo-js": "sdkWithalloJs",
+  "sdk-withallo-php": "sdkWithalloPhp",
 };
 
 function ProjectCard({
@@ -69,14 +80,24 @@ function ProjectCard({
             className="block dark:hidden object-contain w-auto h-auto"
           />
         </div>
-        <span
-          className={cn(
-            "px-2.5 py-1 rounded-full text-xs font-medium",
-            statusColors[project.statusType]
+        <div className="flex items-center gap-1.5 flex-wrap justify-end">
+          {project.unofficial && (
+            <span
+              className="px-2 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-orange-500/10 text-orange-500 border border-orange-500/20"
+              title={tProjects("unofficialBadge.tooltip")}
+            >
+              {tProjects("unofficialBadge.label")}
+            </span>
           )}
-        >
-          {tProjects(`items.${translationKey}.status`)}
-        </span>
+          <span
+            className={cn(
+              "px-2.5 py-1 rounded-full text-xs font-medium",
+              statusColors[project.statusType]
+            )}
+          >
+            {tProjects(`items.${translationKey}.status`)}
+          </span>
+        </div>
       </div>
       <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-[var(--color-text)] mb-1 group-hover:text-[var(--color-accent)] transition-colors">
         {tProjects(`items.${translationKey}.name`)}
@@ -114,11 +135,11 @@ export function PortfolioSection() {
 
   const filterKeys = ["all", "ai", "health", "compliance", "opensource"] as const;
   const filterCounts: Record<string, number> = {
-    all: 11,
-    ai: 6,
-    health: 3,
-    compliance: 4,
-    opensource: 2,
+    all: 22,
+    ai: 7,
+    health: 6,
+    compliance: 6,
+    opensource: 10,
   };
 
   const filtered =

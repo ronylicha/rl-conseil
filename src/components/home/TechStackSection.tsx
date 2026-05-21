@@ -12,6 +12,7 @@ type CategoryKey =
   | "devops"
   | "mobileRealtime"
   | "aiTools"
+  | "testingQuality"
   | "complianceSecurity";
 
 const techCategoryData: {
@@ -22,49 +23,55 @@ const techCategoryData: {
 }[] = [
   {
     key: "frontend",
-    techs: ["React 19", "Next.js 14", "Vue.js 3", "Nuxt.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "D3.js", "Sass/SCSS"],
+    techs: ["React 19", "Next.js 16", "Vue.js 3", "Nuxt.js", "TypeScript", "Tailwind CSS v4", "shadcn/ui", "Framer Motion", "Three.js", "D3.js", "Vite", "TanStack Query", "Zustand", "TipTap", "Sass/SCSS"],
     gradient: "from-blue-500/20 to-cyan-500/20",
     border: "border-blue-500/20",
   },
   {
     key: "backend",
-    techs: ["Laravel 12", "PHP 8.3", "Node.js", "Bun", "Hono", "Express", "Python", "Django", "FilamentPHP v3", "GraphQL", "REST API", "WebSocket"],
+    techs: ["Laravel 12", "PHP 8.3", "NestJS", "Node.js", "Bun", "Hono", "Express", "FastAPI", "Python", "Django", "FilamentPHP v3", "Prisma", "Zod", "BullMQ", "GraphQL", "REST API", "WebSocket"],
     gradient: "from-emerald-500/20 to-green-500/20",
     border: "border-emerald-500/20",
   },
   {
     key: "databases",
-    techs: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "Vector DB", "Supabase", "Firebase Firestore"],
+    techs: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "pgvector", "Meilisearch", "Supabase", "Firebase"],
     gradient: "from-amber-500/20 to-yellow-500/20",
     border: "border-amber-500/20",
   },
   {
     key: "cloudInfra",
-    techs: ["AWS", "Google Cloud", "OVHcloud", "Scaleway", "Vercel", "Cloudflare", "DigitalOcean"],
+    techs: ["AWS", "Google Cloud", "OVHcloud", "Scaleway", "Vercel", "Cloudflare", "DigitalOcean", "Kubernetes"],
     gradient: "from-purple-500/20 to-violet-500/20",
     border: "border-purple-500/20",
   },
   {
     key: "devops",
-    techs: ["Docker", "Docker Compose", "GitHub Actions", "GitLab CI", "Nginx", "Apache", "Load Balancing", "SSL/TLS", "Terraform"],
+    techs: ["Docker", "Docker Compose", "GitHub Actions", "GitLab CI", "Turborepo", "pnpm", "Nginx", "Apache", "Terraform", "Sentry", "OpenTelemetry"],
     gradient: "from-rose-500/20 to-pink-500/20",
     border: "border-rose-500/20",
   },
   {
     key: "mobileRealtime",
-    techs: ["React Native", "Expo", "WebRTC", "PWA", "Push Notifications", "Socket.IO"],
+    techs: ["React Native", "Expo", "Kotlin", "WebRTC", "LiveKit", "PWA", "Push Notifications", "Socket.IO"],
     gradient: "from-orange-500/20 to-amber-500/20",
     border: "border-orange-500/20",
   },
   {
     key: "aiTools",
-    techs: ["Claude API", "OpenAI API", "LangChain", "MCP Protocol", "RAG", "Vector Search", "Embeddings", "Multi-Agent"],
+    techs: ["Claude API", "OpenAI", "Mistral AI", "MiniMax", "Ollama", "LangChain", "MCP Protocol", "RAG", "Vector Search", "Embeddings", "Remotion", "TensorFlow", "PyTorch", "Multi-Agent"],
     gradient: "from-cyan-500/20 to-teal-500/20",
     border: "border-cyan-500/20",
   },
   {
+    key: "testingQuality",
+    techs: ["Vitest", "Playwright", "Jest", "Pest", "PHPUnit", "Testing Library"],
+    gradient: "from-indigo-500/20 to-blue-500/20",
+    border: "border-indigo-500/20",
+  },
+  {
     key: "complianceSecurity",
-    techs: ["HDS", "eIDAS", "RGPD", "Factur-X", "NF525", "OWASP", "OAuth2", "JWT", "CORS", "CSP"],
+    techs: ["HDS", "eIDAS", "RGPD", "Factur-X", "NF525", "Qualiopi", "OWASP", "OAuth2", "JWT", "AES-256", "CSP", "SSL/TLS"],
     gradient: "from-red-500/20 to-rose-500/20",
     border: "border-red-500/20",
   },
