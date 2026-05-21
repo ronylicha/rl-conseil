@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -8,6 +8,24 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { projects, type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+
+// Snapshot du timestamp côté client, capturé une seule fois après hydration.
+// useSyncExternalStore garantit :
+// - SSR + hydration : getServerSnapshot() → null (rendu identique au build)
+// - Post-hydration  : getClientSnapshot() → Date.now() (gelé au 1er appel)
+// Aucun setState dans useEffect, aucun appel impur en render — la lecture
+// de Date.now() est isolée dans getClientSnapshot (appelé par le store
+// React, hors du body du composant).
+let cachedClientNow: number | null = null;
+const noopSubscribe = () => () => {};
+const getClientNow = (): number | null => {
+  if (cachedClientNow === null) cachedClientNow = Date.now();
+  return cachedClientNow;
+};
+const getServerNow = (): null => null;
+function useClientNow(): number | null {
+  return useSyncExternalStore(noopSubscribe, getClientNow, getServerNow);
+}
 
 const statusColors: Record<string, string> = {
   success: "bg-emerald-500/10 text-emerald-500",
@@ -142,12 +160,9 @@ function ProjectCard({
 
 export function PortfolioSection() {
   const [active, setActive] = useState("all");
-  // `now` reste null au premier render (SSG) puis se peuple à l'hydration,
-  // ce qui évite tout mismatch et permet l'auto-switch basé sur la date courante.
-  const [now, setNow] = useState<number | null>(null);
-  useEffect(() => {
-    setNow(Date.now());
-  }, []);
+  // null pendant SSG/hydration, Date.now() figé après hydration côté client.
+  // Pas de setState dans useEffect, pas d'appel impur dans le render body.
+  const now = useClientNow();
   const tHome = useTranslations("home");
   const tProjects = useTranslations("projects");
 
