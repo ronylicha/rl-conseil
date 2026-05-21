@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Printer, Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { experiences, education, certifications } from "@/data/experience";
@@ -52,7 +53,13 @@ export function CvView() {
             <div className="bg-[#0d1117] text-[#f0ece4] p-8 print:p-6 space-y-6">
               {/* Photo + Name */}
               <div className="text-center">
-                <img src="/profile-photo.jpg" alt={siteConfig.founder.name} className="w-28 h-28 rounded-full mx-auto mb-4 border-3 border-white/20 object-cover" />
+                <Image
+                  src="/profile-photo.jpg"
+                  alt={siteConfig.founder.name}
+                  width={112}
+                  height={112}
+                  className="w-28 h-28 rounded-full mx-auto mb-4 border-3 border-white/20 object-cover"
+                />
                 <h1 className="text-xl font-bold font-[family-name:var(--font-heading)]">{siteConfig.founder.name}</h1>
                 <p className="text-xs text-[#be3c5a] uppercase tracking-wider mt-1">{siteConfig.founder.title}</p>
                 <span className="inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-medium">

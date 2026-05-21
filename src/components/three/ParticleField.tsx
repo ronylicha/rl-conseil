@@ -1,41 +1,56 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 const PARTICLE_COUNT = 2000;
+
+type ParticleData = {
+  positions: Float32Array;
+  velocities: Float32Array;
+  scales: Float32Array;
+};
+
+function generateParticleData(): ParticleData {
+  const positions = new Float32Array(PARTICLE_COUNT * 3);
+  const velocities = new Float32Array(PARTICLE_COUNT * 3);
+  const scales = new Float32Array(PARTICLE_COUNT);
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const i3 = i * 3;
+
+    // Camera at z=8, fov=60 → visible area ~±8 x ±5 at z=0
+    // Spread particles across visible area + slight overflow for edge coverage
+    positions[i3] = (Math.random() - 0.5) * 18;      // x: -9 to 9
+    positions[i3 + 1] = (Math.random() - 0.5) * 14;  // y: -7 to 7
+    positions[i3 + 2] = (Math.random() - 0.5) * 6 - 1; // z: -4 to 2 (biased toward camera)
+
+    velocities[i3] = (Math.random() - 0.5) * 0.003;
+    velocities[i3 + 1] = (Math.random() - 0.5) * 0.002;
+    velocities[i3 + 2] = (Math.random() - 0.5) * 0.001;
+
+    scales[i] = Math.random() * 0.04 + 0.008;
+  }
+
+  return { positions, velocities, scales };
+}
 
 function Particles() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const { viewport } = useThree();
 
-  const particleData = useMemo(() => {
-    const positions = new Float32Array(PARTICLE_COUNT * 3);
-    const velocities = new Float32Array(PARTICLE_COUNT * 3);
-    const scales = new Float32Array(PARTICLE_COUNT);
+  // useRef pour héberger des TypedArrays mutés à chaque frame (useFrame).
+  // Les refs sont exemptes de react-hooks/immutability. Lazy init via le
+  // pattern `??=` recommandé par les React docs.
+  const particleDataRef = useRef<ParticleData | null>(null);
+  particleDataRef.current ??= generateParticleData();
+  const particleData = particleDataRef.current;
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const i3 = i * 3;
-
-      // Camera at z=8, fov=60 → visible area ~±8 x ±5 at z=0
-      // Spread particles across visible area + slight overflow for edge coverage
-      positions[i3] = (Math.random() - 0.5) * 18;      // x: -9 to 9
-      positions[i3 + 1] = (Math.random() - 0.5) * 14;  // y: -7 to 7
-      positions[i3 + 2] = (Math.random() - 0.5) * 6 - 1; // z: -4 to 2 (biased toward camera)
-
-      velocities[i3] = (Math.random() - 0.5) * 0.003;
-      velocities[i3 + 1] = (Math.random() - 0.5) * 0.002;
-      velocities[i3 + 2] = (Math.random() - 0.5) * 0.001;
-
-      scales[i] = Math.random() * 0.04 + 0.008;
-    }
-
-    return { positions, velocities, scales };
-  }, []);
-
-  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const dummyRef = useRef<THREE.Object3D | null>(null);
+  dummyRef.current ??= new THREE.Object3D();
+  const dummy = dummyRef.current;
 
   useFrame(({ pointer, clock }) => {
     if (!meshRef.current) return;

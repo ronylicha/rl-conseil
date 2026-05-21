@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/data/site-config";
@@ -29,7 +30,13 @@ export async function Footer() {
             </p>
             <div className="mt-4 p-3 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] inline-block mb-6">
               <Link href="/carte" className="flex items-center gap-3 group cursor-pointer">
-                <img src="/profile-photo.jpg" alt={siteConfig.founder.name} className="w-10 h-10 rounded-full object-cover" />
+                <Image
+                  src="/profile-photo.jpg"
+                  alt={siteConfig.founder.name}
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
                 <div>
                   <p className="text-xs font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">{siteConfig.founder.name}</p>
                   <p className="text-[10px] text-[var(--color-text-muted)]">{t("footer.viewBusinessCard")}</p>

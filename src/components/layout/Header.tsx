@@ -17,15 +17,20 @@ export function Header() {
   const pathname = usePathname();
   const t = useTranslations("common");
 
+  // Pattern canonique React 19 « adjust state when a prop changes » :
+  // tracker la valeur précédente puis appeler setState pendant le render.
+  // Évite le useEffect+setState (cascading renders signalés par le linter).
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setIsOpen(false);
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
 
   return (
     <>
