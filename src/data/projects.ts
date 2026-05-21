@@ -9,6 +9,12 @@ export interface Project {
   statusType: "success" | "coming" | "dev" | "opensource";
   statusBadge?: string;
   unofficial?: boolean;
+  /**
+   * Date de mise en commercialisation (ISO 8601).
+   * Quand cette date est atteinte côté client, le statut bascule automatiquement
+   * vers "success" / "En ligne" sans nécessiter de redéploiement.
+   */
+  launchDate?: string;
   url: string;
   techTags: string[];
   logoDir: string;
@@ -24,8 +30,9 @@ export const projects: Project[] = [
     description: "Infrastructure API B2B qui automatise la génération de factures électroniques au format Factur-X et la signature électronique certifiée eIDAS. Conçue pour s'intégrer en quelques heures dans n'importe quel SI existant.",
     categories: ["compliance"],
     type: "API B2B",
-    status: "Mars 2026",
+    status: "Juin 2026",
     statusType: "coming",
+    launchDate: "2026-06-01T00:00:00+02:00",
     url: "https://scell.io",
     techTags: ["Laravel", "React", "TypeScript"],
     logoDir: "scell",
@@ -69,8 +76,9 @@ export const projects: Project[] = [
     description: "Plateforme tout-en-un pour les professionnels du bien-être : prise de rendez-vous, téléconsultation vidéo, gestion administrative et suivi patient.",
     categories: ["health", "compliance"],
     type: "Plateforme Santé",
-    status: "Avril 2026",
+    status: "Juin 2026",
     statusType: "coming",
+    launchDate: "2026-06-01T00:00:00+02:00",
     url: "https://praticonnect.com",
     techTags: ["Laravel", "FilamentPHP", "WebRTC"],
     logoDir: "praticonnect",
@@ -145,9 +153,10 @@ export const projects: Project[] = [
     description: "Solution de facturation certifiée NF525 avec suivi du temps passé, génération automatique de factures et intégration comptable directe.",
     categories: ["compliance"],
     type: "Facturation NF525",
-    status: "Mars 2026",
+    status: "Juillet 2026",
     statusType: "coming",
     statusBadge: "NF525",
+    launchDate: "2026-07-01T00:00:00+02:00",
     url: "#",
     techTags: ["Laravel", "FilamentPHP"],
     logoDir: "timeismoney",
@@ -191,9 +200,10 @@ export const projects: Project[] = [
     description: "LMS multi-tenant pensé pour la conformité Qualiopi : automatisation des preuves d'indicateurs, marketplace via Stripe Connect, visioconférence intégrée LiveKit avec transcription IA et signature électronique des feuilles d'émargement.",
     categories: ["compliance"],
     type: "LMS Qualiopi",
-    status: "Avril 2026",
+    status: "Juin 2026",
     statusType: "coming",
     statusBadge: "Qualiopi",
+    launchDate: "2026-06-15T00:00:00+02:00",
     url: "https://qualiforma.site",
     techTags: ["NestJS", "Next.js", "Stripe Connect", "LiveKit", "PostgreSQL"],
     logoDir: "qualiforma",

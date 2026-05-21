@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -45,11 +45,23 @@ const idToTranslationKey: Record<string, string> = {
 function ProjectCard({
   project,
   tProjects,
+  now,
 }: {
   project: Project;
   tProjects: ReturnType<typeof useTranslations>;
+  now: number | null;
 }) {
   const translationKey = idToTranslationKey[project.id] ?? project.id;
+  // Auto-switch vers "En ligne" si launchDate est dépassée (client-side, après hydration).
+  // `now` est null au premier render pour éviter tout mismatch SSG/hydration.
+  const launched =
+    now !== null &&
+    project.launchDate !== undefined &&
+    new Date(project.launchDate).getTime() <= now;
+  const effectiveStatusType = launched ? "success" : project.statusType;
+  const effectiveStatusLabel = launched
+    ? tProjects("statusLabels.online")
+    : tProjects(`items.${translationKey}.status`);
 
   return (
     <motion.a
@@ -92,10 +104,10 @@ function ProjectCard({
           <span
             className={cn(
               "px-2.5 py-1 rounded-full text-xs font-medium",
-              statusColors[project.statusType]
+              statusColors[effectiveStatusType]
             )}
           >
-            {tProjects(`items.${translationKey}.status`)}
+            {effectiveStatusLabel}
           </span>
         </div>
       </div>
@@ -130,6 +142,12 @@ function ProjectCard({
 
 export function PortfolioSection() {
   const [active, setActive] = useState("all");
+  // `now` reste null au premier render (SSG) puis se peuple à l'hydration,
+  // ce qui évite tout mismatch et permet l'auto-switch basé sur la date courante.
+  const [now, setNow] = useState<number | null>(null);
+  useEffect(() => {
+    setNow(Date.now());
+  }, []);
   const tHome = useTranslations("home");
   const tProjects = useTranslations("projects");
 
@@ -184,6 +202,7 @@ export function PortfolioSection() {
                 key={project.id}
                 project={project}
                 tProjects={tProjects}
+                now={now}
               />
             ))}
           </AnimatePresence>
