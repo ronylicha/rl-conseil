@@ -575,7 +575,7 @@
         "subtitle": "Factur-X and eIDAS compliance, in a single API.",
         "description": "B2B API infrastructure that automates the generation of electronic invoices in Factur-X format and eIDAS-certified electronic signatures. Designed to integrate within hours into any existing information system.",
         "type": "B2B API",
-        "status": "March 2026"
+        "status": "June 2026"
       },
       "apillmcontext": {
         "name": "ApiLLMContext",
@@ -596,7 +596,7 @@
         "subtitle": "The 100% digital practice management suite for wellness professionals.",
         "description": "An all-in-one platform for wellness professionals: appointment booking, video teleconsultation, administrative management, and patient follow-up.",
         "type": "Health Platform",
-        "status": "April 2026"
+        "status": "June 2026"
       },
       "noteflow": {
         "name": "NoteFlow",
@@ -631,7 +631,7 @@
         "subtitle": "Invoice accurately. Invoice compliantly. Invoice fast.",
         "description": "NF525-certified invoicing solution with time tracking, automatic invoice generation, and direct accounting integration.",
         "type": "NF525 Invoicing",
-        "status": "March 2026"
+        "status": "July 2026"
       },
       "gigaCrm": {
         "name": "Giga-CRM",
@@ -652,7 +652,7 @@
         "subtitle": "The Qualiopi-native LMS for training organizations.",
         "description": "Multi-tenant LMS built around Qualiopi compliance: automated indicator evidence, Stripe Connect marketplace, embedded LiveKit video conferencing with AI transcription and electronic signature of attendance sheets.",
         "type": "Qualiopi LMS",
-        "status": "April 2026"
+        "status": "June 2026"
       },
       "pix2clip": {
         "name": "Pix2Clip",

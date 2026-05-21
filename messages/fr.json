@@ -575,7 +575,7 @@
         "subtitle": "La conformité Factur-X et eIDAS, en une seule API.",
         "description": "Infrastructure API B2B qui automatise la génération de factures électroniques au format Factur-X et la signature électronique certifiée eIDAS. Conçue pour s'intégrer en quelques heures dans n'importe quel SI existant.",
         "type": "API B2B",
-        "status": "Mars 2026"
+        "status": "Juin 2026"
       },
       "apillmcontext": {
         "name": "ApiLLMContext",
@@ -596,7 +596,7 @@
         "subtitle": "Le cabinet de gestion 100% digital pour praticiens du bien-être.",
         "description": "Plateforme tout-en-un pour les professionnels du bien-être : prise de rendez-vous, téléconsultation vidéo, gestion administrative et suivi patient.",
         "type": "Plateforme Santé",
-        "status": "Avril 2026"
+        "status": "Juin 2026"
       },
       "noteflow": {
         "name": "NoteFlow",
@@ -631,7 +631,7 @@
         "subtitle": "Facturez juste. Facturez conforme. Facturez vite.",
         "description": "Solution de facturation certifiée NF525 avec suivi du temps passé, génération automatique de factures et intégration comptable directe.",
         "type": "Facturation NF525",
-        "status": "Mars 2026"
+        "status": "Juillet 2026"
       },
       "gigaCrm": {
         "name": "Giga-CRM",
@@ -652,7 +652,7 @@
         "subtitle": "Le LMS Qualiopi-natif pour organismes de formation.",
         "description": "LMS multi-tenant pensé pour la conformité Qualiopi : automatisation des preuves d'indicateurs, marketplace via Stripe Connect, visioconférence intégrée LiveKit avec transcription IA et signature électronique des feuilles d'émargement.",
         "type": "LMS Qualiopi",
-        "status": "Avril 2026"
+        "status": "Juin 2026"
       },
       "pix2clip": {
         "name": "Pix2Clip",
