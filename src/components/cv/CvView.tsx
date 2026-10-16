@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Printer, Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react";
+import { Printer, Mail, Phone, MapPin, Globe } from "lucide-react";
+import { LinkedinIcon, GithubIcon } from "@/components/ui/BrandIcons";
 import { siteConfig } from "@/data/site-config";
 import { experiences, education, certifications } from "@/data/experience";
 import { projects } from "@/data/projects";
@@ -76,8 +77,8 @@ export function CvView() {
                   { icon: Phone, text: siteConfig.founder.phoneDisplay },
                   { icon: Globe, text: "rlconseil.net" },
                   { icon: MapPin, text: siteConfig.founder.location },
-                  { icon: Linkedin, text: "LinkedIn" },
-                  { icon: Github, text: "GitHub" },
+                  { icon: LinkedinIcon, text: "LinkedIn" },
+                  { icon: GithubIcon, text: "GitHub" },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-2 text-[11px] text-[#f0ece4]/80">
                     <Icon size={13} className="text-[#be3c5a] shrink-0" />

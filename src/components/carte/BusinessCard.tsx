@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Globe, MapPin, Download, Share2, Linkedin, Github, Twitter, RotateCcw } from "lucide-react";
+import { Mail, Phone, Globe, MapPin, Download, Share2, RotateCcw } from "lucide-react";
+import { LinkedinIcon, GithubIcon, TwitterIcon } from "@/components/ui/BrandIcons";
 import { siteConfig } from "@/data/site-config";
 import { useTranslations } from "next-intl";
 
@@ -181,9 +182,9 @@ END:VCARD`;
         className="flex gap-3 mt-6"
       >
         {[
-          { icon: Linkedin, href: siteConfig.social.linkedin },
-          { icon: Github, href: siteConfig.social.github },
-          { icon: Twitter, href: siteConfig.social.twitter },
+          { icon: LinkedinIcon, href: siteConfig.social.linkedin },
+          { icon: GithubIcon, href: siteConfig.social.github },
+          { icon: TwitterIcon, href: siteConfig.social.twitter },
         ].map(({ icon: Icon, href }) => (
           <a
             key={href}

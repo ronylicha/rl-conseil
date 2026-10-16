@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/data/site-config";
 import { footerLinks } from "@/data/navigation";
-import { Linkedin, Github, Twitter } from "lucide-react";
+import { LinkedinIcon, GithubIcon, TwitterIcon } from "@/components/ui/BrandIcons";
 
 export async function Footer() {
   const t = await getTranslations("common");
@@ -45,9 +45,9 @@ export async function Footer() {
             </div>
             <div className="flex gap-3">
               {[
-                { icon: Linkedin, href: siteConfig.social.linkedin },
-                { icon: Github, href: siteConfig.social.github },
-                { icon: Twitter, href: siteConfig.social.twitter },
+                { icon: LinkedinIcon, href: siteConfig.social.linkedin },
+                { icon: GithubIcon, href: siteConfig.social.github },
+                { icon: TwitterIcon, href: siteConfig.social.twitter },
               ].map(({ icon: Icon, href }) => (
                 <a
                   key={href}
